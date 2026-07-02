@@ -1,6 +1,6 @@
 ---
 name: research-manuscript-workflow
-description: Use for research manuscript projects that need a reproducible workflow from literature search and Zotero literature collection through literature indexing, gap synthesis, analysis reports, manuscript outline/SAP, Word or document drafting, style polishing, citation QA, and final manuscript artifact generation. Trigger when the user asks to organize, document, reuse, audit, or execute a literature-to-manuscript workflow across research project repositories.
+description: Use for research manuscript projects that need a reproducible workflow from literature search and Zotero literature collection through literature indexing, gap synthesis, analysis reports, manuscript outline/SAP, Word or document drafting, style polishing, citation QA, and final manuscript artifact generation. Includes epidemiology, clinical-epidemiology, and population-health manuscript discipline (section discipline, causal-language restraint, internal/AI-workflow language scrub, STROBE-like clarity, methods-citation checks) applied during style polishing and QA. Trigger when the user asks to organize, document, reuse, audit, or execute a literature-to-manuscript workflow across research project repositories, or to revise, polish, humanize, or review an epidemiology manuscript for journal-ready prose.
 ---
 
 # Research Manuscript Workflow
@@ -383,7 +383,11 @@ Minimum procedure:
      while accepting more uniform prose in procedural Methods text.
 5. Preserve academic register. Do not make epidemiology, clinical, statistical,
    or methods prose conversational when precision is more important than
-   rhythm.
+   rhythm. For epidemiology, clinical-epidemiology, or population-health
+   manuscripts, also read `references/epidemiology-manuscript-discipline.md` and
+   apply its section discipline, causal-language restraint, internal-language
+   scrub, and phrase replacements; consult the project's epi revision-lessons
+   file if one exists.
 6. Maintain traceability. If a sentence becomes smoother but less obviously
    tied to a citation or output, revise again or flag it for QA rather than
    leaving a polished but unsupported claim.
@@ -432,7 +436,12 @@ Minimum procedure:
    - verify that literature-backed claims map to citation keys or reference
      records;
    - flag overreach, especially causal language, exaggerated novelty, or
-     Discussion claims stronger than the evidence.
+     Discussion claims stronger than the evidence;
+   - for epidemiology, clinical-epidemiology, or population-health manuscripts,
+     apply `references/epidemiology-manuscript-discipline.md`: verify Results
+     carry no interpretation or limitations, causal wording matches the design,
+     internal/data-layer language is absent from prose, and references are
+     numbered by first appearance.
 3. Run citation QA:
    - check in-text citations against the reference collection or literature
      index;
