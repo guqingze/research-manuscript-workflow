@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Manuscript Workflow"
+  short_description: "Zotero-first manuscript drafting workflow"
+  default_prompt: "Use $research-manuscript-workflow to organize literature, analysis reports, manuscript structure, drafting, and QA for this research project."

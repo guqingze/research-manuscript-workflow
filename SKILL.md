@@ -37,8 +37,8 @@ workflow when the user asks for one layer only.
 | Discover or document a project manuscript workflow | `setup` | `AGENTS.md`, `README.md`, project docs | Workflow map, missing pieces, and recommended `docs/manuscript_workflow.md` updates |
 | Search for candidate literature before Zotero/indexing | `literature-search` | Research question or scoped topic, databases/sources, inclusion/exclusion criteria | Search strategy, screened candidate corpus, and import/next-search recommendations |
 | Assist manual full-text collection into Zotero | `literature-acquisition` | Literature search record, target reference collection name/key | Acquisition queue, missing-item checklist, and missing-PDF attachment notes |
-| Refresh Zotero membership, citation keys, PDF/cache status, or literature summaries | `literature-refresh` | Reference manager details, index generator or index path | Updated literature index plus mismatch or missing-PDF notes |
-| Synthesize or revise the research gap and paper positioning | `gap-synthesis` | Literature index, key PDFs only as needed | Integrated evidence synthesis, manuscript positioning, CER chains, and SAP implications |
+| Refresh reference-manager membership, citation keys, the repo markdown cache, or literature summaries | `literature-refresh` | Reference manager details, PDF→markdown converter, index generator or index path | Updated markdown cache + manifest and literature index, plus mismatch or missing-PDF notes |
+| Synthesize or revise the research gap and paper positioning | `gap-synthesis` | Literature index and markdown cache; reference-manager PDFs only to verify | Integrated evidence synthesis, manuscript positioning, CER chains, and SAP implications |
 | Refresh project results for manuscript use | `analysis-refresh` | Repo pipeline commands, current outputs, Analysis Refresh Report path | Analysis Refresh Report with run provenance, result validation, interpretation, and manuscript handoff |
 | Build or revise the controlling manuscript plan | `sap-outline` | Gap synthesis, Analysis Refresh Report, current tables/figures | SAP/Outline Controller with section structure, argument map, evidence/result map, and main-vs-supplement decisions |
 | Draft or revise manuscript prose | `draft` | SAP/Outline Controller, gap synthesis, Analysis Refresh Report, literature index | Manuscript Draft Package in the repo's manuscript output directory |
@@ -135,8 +135,9 @@ Minimum procedure:
    priority and providing PubMed, DOI, or publisher URLs. If asked, open or list
    target links, but do not handle institutional credentials or bypass paywalls.
 6. After the user confirms that records/PDFs have been added to the collection,
-   hand off to `literature-refresh` to copy/cache PDFs, write manifests, and
-   regenerate the literature index.
+   hand off to `literature-refresh` to build the markdown cache from the
+   collection's PDFs, write the manifest, and regenerate the literature index.
+   PDFs stay in the reference manager; they are not copied into the repo.
 
 Default output: an acquisition checklist or CSV plus a concise list of missing
 reference-manager records and missing PDF attachments.
@@ -302,7 +303,8 @@ Minimum procedure:
 
 1. Confirm inputs: SAP/Outline Controller, gap synthesis, Analysis Refresh
    Report, literature index/reference collection, current tables/figures, and
-   any journal or word-count instructions.
+   any journal or word-count instructions. Read paper content from the markdown
+   cache; open the reference-manager PDF only to verify exact wording or numbers.
 2. Draft section by section. For each section, use the controller's purpose,
    assigned claims, citations, results, tables/figures, word count, and
    transition logic.
@@ -440,8 +442,9 @@ Minimum procedure:
    - flag cited sources with missing PDFs/cache entries if the repo requires
      local source verification.
 4. Run claim-source alignment on important cited claims. Distinguish
-   "reference exists" from "the source supports this sentence." Use PDFs or
-   authoritative metadata only when needed; mark unverified items explicitly.
+   "reference exists" from "the source supports this sentence." Use the markdown
+   cache for context and the canonical reference-manager PDF or authoritative
+   metadata to verify exact wording; mark unverified items explicitly.
 5. Run data and output QA:
    - numbers, denominators, cohort counts, model labels, and p-values/CIs must
      match generated outputs;
@@ -687,7 +690,13 @@ without re-discovering everything.
   DOI, URL, manuscript role, target collection, reference-manager status, PDF
   attachment status, local cache status, and next human action.
 - **Literature index**: `citation_key`, title, year, paper role, themes, key
-  claims, caveats, reference-manager status, and local PDF/cache status.
+  claims, caveats, reference-manager item key, and markdown-cache status
+  (`md` path, conversion method, source PDF checksum).
+- **Markdown cache manifest**: per paper — reference-manager item key and
+  attachment key, collection, source PDF path, `md` path, source SHA-256,
+  conversion method (`markdown` | `plaintext_fallback` | `needs_ocr`), status,
+  and char count. PDFs remain in the reference manager and are not committed to
+  the repo.
 - **Gap synthesis**: evidence matrix, key themes, convergence/divergence map,
   contradiction table, gap taxonomy, positioning claim, CER chains, synthesis
   limitations, SAP/outline implications, and claims requiring PDF verification
@@ -757,11 +766,30 @@ asks to run the complete literature-to-manuscript workflow.
    - Produce a missing-item and missing-PDF checklist rather than trying to bypass access controls.
    - After the user adds records and PDFs to the target collection, reconcile the collection against the auditable search record before indexing.
 
-4. **Update literature source**
-   - Prefer the reference manager as canonical.
-   - Treat local PDFs as an optional cache unless the repo explicitly says otherwise.
-   - When asked to move or copy PDFs from the reference manager into the repo, preserve source-to-destination traceability with a manifest containing item key, attachment key, title, source path, local path, byte size, and checksum when feasible.
-   - If an index generator exists, run it after changes to the reference collection, local PDF filenames, or curated summary fields.
+4. **Update the literature source and markdown cache**
+   - Treat the reference manager (e.g., Zotero) as the canonical store of PDFs and metadata.
+   - Do not copy PDFs into the project repo. Instead, build a committed **markdown cache** in the repo by converting the reference manager's PDFs read-only. The PDFs stay in the reference manager; the repo holds only the derived markdown plus a manifest. A repo may override this and keep PDFs only if it explicitly says so.
+   - Reading the markdown cache instead of re-parsing PDFs is much cheaper in tokens, which is the point of maintaining it.
+   - Locate the reference manager's PDFs read-only. For Zotero: read the data directory from the profile `prefs.js` (`extensions.zotero.dataDir`); copy `zotero.sqlite` before querying to avoid file locks; then map the target collection → items → `itemAttachments` (whose `path` looks like `storage:<file>.pdf`) → `<dataDir>/storage/<attachmentKey>/<file>.pdf`.
+   - Convert each PDF to markdown. Default conversion workflow (Python, CPU-only, good for born-digital papers; projects may substitute marker, Docling, or OCR for scans/math-heavy pages):
+
+     ```bash
+     pip install pymupdf4llm
+     ```
+     ```python
+     import pymupdf4llm, pymupdf, pathlib
+     md = pymupdf4llm.to_markdown(str(pdf_path), show_progress=False)
+     if not md.strip():
+         # markdown heuristics returned empty: fall back to plain text if a text layer exists
+         doc = pymupdf.open(str(pdf_path))
+         text = "".join(p.get_text() for p in doc)
+         md = text if text.strip() else None   # None => true scan, no text layer: flag needs_ocr, do NOT write an empty file
+     if md:
+         pathlib.Path(md_path).write_text(md, encoding="utf-8")
+     ```
+   - Make the cache idempotent: record each source PDF's SHA-256 in the manifest and re-convert only new or changed PDFs; offer a `--force` rebuild.
+   - Write a committed manifest linking each `.md` back to its source: reference-manager item key and attachment key, collection, source PDF path, `md` path, source SHA-256, conversion method (`markdown` | `plaintext_fallback` | `needs_ocr`), status, and char count.
+   - If an index generator exists, run it after changes to the reference collection, the markdown cache, or curated summary fields.
    - If no generator exists, propose or create a small committed index format before doing large manuscript drafting.
 
 5. **Maintain the literature intelligence layer**
@@ -769,7 +797,7 @@ asks to run the complete literature-to-manuscript workflow.
    - Use the gap synthesis document for integrated evidence interpretation, argument structure, research gap, positioning, and paper roles.
    - Keep gap synthesis focused on themes, contradictions, gap taxonomy, CER chains, and SAP implications; do not turn it into manuscript prose.
    - Keep raw paper inventory in the generated index, not in the gap synthesis.
-   - Open PDFs only to verify exact thresholds, study design, cohort details, definitions, or wording.
+   - Read the repo markdown cache for paper content during synthesis, indexing, and drafting. Open the canonical PDF in the reference manager only to verify exact thresholds, study design, cohort details, definitions, or wording — especially for entries marked `plaintext_fallback` or `needs_ocr` in the manifest.
 
 6. **Maintain the analysis result layer**
    - Update analysis scripts and outputs through the repo pipeline.
@@ -845,7 +873,8 @@ For each project, keep the reusable workflow here and store project-specific det
 Project-specific docs should record:
 
 - canonical reference collection name and key,
-- whether local PDFs are canonical or cache-only,
+- that the reference manager holds canonical PDFs while the repo holds only a derived markdown cache (or the repo-specific override if PDFs are kept),
+- markdown cache path, manifest path, and PDF→markdown conversion command,
 - literature search record and acquisition queue paths,
 - literature index paths and regeneration command,
 - gap synthesis path,
