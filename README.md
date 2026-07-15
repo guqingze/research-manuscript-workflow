@@ -1,8 +1,13 @@
 # Research Manuscript Workflow
 
-A Codex skill for managing research manuscript projects as a reproducible
+An agent skill for managing research manuscript projects as a reproducible
 artifact workflow, from literature search and reference curation through
 manuscript drafting, QA, journal packaging, revision, and resubmission.
+
+The skill is a plain `SKILL.md` (YAML frontmatter + Markdown body) plus a
+`references/` file and an `agents/openai.yaml` descriptor. This is the format
+Claude Code, Codex, and other `SKILL.md`-based agents read, so the same checkout
+works for all of them — see [Installation](#installation).
 
 The skill is designed for project repositories where manuscript work depends on
 stable inputs such as literature indexes, analysis outputs, tables, figures,
@@ -80,42 +85,80 @@ This separation helps future sessions continue from the right state without
 rediscovering literature, rerunning analyses unnecessarily, or mixing
 interpretation, planning, and final prose in one document.
 
+## Repository Layout
+
+```
+research-manuscript-workflow/
+├── SKILL.md                                       # the skill: frontmatter + workflow body
+├── agents/openai.yaml                             # Codex descriptor (display name, default prompt)
+└── references/
+    └── epidemiology-manuscript-discipline.md      # loaded during style-polish and qa for epi manuscripts
+```
+
+`SKILL.md` and `references/` are tool-neutral. `agents/openai.yaml` is only read
+by Codex; Claude Code and other agents ignore it.
+
 ## Installation
 
-Clone or copy this repository into your Codex skills directory:
+Both Claude Code and Codex discover skills under their own home directory
+(`~/.claude/skills/<name>` and `~/.codex/skills/<name>`). Rather than copying the
+files into each one, keep this repository as the single source of truth and
+symlink it into both, so edits here are live everywhere with no re-sync step.
 
 ```bash
-mkdir -p ~/.codex/skills/research-manuscript-workflow
-cp SKILL.md ~/.codex/skills/research-manuscript-workflow/SKILL.md
+# Point this at wherever you cloned the repo:
+REPO="$HOME/GitHub/research-manuscript-workflow"
+
+# Claude Code
+mkdir -p ~/.claude/skills
+ln -s "$REPO" ~/.claude/skills/research-manuscript-workflow
+
+# Codex
+mkdir -p ~/.codex/skills
+ln -s "$REPO" ~/.codex/skills/research-manuscript-workflow
 ```
 
-Or clone the repository directly:
+Don't have the repo yet? Clone it first, then run the commands above:
 
 ```bash
-git clone https://github.com/guqingze/research-manuscript-workflow.git ~/.codex/skills/research-manuscript-workflow
+git clone https://github.com/guqingze/research-manuscript-workflow.git \
+  "$HOME/GitHub/research-manuscript-workflow"
 ```
 
-Restart Codex or reload skills after installation.
+Restart or reload the agent after linking so it re-scans its skills directory.
+
+Notes:
+
+- Claude Code follows symlinks in `~/.claude/skills/` and picks the skill up on
+  its next start.
+- Codex enumerates `~/.codex/skills/` with a directory check that follows
+  symlinks, so a symlinked skill registers as installed. If your Codex build
+  does not surface it, replace that one symlink with a real copy
+  (`cp -R "$REPO" ~/.codex/skills/research-manuscript-workflow`) and refresh it
+  after edits.
+- Prefer a copy over a symlink? Substitute `cp -R "$REPO" <target>` for either
+  `ln -s` line; you then re-copy after each change instead of editing in place.
 
 ## Updating
 
-If installed by cloning:
+With the symlink install, there is nothing to re-copy — edit `SKILL.md` (or the
+reference file) in this repository and the change is live in both agents on their
+next start. To pull upstream changes:
 
 ```bash
-cd ~/.codex/skills/research-manuscript-workflow
+cd "$HOME/GitHub/research-manuscript-workflow"
 git pull
 ```
 
-If maintaining a local development copy, edit `SKILL.md`, commit the change,
-push to GitHub, then pull or copy the updated file into the Codex skills
-directory.
+If you installed by copying instead of symlinking, re-run the `cp -R` command for
+each target after pulling or editing.
 
 ## Publishing Note
 
-This repository is safe to keep private while the workflow is still evolving.
-Before making it public, review `SKILL.md` for local paths, private project
-names, unpublished manuscript details, reference-manager collection keys, or
-institution-specific workflow notes.
+Before making this repository public, review `SKILL.md` and
+`references/epidemiology-manuscript-discipline.md` for local paths, private
+project names, unpublished manuscript details, reference-manager collection keys,
+or institution-specific workflow notes.
 
 ## License
 
