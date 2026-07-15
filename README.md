@@ -162,5 +162,8 @@ or institution-specific workflow notes.
 
 ## License
 
-No license has been specified yet. Add one before publishing publicly if you
-want others to reuse or adapt the skill.
+© 2026 Qingze Gu
+
+Licensed under [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/)
+(CC BY-NC 4.0) — see [`LICENSE`](LICENSE). You may share and adapt the skill with
+attribution for non-commercial purposes.
