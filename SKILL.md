@@ -15,6 +15,7 @@ Use this default artifact model unless the repo already has stronger conventions
 - **Literature search record**: reproducible search strategy, screening decisions, and candidate source corpus before or alongside reference-manager import.
 - **Literature acquisition queue**: human-in-the-loop full-text collection checklist that bridges searched candidates to a project reference-manager collection.
 - **Literature index**: generated LLM-facing lookup table with citation keys, themes, roles, key claims, caveats, and local attachment status.
+- **Evidence-extraction cache**: generated, committed, per-paper structured extraction (one record per cached full text) produced by fan-out worker subagents from the markdown cache; carries study characterization, anchored quantitative findings, and relevance tags so that gap synthesis, drafting, and QA read verified numbers without re-reading full text. Optional layer used when the corpus is large; sits between the literature index and gap synthesis.
 - **Gap synthesis**: curated interpretation of the literature and the research gap.
 - **Analysis Refresh Report**: current project results only, generated or updated from scripts and outputs, with provenance, interpretation, and manuscript handoff.
 - **SAP/Outline Controller**: controlling manuscript structure, analysis hierarchy, section claims, word counts, tables, figures, and main-vs-supplement decisions.
@@ -38,7 +39,7 @@ workflow when the user asks for one layer only.
 | Search for candidate literature before Zotero/indexing | `literature-search` | Research question or scoped topic, databases/sources, inclusion/exclusion criteria | Search strategy, screened candidate corpus, and import/next-search recommendations |
 | Assist manual full-text collection into Zotero | `literature-acquisition` | Literature search record, target reference collection name/key | Acquisition queue, missing-item checklist, and missing-PDF attachment notes |
 | Refresh reference-manager membership, citation keys, the repo markdown cache, or literature summaries | `literature-refresh` | Reference manager details, PDF→markdown converter, index generator or index path | Updated markdown cache + manifest and literature index, plus mismatch or missing-PDF notes |
-| Synthesize or revise the research gap and paper positioning | `gap-synthesis` | Literature index and markdown cache; reference-manager PDFs only to verify | Integrated evidence synthesis, manuscript positioning, CER chains, and SAP implications |
+| Synthesize or revise the research gap and paper positioning | `gap-synthesis` | Literature index and markdown cache (for large corpora: an evidence-extraction cache built by subagent map-reduce); reference-manager PDFs only to verify | Integrated evidence synthesis, manuscript positioning, CER chains, and SAP implications |
 | Refresh project results for manuscript use | `analysis-refresh` | Repo pipeline commands, current outputs, Analysis Refresh Report path | Analysis Refresh Report with run provenance, result validation, interpretation, and manuscript handoff |
 | Build or revise the controlling manuscript plan | `sap-outline` | Gap synthesis, Analysis Refresh Report, current tables/figures | SAP/Outline Controller with section structure, argument map, evidence/result map, and main-vs-supplement decisions |
 | Draft or revise manuscript prose | `draft` | SAP/Outline Controller, gap synthesis, Analysis Refresh Report, literature index | Manuscript Draft Package in the repo's manuscript output directory |
@@ -185,6 +186,67 @@ Minimum procedure:
 Default output: an integrated gap synthesis with an evidence matrix,
 convergence/divergence map, gap taxonomy, positioning claim, CER chains, stress
 test notes, and SAP/outline implications.
+
+### Large-corpus subagent map-reduce (optional, for big corpora)
+
+Reading a large full-text corpus directly into one context to synthesize it
+either overflows the context or silently regresses to abstract-level summary.
+For a large corpus, build the gap synthesis with an explicit map-reduce that
+first materializes a persistent, verifiable **evidence-extraction cache**, then
+reduces from that cache.
+
+When to use this path instead of reading the cache directly:
+
+- corpus larger than roughly 25-30 cached full texts, or
+- the user explicitly asks for a full-text-grounded synthesis.
+
+Below that threshold, read the markdown cache directly in-context; the map-reduce
+overhead is not worth it.
+
+**Map (parallel worker subagents, engine-agnostic, workers write).** Fan out the
+corpus in small batches (~5-6 papers per worker). Each worker reads only the
+assigned full-text markdown files and writes one committed record per paper into
+the evidence-extraction cache, following `references/evidence-extraction-contract.md`
+(schema, three-layer anchor rules, and the worker prompt template). The worker
+engine is pluggable and both session hosts are supported:
+
+| Session host | Claude workers | Codex workers |
+|---|---|---|
+| Claude Code | Agent tool, `general-purpose`, `Write` enabled, background | Bash fan-out of `codex exec` |
+| Codex | `claude` CLI workers if present | native `codex exec` fan-out |
+
+Codex worker invocation (read the papers, write records, scoped to the cache dir):
+`codex exec -m <model> -c model_reasoning_effort=medium --sandbox workspace-write --cd <repo> -a never`.
+Extraction is mechanical structured transcription against a fixed schema, so run
+workers one model tier below the reduce (a cheaper/faster model), keep the
+session's strongest model for the reduce, and confine worker writes to the
+extraction-cache directory (audit with `git diff` plus the anchor checker).
+
+Make extraction idempotent: mirror the markdown-cache manifest into an
+extraction-cache manifest keyed to each source's SHA-256, and re-extract a paper
+only when its source SHA or the schema version changed (`--force` rebuilds all).
+
+**Verify (100% mechanical + targeted human).** Before reducing, run the shared
+checker `scripts/verify_extract_anchors.py` over the whole cache: it decodes every
+`quote` anchor and substring-matches it against the source markdown, enforces the
+no-unanchored-number rule (any quantitative finding lacking a `quote`/`section`/
+`table` anchor must be flagged `verification_status: needs_pdf`), and checks each
+record's source SHA against the manifest. Fix or quarantine every hard failure.
+Then re-read (human/orchestrator) only the numbers bound for the manuscript (the
+anchor comparators and any figure that will reach prose) to catch
+misinterpretation of otherwise-valid quotes.
+
+**Reduce (orchestrator, in-context, with project context).** The session
+orchestrator — not a fresh cold subagent — reads the whole verified cache in one
+context and writes the gap synthesis. Doing the reduce in the session that holds
+the project's results, SAP, and positioning discussion is deliberate: a cold
+synthesis subagent re-derives the story from scratch and drifts toward stale or
+generic framing. If a corpus is too large for the cache to fit one context, fall
+back to a hierarchical reduce (batch-level partial syntheses from subagents, then
+an orchestrator merge) rather than handing the whole reduce to a subagent.
+
+The reduce output is the same integrated gap synthesis specified above; the cache
+only changes how its evidence is sourced and verified, not the synthesis contract.
 
 ## Analysis Refresh Mode
 
@@ -706,6 +768,16 @@ without re-discovering everything.
   conversion method (`markdown` | `plaintext_fallback` | `needs_ocr`), status,
   and char count. PDFs remain in the reference manager and are not committed to
   the repo.
+- **Evidence-extraction cache**: per paper — `citation_key`, source `md` path and
+  SHA-256 (mirrored from the markdown-cache manifest), `schema_version`, study
+  characterization (design, setting, population, N, modality, cutoffs), an
+  evidence grade, a list of anchored quantitative findings (each: claim, value,
+  CI/p, adjustment set, and a `quote`/`section`/`table` anchor), relevance tags
+  (manuscript role, which claim it bears on, convergence/divergence note, caveat),
+  and `verification_status`. Full field-level schema, anchor rules, and the worker
+  prompt template live in `references/evidence-extraction-contract.md`; a mirrored
+  SHA-keyed extraction-cache manifest makes rebuilds idempotent. Anchors are
+  verified by `scripts/verify_extract_anchors.py`.
 - **Gap synthesis**: evidence matrix, key themes, convergence/divergence map,
   contradiction table, gap taxonomy, positioning claim, CER chains, synthesis
   limitations, SAP/outline implications, and claims requiring PDF verification
