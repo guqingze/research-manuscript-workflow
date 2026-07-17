@@ -21,9 +21,13 @@ or more of these stages:
 - literature search and candidate-source tracking
 - full-text acquisition and reference-manager reconciliation
 - literature index refresh
+- key-paper evidence extraction into a verifiable cache
 - gap synthesis and manuscript positioning
+- planned-analyses roadmapping with an availability audit
 - analysis result refresh and manuscript handoff
+- results-vs-literature reflection and internal-meeting feedback
 - SAP/outline planning
+- narrative/framing-deck rehearsal before drafting
 - manuscript drafting
 - style polishing for clarity and author voice
 - factual, citation, data, and render QA
@@ -40,17 +44,25 @@ workflow.
 
 ## Workflow Modes
 
-The skill routes requests to the smallest useful mode:
+The skill routes requests to the smallest useful mode, grouped by the three
+macro-phases (`setup` is a cross-phase preamble):
 
 | Mode | Purpose |
 |---|---|
 | `setup` | Discover or document a project manuscript workflow |
+| **Phase 1 — Literature foundation** | |
 | `literature-search` | Search for candidate papers before Zotero/indexing |
-| `literature-acquisition` | Track manual full-text collection into a reference manager |
-| `literature-refresh` | Refresh reference membership, citation keys, PDF/cache status, or summaries |
+| `literature-acquisition` | Build the human download checklist for searched candidates and reconcile the collection |
+| `literature-ingest` | Sync the reference manager into the repo's literature layer: membership + citation keys, markdown cache + manifest, and index |
+| `evidence-extraction` | Extract structured evidence from identified key papers into a verifiable cache (token-heavy; subagent fan-out) |
 | `gap-synthesis` | Synthesize the research gap and manuscript positioning |
+| **Phase 2 — Research iteration loop** | |
 | `analysis-refresh` | Regenerate, reconcile, and interpret current project results |
+| `analysis-plan` | Triage literature/reviewer-motivated analyses not yet run, with an availability audit |
+| `reflect` | Argue current results against the literature, gaps, and internal-meeting feedback |
 | `sap-outline` | Build the controlling manuscript plan |
+| `narrative-deck` | Rehearse and lock the narrative/framing before drafting (often for an internal meeting) |
+| **Phase 3 — Manuscript production** | |
 | `draft` | Draft manuscript prose from controlled inputs |
 | `style-polish` | Improve readability and author voice without changing scientific meaning |
 | `qa` | Audit claims, citations, data outputs, figures, tables, and render readiness |
@@ -68,9 +80,13 @@ The workflow keeps major responsibilities separated into explicit artifacts:
 - Literature search record
 - Literature acquisition queue
 - Literature index
+- Evidence-extraction cache
 - Gap synthesis
+- Planned-analyses roadmap
 - Analysis Refresh Report
+- Reflection memo
 - SAP/Outline Controller
+- Narrative deck
 - Manuscript Draft Package
 - Style-Polished Manuscript Draft Package
 - QA Gate Report
@@ -91,12 +107,16 @@ interpretation, planning, and final prose in one document.
 research-manuscript-workflow/
 ├── SKILL.md                                       # the skill: frontmatter + workflow body
 ├── agents/openai.yaml                             # Codex descriptor (display name, default prompt)
-└── references/
-    └── epidemiology-manuscript-discipline.md      # loaded during style-polish and qa for epi manuscripts
+├── references/
+│   ├── epidemiology-manuscript-discipline.md      # loaded during style-polish and qa for epi manuscripts
+│   └── evidence-extraction-contract.md            # schema, anchor rules, and worker prompt for evidence extraction
+└── scripts/
+    ├── verify_extract_anchors.py                  # mechanical anchor checker for the evidence-extraction cache
+    └── requirements.txt                           # Python deps for the scripts
 ```
 
-`SKILL.md` and `references/` are tool-neutral. `agents/openai.yaml` is only read
-by Codex; Claude Code and other agents ignore it.
+`SKILL.md`, `references/`, and `scripts/` are tool-neutral. `agents/openai.yaml`
+is only read by Codex; Claude Code and other agents ignore it.
 
 ## Installation
 
@@ -152,13 +172,6 @@ git pull
 
 If you installed by copying instead of symlinking, re-run the `cp -R` command for
 each target after pulling or editing.
-
-## Publishing Note
-
-Before making this repository public, review `SKILL.md` and
-`references/epidemiology-manuscript-discipline.md` for local paths, private
-project names, unpublished manuscript details, reference-manager collection keys,
-or institution-specific workflow notes.
 
 ## License
 
