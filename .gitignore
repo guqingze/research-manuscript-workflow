@@ -1,5 +1,11 @@
 # Local agent/editor config
 .claude/settings.local.json
 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
 # macOS
 .DS_Store
