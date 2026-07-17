@@ -44,6 +44,18 @@ QUOTE_MAX_WORDS = 25
 
 _WS = re.compile(r"\s+")
 _EMPH = re.compile(r"[*_`]+")
+# non-content artifacts of PDF->markdown conversion. A quote that omits these is
+# still faithful, so strip them before matching. Only fixed tag whitelists are
+# removed so math operators like "P < 0.001" are never touched.
+# sup/sub are intra-token (kg/m<sup>2</sup> -> "kg/m2"): drop with no space.
+_TAG_JOIN = re.compile(r"</?(?:sub|sup)\s*/?>", re.I)
+# break/block/emphasis tags sit between tokens (word<br>word): drop to a space.
+_TAG_SPACE = re.compile(r"</?(?:br|b|i|em|strong|span|p|div|td|tr|th)\s*/?>", re.I)
+_PIPE = re.compile(r"\|")
+# spacing around comparison/equality operators is not semantically meaningful
+# for traceability, and small models routinely re-space "P_<_0.001" -> "P < 0.001";
+# fold it so an otherwise-verbatim quote still matches.
+_OPSP = re.compile(r"\s*([<>=])\s*")
 
 
 def normalize(text: str) -> str:
@@ -54,8 +66,12 @@ def normalize(text: str) -> str:
                  ("—", "-"), ("−", "-"), ("’", "'"),
                  ("“", '"'), ("”", '"')):
         text = text.replace(a, b)
+    text = _TAG_JOIN.sub("", text)
+    text = _TAG_SPACE.sub(" ", text)
+    text = _PIPE.sub(" ", text)
     text = _EMPH.sub("", text)
     text = _WS.sub(" ", text)
+    text = _OPSP.sub(r"\1", text)
     return text.strip().lower()
 
 
