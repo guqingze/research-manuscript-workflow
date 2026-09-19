@@ -49,7 +49,7 @@ macro-phases (`setup` is a cross-phase preamble):
 
 | Mode | Purpose |
 |---|---|
-| `setup` | Discover or document a project manuscript workflow |
+| `setup` | Discover, document or reorganise artifact ownership, folders and script entry points |
 | **Phase 1 — Literature foundation** | |
 | `literature-search` | Search for candidate papers before Zotero/indexing |
 | `literature-acquisition` | Build the human download checklist for searched candidates and reconcile the collection |
@@ -102,6 +102,13 @@ rediscovering literature, rerunning analyses unnecessarily, or mixing
 interpretation, planning, and final prose in one document.
 
 ## Repository Layout
+
+For project structure and refactoring, see
+[repository organisation](references/repository-organisation.md): one editable
+home per artifact, meeting text and assets together, purpose-grouped scripts,
+and source-preserving migration checks. The suggested lifecycle roles do not
+require duplicate docs/output folders. Markdown-only meeting packages are fully
+supported.
 
 ```
 research-manuscript-workflow/

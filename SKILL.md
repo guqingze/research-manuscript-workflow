@@ -39,7 +39,7 @@ macro-phases (see Workflow); `setup` is a cross-phase preamble.
 
 | User intent | Mode | Required inputs | Output |
 |---|---|---|---|
-| Discover or document a project manuscript workflow | `setup` | `AGENTS.md`, `README.md`, project docs | Workflow map, missing pieces, and recommended `docs/manuscript_workflow.md` updates |
+| Discover, document or reorganise a project manuscript workflow | `setup` | `AGENTS.md`, `README.md`, project docs and caller/artifact inventory | Canonical artifact map, script navigation and project workflow updates; authorised migration with verification |
 | **Phase 1 — Literature foundation** | | | |
 | Search for candidate literature before Zotero/indexing | `literature-search` | Research question or scoped topic, databases/sources, inclusion/exclusion criteria | Search strategy, screened candidate corpus, and import/next-search recommendations |
 | Build the human download checklist for searched candidates and reconcile the collection | `literature-acquisition` | Literature search record, target reference collection name/key | Acquisition queue (DOI/PMID/URL, priority, role) for the human to download into the reference manager, plus missing-item and missing-PDF lists |
@@ -68,6 +68,19 @@ If the request spans multiple modes, start at the earliest affected mode and
 state the planned sequence. If the user's current stage is ambiguous, inspect the
 repo workflow docs and existing manuscript artifacts before asking for
 clarification.
+
+## Setup and Repository Organisation Mode
+
+For discovery or structural refactoring, read
+[repository organisation](references/repository-organisation.md). Establish each
+artifact's canonical editable home, distinguish generated exports and historical
+evidence, and inventory script callers before moving files. If the user has
+approved a deck or research plan, save it before structural work.
+
+Adapt to the repository rather than creating every folder in the example layout.
+One artifact can carry several lightweight metadata fields without needing a
+new framework. A request to organise files does not authorise changing scientific
+definitions, rewriting manuscript claims, rerunning model selection or publishing.
 
 ## Literature Search Mode
 
@@ -477,6 +490,10 @@ Minimum procedure:
 
 1. Confirm inputs: SAP/Outline Controller, Analysis Refresh Report, gap
    synthesis, reflection memo, and current figures/tables.
+   Choose one canonical package for editable deck text and display assets. If
+   the project versions selected meeting folders under `outputs/`, use that
+   location directly; do not also create an editable deck under docs. Honour the
+   requested format, including Markdown with linked assets without a PPTX.
 2. Choose and record the spine/storyline and the explicit framing decisions
    (what leads, what is secondary, what is shown vs relegated), including options
    considered and set aside so the group can see the forks.
@@ -1176,11 +1193,22 @@ the manuscript lifecycle do not blur:
     planned-analyses roadmap.
   - `results/` — the Analysis Refresh Report (the results ledger; no framing).
   - `reflection/` — the reflection memo and any internal-meeting-feedback digest.
-  - `narrative/` — the narrative deck.
+  - `narrative/` — the canonical narrative deck package, or a navigation pointer
+    when meeting packages live elsewhere; never a second editable copy.
   - `draft/` — manuscript draft(s), supplement, and reporting checklists (e.g.,
     STROBE); rendered outputs go to the repo's manuscript output directory.
   - `qa/` — QA Gate Report and Pre-Submission Review Report when produced.
   - `archive/` — superseded drafts and artifacts.
+
+This is an artifact-role map, not a requirement to create duplicate physical
+folders. A project may version selected, curated meeting packages under
+`outputs/presentations/<meeting>/`, keeping editable Markdown and display assets
+together with narrow Git exceptions. Manuscript Markdown and rendered Word are
+different roles; declare which is editable. Keep reusable builders in purpose
+groups under `scripts/`, with a task-oriented index distinguishing current entry
+points, helpers, historical recipes and compatibility tools. See
+[repository organisation](references/repository-organisation.md) for migration,
+preservation and validation guidance.
 
 Splitting the controller into `outline.md` + `sap.md` is recommended when the
 combined document grows unwieldy or the argument and the statistical plan update
