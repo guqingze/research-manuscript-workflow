@@ -22,7 +22,7 @@ or workflow map; add a catalog only when the number of files warrants one.
 
 ## Meeting packages
 
-Choose one canonical location for a meeting's deck, notes and selected display
+Choose one canonical location for a meeting's deck, presenter notes and selected display
 assets. Either a docs-based package or a curated versioned output package can
 work; follow the user's choice and repository conventions. Example:
 
@@ -35,6 +35,15 @@ outputs/presentations/<date>_<meeting>/
   assets/tables/            Generated display tables
   assets/figures/           Generated display figures
 ```
+
+Meeting records have a different role from presenter notes. Preserve dated
+meeting notes, transcripts and presented originals in the project's existing
+meeting-record location, and link them from the package/index rather than
+copying them. Reflection digests decisions, objections and requested analyses
+against results and literature, linking the source meeting and the current
+research action register. Accepted decisions feed the plan and next analysis or
+deck; the next meeting supplies further feedback. Keep historical records intact
+and current action status in its declared owner.
 
 Do not create each file or subfolder until it has a use. Use relative links for
 assets that travel with the package. Distinguish portable display links from
