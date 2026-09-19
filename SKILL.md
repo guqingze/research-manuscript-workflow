@@ -139,6 +139,34 @@ Recommended candidate table columns:
 `zotero_status`, `pdf_status`, `local_cache_status`, `next_human_action`,
 `notes`.
 
+### Literature refresh/search-round rule
+
+Re-enter `literature-search` whenever the manuscript gains a new comparison
+population, outcome, modality, section, reviewer request, or other material
+scope change, or when the planned search horizon has meaningfully aged. A
+meeting decision that promotes a new global comparison is a search trigger,
+not merely a request to add citations. Do not treat a Zotero or literature-index
+refresh as evidence that a new search was performed.
+
+For every refresh, create a new dated search record in the project repository
+before importing papers. The record must identify the round and trigger, search
+date and local timezone, sources/interfaces, exact queries and filters, date
+limits, languages/document types, predeclared inclusion/exclusion criteria,
+raw/de-duplicated/screened/full-text/included counts, citation-chasing or
+named-project searches, retained candidates with stable identifiers, exclusions,
+reserve suggestions, unresolved metadata, and the next Zotero/acquisition
+action. A record can be opened as `planned`, but it must not contain invented
+counts. Do not overwrite a completed round; link the new round to the issue,
+meeting note, or roadmap that triggered it.
+
+When the search supports a prevalence comparison or meta-analysis, add a
+comparability gate before pooling: sampling frame, geography/ethnicity,
+population size and structure, modality, CAP/LSM thresholds, probe, quality
+rules, BMI/obesity strata, and crude versus adjusted estimands. If these are
+not sufficiently harmonizable, retain the studies as a structured comparison
+or separate evidence tiers rather than presenting a pooled estimate as if it
+were directly comparable.
+
 ## Literature Acquisition Mode
 
 Use `literature-acquisition` after candidate papers have been identified but
@@ -930,10 +958,11 @@ ensure each artifact carries the fields needed for later sessions to consume it
 without re-discovering everything.
 
 - **Literature search record**: research question or scoped topic, databases or
-  sources searched, search date, query strings, inclusion/exclusion criteria,
-  raw and screened counts, retained candidate sources with stable IDs and
-  PMID/DOI/URL metadata, exclusion notes, non-auditable reserve suggestions, and
-  unresolved metadata.
+  sources searched, search date and local timezone, round ID and trigger, query
+  strings and filters, inclusion/exclusion criteria, raw/de-duplicated/screened
+  counts, retained candidate sources with stable IDs and PMID/DOI/URL metadata,
+  exclusion notes, citation-chasing or named-project searches, non-auditable
+  reserve suggestions, unresolved metadata, and acquisition handoff status.
 - **Literature acquisition queue**: `source_id`, tier or priority, title, PMID,
   DOI, URL, manuscript role, target collection, reference-manager status, PDF
   attachment status, local cache status, and next human action.
@@ -1039,6 +1068,7 @@ off Phase 2, not a fixed step.
 
 2. **Search for candidate literature when needed**
    - Use `literature-search` before reference-manager import when the project lacks a curated corpus or the user asks for new sources.
+   - Re-enter it for any material manuscript-scope change, including a new comparison population or global-comparison section; open a new dated search record rather than silently extending an earlier search.
    - Keep search strategy, screening decisions, acquisition status, and unresolved metadata separate from the literature index and gap synthesis.
    - Treat retained candidates as provisional until imported or reconciled with the canonical reference manager.
 
@@ -1180,8 +1210,9 @@ the manuscript lifecycle do not blur:
 - `docs/reference/` — raw source references (source-table/covariate inventories,
   data-provider user guides); a header on each states its boundary against the
   derived data dictionary.
-- `docs/literature/` — the literature corpus: index, markdown cache + manifest,
-  and optionally the evidence-extraction cache; PDFs stay in the reference manager.
+- `docs/literature/` — the literature corpus: dated search records, index,
+  markdown cache + manifest, and optionally the evidence-extraction cache; PDFs
+  stay in the reference manager.
 - `docs/manuscript/` — the research→manuscript lifecycle, one folder per role so
   the phases are legible:
   - `workflow.md`: exact project workflow, paths, collection keys, update

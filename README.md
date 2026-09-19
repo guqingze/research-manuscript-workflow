@@ -19,6 +19,7 @@ Use this skill when a manuscript project needs a structured workflow across one
 or more of these stages:
 
 - literature search and candidate-source tracking
+- dated literature-search refreshes when manuscript scope or comparison populations change
 - full-text acquisition and reference-manager reconciliation
 - literature index refresh
 - key-paper evidence extraction into a verifiable cache
@@ -100,6 +101,10 @@ The workflow keeps major responsibilities separated into explicit artifacts:
 This separation helps future sessions continue from the right state without
 rediscovering literature, rerunning analyses unnecessarily, or mixing
 interpretation, planning, and final prose in one document.
+
+When a manuscript scope changes materially, start a new dated literature-search
+record with the exact source, query, date, screening, and count audit trail;
+refreshing the literature index alone is not a substitute for searching.
 
 ## Repository Layout
 
