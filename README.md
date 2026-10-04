@@ -115,16 +115,21 @@ and source-preserving migration checks. The suggested lifecycle roles do not
 require duplicate docs/output folders. Markdown-only meeting packages are fully
 supported.
 
-```
+```text
 research-manuscript-workflow/
-├── SKILL.md                                       # the skill: frontmatter + workflow body
-├── agents/openai.yaml                             # Codex descriptor (display name, default prompt)
+├── SKILL.md                              # core rules, router, resource map
+├── agents/openai.yaml                    # Codex display metadata
 ├── references/
-│   ├── epidemiology-manuscript-discipline.md      # loaded during style-polish and qa for epi manuscripts
-│   └── evidence-extraction-contract.md            # schema, anchor rules, and worker prompt for evidence extraction
+│   ├── <mode>.md                         # procedures loaded for selected modes
+│   ├── artifact-contracts.md             # required artifact fields
+│   ├── workflow-composition.md           # phase sequencing, ingest and handoff
+│   ├── project-documentation.md          # project artifact and command map
+│   ├── repository-organisation.md        # ownership and safe migration rules
+│   ├── epidemiology-manuscript-discipline.md
+│   └── evidence-extraction-contract.md   # extraction schema and anchor rules
 └── scripts/
-    ├── verify_extract_anchors.py                  # mechanical anchor checker for the evidence-extraction cache
-    └── requirements.txt                           # Python deps for the scripts
+    ├── verify_extract_anchors.py
+    └── requirements.txt
 ```
 
 `SKILL.md`, `references/`, and `scripts/` are tool-neutral. `agents/openai.yaml`
@@ -132,50 +137,48 @@ is only read by Codex; Claude Code and other agents ignore it.
 
 ## Installation
 
-Both Claude Code and Codex discover skills under their own home directory
-(`~/.claude/skills/<name>` and `~/.codex/skills/<name>`). Rather than copying the
-files into each one, keep this repository as the single source of truth and
-symlink it into both, so edits here are live everywhere with no re-sync step.
-
-```bash
-# Point this at wherever you cloned the repo:
-REPO="$HOME/GitHub/research-manuscript-workflow"
-
-# Claude Code
-mkdir -p ~/.claude/skills
-ln -s "$REPO" ~/.claude/skills/research-manuscript-workflow
-
-# Codex
-mkdir -p ~/.codex/skills
-ln -s "$REPO" ~/.codex/skills/research-manuscript-workflow
-```
-
-Don't have the repo yet? Clone it first, then run the commands above:
+Keep this repository as the single editable source and link it into each
+agent's local skills directory. The commands below assume the repository is
+cloned under `~/GitHub`; adjust the path if your checkout lives elsewhere.
 
 ```bash
 git clone https://github.com/guqingze/research-manuscript-workflow.git \
   "$HOME/GitHub/research-manuscript-workflow"
+
+mkdir -p "$HOME/.agents/skills" "$HOME/.claude/skills"
+ln -s "$HOME/GitHub/research-manuscript-workflow" \
+  "$HOME/.agents/skills/research-manuscript-workflow"
+ln -s "$HOME/GitHub/research-manuscript-workflow" \
+  "$HOME/.claude/skills/research-manuscript-workflow"
 ```
 
-Restart or reload the agent after linking so it re-scans its skills directory.
+If the repository is already cloned, skip the clone command. If an install path
+already exists, inspect it before replacing it. Do not overwrite a real folder
+containing local changes. When migrating a legacy Codex link from
+`~/.codex/skills/research-manuscript-workflow`, verify that it points to this
+checkout, add the new link, and remove only the verified legacy symbolic link
+to avoid duplicate installations.
 
-Notes:
+Codex's documented user-level skill directory is `~/.agents/skills`, and Codex
+supports symbolic links. See the [official skills documentation](https://learn.chatgpt.com/docs/build-skills).
+Use `$research-manuscript-workflow` in Codex. Refresh the skill list or start a
+new session if it is not visible. The Claude link installs the same source
+folder for Claude Code.
 
-- Claude Code follows symlinks in `~/.claude/skills/` and picks the skill up on
-  its next start.
-- Codex enumerates `~/.codex/skills/` with a directory check that follows
-  symlinks, so a symlinked skill registers as installed. If your Codex build
-  does not surface it, replace that one symlink with a real copy
-  (`cp -R "$REPO" ~/.codex/skills/research-manuscript-workflow`) and refresh it
-  after edits.
-- Prefer a copy over a symlink? Substitute `cp -R "$REPO" <target>` for either
-  `ln -s` line; you then re-copy after each change instead of editing in place.
+The ChatGPT-installed skill is managed separately. A local edit or GitHub push
+does not by itself update the ChatGPT copy.
+
+## Related skill
+
+Keep `write-peer-review` in a separate repository for reviewer-authored comments
+and journal review forms. This repository covers manuscript production,
+pre-submission critique, and author responses to received reviews. Each skill
+should remain usable on its own; neither requires the other to be installed.
 
 ## Updating
 
 With the symlink install, there is nothing to re-copy — edit `SKILL.md` (or the
-reference file) in this repository and the change is live in both agents on their
-next start. To pull upstream changes:
+reference file) in this repository and the change is available to both local agents when they reload the skill. To pull upstream changes:
 
 ```bash
 cd "$HOME/GitHub/research-manuscript-workflow"
