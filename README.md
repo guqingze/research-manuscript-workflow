@@ -5,7 +5,7 @@ artifact workflow, from literature search and reference curation through
 manuscript drafting, QA, journal packaging, revision, and resubmission.
 
 The skill is a plain `SKILL.md` (YAML frontmatter + Markdown body) plus a
-`references/` file and an `agents/openai.yaml` descriptor. This is the format
+`references/` directory and an `agents/openai.yaml` descriptor. This is the format
 Claude Code, Codex, and other `SKILL.md`-based agents read, so the same checkout
 works for all of them — see [Installation](#installation).
 
@@ -117,10 +117,15 @@ supported.
 
 ```
 research-manuscript-workflow/
-├── SKILL.md                                       # the skill: frontmatter + workflow body
+├── SKILL.md                                       # the skill: frontmatter, mode router, shared rules, and workflow overview
 ├── agents/openai.yaml                             # Codex descriptor (display name, default prompt)
 ├── references/
-│   ├── epidemiology-manuscript-discipline.md      # loaded during style-polish and qa for epi manuscripts
+│   ├── modes-literature.md                        # search, acquisition, synthesis, ingest, and evidence extraction
+│   ├── modes-research-iteration.md                # results refresh, analysis planning, reflection, SAP, and narrative
+│   ├── modes-manuscript-production.md             # drafting, style polish, QA, pre-submission review, and packaging
+│   ├── modes-revision.md                          # revision planning, manuscript changes, responses, and handoff
+│   ├── repository-organisation.md                 # artifact ownership, meeting packages, script navigation, safe migration, and recommended repo docs
+│   ├── epidemiology-manuscript-discipline.md      # applied during style-polish and qa for epi, clinical-epi, and population-health manuscripts
 │   └── evidence-extraction-contract.md            # schema, anchor rules, and worker prompt for evidence extraction
 └── scripts/
     ├── verify_extract_anchors.py                  # mechanical anchor checker for the evidence-extraction cache
@@ -133,7 +138,7 @@ is only read by Codex; Claude Code and other agents ignore it.
 ## Installation
 
 Both Claude Code and Codex discover skills under their own home directory
-(`~/.claude/skills/<name>` and `~/.codex/skills/<name>`). Rather than copying the
+(`~/.claude/skills/<name>` and `~/.agents/skills/<name>`). Rather than copying the
 files into each one, keep this repository as the single source of truth and
 symlink it into both, so edits here are live everywhere with no re-sync step.
 
@@ -146,8 +151,8 @@ mkdir -p ~/.claude/skills
 ln -s "$REPO" ~/.claude/skills/research-manuscript-workflow
 
 # Codex
-mkdir -p ~/.codex/skills
-ln -s "$REPO" ~/.codex/skills/research-manuscript-workflow
+mkdir -p ~/.agents/skills
+ln -s "$REPO" ~/.agents/skills/research-manuscript-workflow
 ```
 
 Don't have the repo yet? Clone it first, then run the commands above:
@@ -163,13 +168,47 @@ Notes:
 
 - Claude Code follows symlinks in `~/.claude/skills/` and picks the skill up on
   its next start.
-- Codex enumerates `~/.codex/skills/` with a directory check that follows
-  symlinks, so a symlinked skill registers as installed. If your Codex build
-  does not surface it, replace that one symlink with a real copy
-  (`cp -R "$REPO" ~/.codex/skills/research-manuscript-workflow`) and refresh it
-  after edits.
+- Codex's [official skills documentation](https://learn.chatgpt.com/docs/build-skills)
+  lists the user-level location as `USER | $HOME/.agents/skills` and states:
+  “Codex supports symlinked skill folders and follows the symlink target when
+  scanning these locations.”
 - Prefer a copy over a symlink? Substitute `cp -R "$REPO" <target>` for either
   `ln -s` line; you then re-copy after each change instead of editing in place.
+
+### Migrating an existing Codex link
+
+The official documentation does not state whether the old directory
+`~/.codex/skills` is still read. If you previously linked to the old directory,
+we recommend linking to the new directory instead.
+
+The script removes the old path only if it is a symbolic link whose recorded
+target exactly matches `REPO`. Otherwise it prints an explanation and stops.
+It also stops if the new path already exists, including a dangling link.
+
+```bash
+(
+  REPO="$HOME/GitHub/research-manuscript-workflow"
+  OLD_LINK="$HOME/.codex/skills/research-manuscript-workflow"
+  NEW_LINK="$HOME/.agents/skills/research-manuscript-workflow"
+
+  if [ -e "$NEW_LINK" ] || [ -L "$NEW_LINK" ]; then
+    printf '%s\n' "New path already exists; inspect it yourself: $NEW_LINK"
+    exit 0
+  fi
+  if [ ! -L "$OLD_LINK" ]; then
+    printf '%s\n' "Old path is not a symbolic link or is absent; nothing changed: $OLD_LINK"
+    exit 0
+  fi
+  if [ "$(readlink "$OLD_LINK")" != "$REPO" ]; then
+    printf '%s\n' "Old link does not point exactly to REPO; nothing changed: $OLD_LINK"
+    exit 0
+  fi
+
+  mkdir -p "$HOME/.agents/skills" || exit 1
+  unlink "$OLD_LINK" || exit 1
+  ln -s "$REPO" "$NEW_LINK"
+)
+```
 
 ## Updating
 

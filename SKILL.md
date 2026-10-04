@@ -1,6 +1,6 @@
 ---
 name: research-manuscript-workflow
-description: Use for research manuscript projects that need a reproducible workflow from literature search and Zotero literature collection through literature indexing, gap synthesis, planned-analyses roadmaps, analysis reports, a results-reflection research-iteration loop, manuscript outline/SAP, narrative/framing-rehearsal decks, Word or document drafting, style polishing, citation QA, and final manuscript artifact generation. Includes epidemiology, clinical-epidemiology, and population-health manuscript discipline (section discipline, causal-language restraint, internal/AI-workflow language scrub, STROBE-like clarity, methods-citation checks) applied during style polishing and QA. Trigger when the user asks to organize, document, reuse, audit, or execute a literature-to-manuscript workflow across research project repositories, or to revise, polish, humanize, or review an epidemiology manuscript for journal-ready prose.
+description: Use for research manuscript projects that need a reproducible workflow from literature search and Zotero literature collection through literature indexing, gap synthesis, planned-analyses roadmaps, analysis reports, a results-reflection research-iteration loop, manuscript outline/SAP, narrative/framing-rehearsal decks, Word or document drafting, style polishing, citation QA, and final manuscript artifact generation. Includes epidemiology, clinical-epidemiology, and population-health manuscript discipline (section discipline, causal-language restraint, internal/AI-workflow language scrub, STROBE-like clarity, methods-citation checks) applied during style polishing and QA. Trigger when the user asks to organize, document, reuse, audit, or execute a literature-to-manuscript workflow across research project repositories, or to revise, polish, humanize, or self-review the user's own epidemiology manuscript for journal-ready prose. Do not use this skill to write or polish peer-review comments on someone else's manuscript.
 ---
 
 # Research Manuscript Workflow
@@ -37,37 +37,59 @@ Choose the smallest mode that satisfies the user's request. Do not run the full
 workflow when the user asks for one layer only. Modes are grouped by the three
 macro-phases (see Workflow); `setup` is a cross-phase preamble.
 
-| User intent | Mode | Required inputs | Output |
-|---|---|---|---|
-| Discover, document or reorganise a project manuscript workflow | `setup` | `AGENTS.md`, `README.md`, project docs and caller/artifact inventory | Canonical artifact map, script navigation and project workflow updates; authorised migration with verification |
-| **Phase 1 — Literature foundation** | | | |
-| Search for candidate literature before Zotero/indexing | `literature-search` | Research question or scoped topic, databases/sources, inclusion/exclusion criteria | Search strategy, screened candidate corpus, and import/next-search recommendations |
-| Build the human download checklist for searched candidates and reconcile the collection | `literature-acquisition` | Literature search record, target reference collection name/key | Acquisition queue (DOI/PMID/URL, priority, role) for the human to download into the reference manager, plus missing-item and missing-PDF lists |
-| Sync the reference manager into the repo's committed literature layer: membership + citation keys, markdown full-text cache + manifest, and the literature index | `literature-ingest` | Reference manager details, PDF→markdown converter, index generator or index path | Updated markdown cache + manifest, regenerated literature index, reconciled citation keys, plus mismatch or missing-PDF notes |
-| Extract structured evidence from identified key papers into a verifiable cache | `evidence-extraction` | Literature index, markdown cache, identified key-paper set | Evidence-extraction cache of anchored per-paper records (token-costly subagent fan-out; human-in-the-loop key-paper selection; feeds gap-synthesis) |
-| Synthesize or revise the research gap and paper positioning | `gap-synthesis` | Literature index and markdown cache (or an evidence-extraction cache from `evidence-extraction` for key-paper grounding); reference-manager PDFs only to verify | Integrated evidence synthesis, manuscript positioning, CER chains, and SAP implications |
-| **Phase 2 — Research iteration loop** | | | |
-| Refresh project results for manuscript use | `analysis-refresh` | Repo pipeline commands, current outputs, Analysis Refresh Report path | Analysis Refresh Report with run provenance, result validation, interpretation, and manuscript handoff |
-| Plan literature/reviewer-motivated analyses not yet run | `analysis-plan` | Gap synthesis, reflection memo, literature index, repo data/availability | Planned-analyses roadmap with in-cohort availability audit and effort tiers |
-| Reflect on current results against literature, gaps, and meeting feedback | `reflect` | Analysis Refresh Report, gap synthesis, literature index, internal-meeting notes | Reflection memo: results-vs-literature reconciliation, contradictions, and drivers for planned-analyses/SAP updates |
-| Build or revise the controlling manuscript plan | `sap-outline` | Gap synthesis, Analysis Refresh Report, reflection memo, current tables/figures | SAP/Outline Controller with section structure, argument map, evidence/result map, and main-vs-supplement decisions |
-| Rehearse and lock the narrative/framing before drafting (often for an internal meeting) | `narrative-deck` | SAP/Outline Controller, Analysis Refresh Report, gap synthesis, reflection memo | Narrative deck: spine, framing decisions, act structure, presenter notes, open questions |
-| **Phase 3 — Manuscript production** | | | |
-| Draft or revise manuscript prose | `draft` | SAP/Outline Controller, gap synthesis, Analysis Refresh Report, literature index | Manuscript Draft Package in the repo's manuscript output directory |
-| Polish manuscript readability and author voice | `style-polish` | Manuscript Draft Package or Revised Manuscript Draft Package, author writing samples if available | Style-Polished Manuscript Draft Package with style changes summary and preserved-content check |
-| Audit manuscript readiness | `qa` | Manuscript Draft Package, Style-Polished Manuscript Draft Package, or Revised Manuscript Draft Package, reference collection/index, generated outputs | QA Gate Report with claim, citation, data/output, draft-package, and render readiness checks |
-| Critique manuscript before first submission | `pre-submission-review` | QA-passed Manuscript Draft Package or Style-Polished Manuscript Draft Package, SAP/Outline Controller, target journal if known | Pre-Submission Review Report with merit critique and recommended fixes |
-| Prepare first-submission journal files | `journal-package` | QA-passed Manuscript Draft Package or Style-Polished Manuscript Draft Package, target journal requirements, render workflow | Journal Submission Package with formatted files, statements, cover letter, and checklist |
-| **Phase 3 — Post-review revision cycle** | | | |
-| Parse editor/reviewer/coauthor comments | `revision-plan` | Reviewer/editor comments, submitted manuscript package, decision letter if available | Revision Roadmap with prioritized comments and response-letter skeleton |
-| Apply an approved revision plan | `revise` | Revision Roadmap, submitted or current Manuscript Draft Package or Style-Polished Manuscript Draft Package, source materials | Revised Manuscript Draft Package with revision log and response draft |
-| Prepare resubmission files | `response-package` | Revised draft, Revision Roadmap, QA Gate Report, target journal requirements | Response Package with revised files, response letter, and resubmission checklist |
-| Produce final handoff/archive note | `handoff` | Journal Submission Package or Response Package, QA Gate Report, render workflow | Concise handoff/archive note with final paths, commands, limitations, and next actions |
+After selecting a mode, read its corresponding reference before executing any step; do not execute from the router summary alone.
+
+| User intent | Mode | Required inputs | Output | Must read before execution |
+| --- | --- | --- | --- | --- |
+| Discover, document or reorganise a project manuscript workflow | `setup` | `AGENTS.md`, `README.md`, project docs and caller/artifact inventory | Canonical artifact map, script navigation and project workflow updates; authorised migration with verification | [references/repository-organisation.md](references/repository-organisation.md) |
+| **Phase 1 — Literature foundation** |  |  |  | Group heading; not executable |
+| Search for candidate literature before Zotero/indexing | `literature-search` | Research question or scoped topic, databases/sources, inclusion/exclusion criteria | Search strategy, screened candidate corpus, and import/next-search recommendations | [references/modes-literature.md](references/modes-literature.md) |
+| Build the human download checklist for searched candidates and reconcile the collection | `literature-acquisition` | Literature search record, target reference collection name/key | Acquisition queue (DOI/PMID/URL, priority, role) for the human to download into the reference manager, plus missing-item and missing-PDF lists | [references/modes-literature.md](references/modes-literature.md) |
+| Sync the reference manager into the repo's committed literature layer: membership + citation keys, markdown full-text cache + manifest, and the literature index | `literature-ingest` | Reference manager details, PDF→markdown converter, index generator or index path | Updated markdown cache + manifest, regenerated literature index, reconciled citation keys, plus mismatch or missing-PDF notes | [references/modes-literature.md](references/modes-literature.md) |
+| Extract structured evidence from identified key papers into a verifiable cache | `evidence-extraction` | Literature index, markdown cache, identified key-paper set | Evidence-extraction cache of anchored per-paper records (token-costly subagent fan-out; human-in-the-loop key-paper selection; feeds gap-synthesis) | [references/modes-literature.md](references/modes-literature.md) |
+| Synthesize or revise the research gap and paper positioning | `gap-synthesis` | Literature index and markdown cache (or an evidence-extraction cache from `evidence-extraction` for key-paper grounding); reference-manager PDFs only to verify | Integrated evidence synthesis, manuscript positioning, CER chains, and SAP implications | [references/modes-literature.md](references/modes-literature.md) |
+| **Phase 2 — Research iteration loop** |  |  |  | Group heading; not executable |
+| Refresh project results for manuscript use | `analysis-refresh` | Repo pipeline commands, current outputs, Analysis Refresh Report path | Analysis Refresh Report with run provenance, result validation, interpretation, and manuscript handoff | [references/modes-research-iteration.md](references/modes-research-iteration.md) |
+| Plan literature/reviewer-motivated analyses not yet run | `analysis-plan` | Gap synthesis, reflection memo, literature index, repo data/availability | Planned-analyses roadmap with in-cohort availability audit and effort tiers | [references/modes-research-iteration.md](references/modes-research-iteration.md) |
+| Reflect on current results against literature, gaps, and meeting feedback | `reflect` | Analysis Refresh Report, gap synthesis, literature index, internal-meeting notes | Reflection memo: results-vs-literature reconciliation, contradictions, and drivers for planned-analyses/SAP updates | [references/modes-research-iteration.md](references/modes-research-iteration.md); [references/modes-manuscript-production.md](references/modes-manuscript-production.md#qa-gate-mode) — read only QA Gate Mode, Minimum procedure step 4 (citation-verification discipline) |
+| Build or revise the controlling manuscript plan | `sap-outline` | Gap synthesis, Analysis Refresh Report, reflection memo, current tables/figures | SAP/Outline Controller with section structure, argument map, evidence/result map, and main-vs-supplement decisions | [references/modes-research-iteration.md](references/modes-research-iteration.md) |
+| Rehearse and lock the narrative/framing before drafting (often for an internal meeting) | `narrative-deck` | SAP/Outline Controller, Analysis Refresh Report, gap synthesis, reflection memo | Narrative deck: spine, framing decisions, act structure, presenter notes, open questions | [references/modes-research-iteration.md](references/modes-research-iteration.md); [references/modes-manuscript-production.md](references/modes-manuscript-production.md#qa-gate-mode) — read only QA Gate Mode, Minimum procedure step 4 (citation-verification discipline) |
+| **Phase 3 — Manuscript production** |  |  |  | Group heading; not executable |
+| Draft or revise manuscript prose | `draft` | SAP/Outline Controller, gap synthesis, Analysis Refresh Report, literature index | Manuscript Draft Package in the repo's manuscript output directory | [references/modes-manuscript-production.md](references/modes-manuscript-production.md) |
+| Polish manuscript readability and author voice | `style-polish` | Manuscript Draft Package or Revised Manuscript Draft Package, author writing samples if available | Style-Polished Manuscript Draft Package with style changes summary and preserved-content check | [references/modes-manuscript-production.md](references/modes-manuscript-production.md) |
+| Audit manuscript readiness | `qa` | Manuscript Draft Package, Style-Polished Manuscript Draft Package, or Revised Manuscript Draft Package, reference collection/index, generated outputs | QA Gate Report with claim, citation, data/output, draft-package, and render readiness checks | [references/modes-manuscript-production.md](references/modes-manuscript-production.md) |
+| Critique manuscript before first submission | `pre-submission-review` | QA-passed Manuscript Draft Package or Style-Polished Manuscript Draft Package, SAP/Outline Controller, target journal if known | Pre-Submission Review Report with merit critique and recommended fixes | [references/modes-manuscript-production.md](references/modes-manuscript-production.md) |
+| Prepare first-submission journal files | `journal-package` | QA-passed Manuscript Draft Package or Style-Polished Manuscript Draft Package, target journal requirements, render workflow | Journal Submission Package with formatted files, statements, cover letter, and checklist | [references/modes-manuscript-production.md](references/modes-manuscript-production.md) |
+| **Phase 3 — Post-review revision cycle** |  |  |  | Group heading; not executable |
+| Parse editor/reviewer/coauthor comments | `revision-plan` | Reviewer/editor comments, submitted manuscript package, decision letter if available | Revision Roadmap with prioritized comments and response-letter skeleton | [references/modes-revision.md](references/modes-revision.md) |
+| Apply an approved revision plan | `revise` | Revision Roadmap, submitted or current Manuscript Draft Package or Style-Polished Manuscript Draft Package, source materials | Revised Manuscript Draft Package with revision log and response draft | [references/modes-revision.md](references/modes-revision.md) |
+| Prepare resubmission files | `response-package` | Revised draft, Revision Roadmap, QA Gate Report, target journal requirements | Response Package with revised files, response letter, and resubmission checklist | [references/modes-revision.md](references/modes-revision.md) |
+| Produce final handoff/archive note | `handoff` | Journal Submission Package or Response Package, QA Gate Report, render workflow | Concise handoff/archive note with final paths, commands, limitations, and next actions | [references/modes-revision.md](references/modes-revision.md) — read the handoff section after first-submission packaging as well as after revision |
 
 If the request spans multiple modes, start at the earliest affected mode and
 state the planned sequence. If the user's current stage is ambiguous, inspect the
 repo workflow docs and existing manuscript artifacts before asking for
 clarification.
+
+## Scope boundary
+
+Route by whether the user is an author of the manuscript, not by whether the
+request contains the word "review".
+
+- `research-manuscript-workflow` serves the author side: producing, revising,
+  and polishing the user's own manuscript (`draft`, `style-polish`); checking it
+  from the author's perspective before submission (`pre-submission-review`);
+  and planning changes, revising the manuscript, and preparing responses to
+  received reviews (`revision-plan`, `revise`, `response-package`).
+- `write-peer-review` serves the reviewer side: reviewing someone else's
+  manuscript and writing or polishing author-facing peer-review comments,
+  confidential editor feedback, and structured journal review-form responses.
+  Use that skill for those tasks, rather than this manuscript workflow.
+- If the user's role is unclear, as in "help me review this manuscript", first
+  ask whether the user is an author of the manuscript. Do not guess from the
+  word "review" or start either workflow until the role is clarified. Once the
+  author/reviewer role is established, select the mode that fits the task and
+  available inputs; apply the existing mode prerequisites.
 
 ## Setup and Repository Organisation Mode
 
@@ -82,874 +104,9 @@ One artifact can carry several lightweight metadata fields without needing a
 new framework. A request to organise files does not authorise changing scientific
 definitions, rewriting manuscript claims, rerunning model selection or publishing.
 
-## Literature Search Mode
+## Reference paths
 
-Use `literature-search` when the user wants to find candidate papers before
-curating them in Zotero or generating the literature index. Borrow the
-discipline of ARS `deep-research` Phase 2, but keep the output repo-oriented and
-ready for reference-manager import and full-text acquisition.
-
-This mode should produce a reproducible search record and a machine-auditable
-candidate corpus. It should not assume that PDFs are already available. In
-projects where the user retrieves full text through university or institutional
-access, make the next human action obvious for each retained source.
-
-Minimum procedure:
-
-1. Define search parameters: research question or scoped topic, databases or
-   sources, keywords and synonyms, Boolean strategy, date range, languages, and
-   document types.
-2. Apply inclusion and exclusion criteria before screening results. Do not
-   retrofit criteria to justify already-preferred papers.
-3. Screen in two passes when enough metadata is available: title/abstract first,
-   then full text or detailed metadata for retained sources.
-4. Record reproducibility details: search date, database/source, query string,
-   raw hit count, screened count, excluded count, and inclusion reasons for
-   retained sources.
-5. Verify candidate existence with DOI, publisher, PubMed, Crossref, Semantic
-   Scholar, OpenAlex, or another authoritative record when feasible. Mark
-   unresolved metadata explicitly instead of inventing it.
-6. Make the retained corpus auditable by later `literature-acquisition` and
-   `literature-ingest` runs. For each retained source, include stable fields
-   such as `source_id`, tier or priority, title, first author, year, journal or
-   source, PMID, DOI, URL, manuscript role, verification status, and unresolved
-   metadata.
-7. Add acquisition handoff fields when the next step is Zotero/PDF collection:
-   `target_collection`, `zotero_status`, `pdf_status`, `local_cache_status`,
-   and `next_human_action`. Default these to pending or unknown rather than
-   implying that the paper has been collected.
-8. Separate auditable core sources from reserve or conditional suggestions.
-   Mark generic reserve suggestions, such as "add PRS-CS/LDpred2 methods papers
-   if needed", as non-auditable so they are not counted as missing
-   reference-manager items during later reconciliation.
-9. Stop at candidate corpus and search documentation. Do not write the gap
-   synthesis, manuscript prose, or literature index unless the user also asked
-   for the next mode.
-
-Default output: a search strategy report plus a candidate source table suitable
-for Zotero import or manual curation. The table should be stable enough that a
-later run can compare it against a Zotero collection by DOI, PMID, URL, and
-normalized title without re-parsing prose.
-
-Recommended candidate table columns:
-
-`source_id`, `audit_scope`, `tier`, `priority`, `title`, `first_author`,
-`year`, `journal_or_source`, `PMID`, `DOI`, `URL`, `manuscript_role`,
-`inclusion_reason`, `verification_status`, `target_collection`,
-`zotero_status`, `pdf_status`, `local_cache_status`, `next_human_action`,
-`notes`.
-
-### Literature refresh/search-round rule
-
-Re-enter `literature-search` whenever the manuscript gains a new comparison
-population, outcome, modality, section, reviewer request, or other material
-scope change, or when the planned search horizon has meaningfully aged. A
-meeting decision that promotes a new global comparison is a search trigger,
-not merely a request to add citations. Do not treat a Zotero or literature-index
-refresh as evidence that a new search was performed.
-
-For every refresh, create a new dated search record in the project repository
-before importing papers. The record must identify the round and trigger, search
-date and local timezone, sources/interfaces, exact queries and filters, date
-limits, languages/document types, predeclared inclusion/exclusion criteria,
-raw/de-duplicated/screened/full-text/included counts, citation-chasing or
-named-project searches, retained candidates with stable identifiers, exclusions,
-reserve suggestions, unresolved metadata, and the next Zotero/acquisition
-action. A record can be opened as `planned`, but it must not contain invented
-counts. Do not overwrite a completed round; link the new round to the issue,
-meeting note, or roadmap that triggered it.
-
-When the search supports a prevalence comparison or meta-analysis, add a
-comparability gate before pooling: sampling frame, geography/ethnicity,
-population size and structure, modality, CAP/LSM thresholds, probe, quality
-rules, BMI/obesity strata, and crude versus adjusted estimands. If these are
-not sufficiently harmonizable, retain the studies as a structured comparison
-or separate evidence tiers rather than presenting a pooled estimate as if it
-were directly comparable.
-
-## Literature Acquisition Mode
-
-Use `literature-acquisition` after candidate papers have been identified but
-before literature indexing. This mode supports a human-in-the-loop full-text
-collection workflow where the user may need institutional credentials to access
-publisher PDFs.
-
-Minimum procedure:
-
-1. Read the literature search record and identify the auditable core corpus.
-   Keep reserve or non-auditable suggestions separate.
-2. Resolve or confirm the target reference-manager collection name/key.
-3. Generate or update an acquisition queue with stable source IDs, title, PMID,
-   DOI, URL, tier or priority, manuscript role, reference-manager status, and
-   PDF attachment status.
-4. When the reference manager is reachable, compare the queue against the target
-   collection by DOI, PMID, URL, and normalized title. Report missing collection
-   items separately from items that exist but lack PDF attachments.
-5. Help the user work the manual download queue by grouping missing items by
-   priority and providing PubMed, DOI, or publisher URLs. If asked, open or list
-   target links, but do not handle institutional credentials or bypass paywalls.
-6. After the user confirms that records/PDFs have been added to the collection,
-   hand off to `literature-ingest` to build the markdown cache from the
-   collection's PDFs, write the manifest, and regenerate the literature index.
-   PDFs stay in the reference manager; they are not copied into the repo.
-
-Default output: an acquisition checklist or CSV plus a concise list of missing
-reference-manager records and missing PDF attachments.
-
-## Gap Synthesis Mode
-
-Use `gap-synthesis` after `literature-ingest` has produced a stable literature
-index. This mode performs interpretation across indexed papers. It should make
-the manuscript's intellectual position explicit before SAP/outline or drafting.
-
-Core rule: integrate across sources, do not summarize papers sequentially.
-
-Minimum procedure:
-
-1. Build or update a compact evidence matrix before writing prose. Include
-   themes, supporting papers, contradicting papers, population or context,
-   method type, evidence strength, and manuscript use.
-2. Identify convergence, divergence, and silence:
-   - convergence: where multiple sources support the same claim;
-   - divergence: where sources conflict or imply different boundary conditions;
-   - silence: where the indexed literature lacks evidence needed for the
-     manuscript's question.
-3. Resolve or explain contradictions where possible. Consider population,
-   geography, endpoint/exposure definitions, methods, confounding control,
-   follow-up period, study quality, and publication date.
-4. Classify the gap instead of using vague gap language. Useful types include
-   empirical, methodological, definition, temporal, geographic, translation,
-   mechanistic, ancestry/population, prospective-cohort, endpoint-harmonization,
-   and PRS/generalizability gaps.
-5. Produce claim-evidence-reasoning (CER) chains for manuscript-facing claims:
-   each claim needs cited evidence, reasoning, caveat or hedge, and suggested
-   manuscript section.
-6. Run a short stress test before finalizing:
-   - Has the synthesis cherry-picked supportive papers?
-   - Are contradictions interpreted rather than explained away?
-   - Would the gap still stand if the strongest supporting paper were removed?
-   - What would a skeptical reviewer say is overstated?
-   - Does the proposed gap justify the project's actual analyses?
-7. Hand off explicitly to `sap-outline`: state which introduction claims,
-   methods justifications, primary analyses, discussion comparisons, and
-   supplement-only claims should follow from the synthesis.
-8. Stop at synthesis and handoff guidance. Do not write manuscript prose or
-   decide final table/figure order unless the user also asked for the next mode.
-
-Default output: an integrated gap synthesis with an evidence matrix,
-convergence/divergence map, gap taxonomy, positioning claim, CER chains, stress
-test notes, and SAP/outline implications.
-
-### Key-paper evidence extraction (subagent map-reduce)
-
-> **Token cost — warn the user before running.** Fanning out full-text extraction
-> is one of the most token-expensive operations in this workflow: every selected
-> paper is read in full by a worker, and larger sets multiply that cost. State the
-> intended scope and that this step is token-heavy before starting, and default to
-> a focused key-paper set rather than the whole corpus.
-
-Reading a large full-text corpus directly into one context to synthesize it
-either overflows the context or silently regresses to abstract-level summary.
-Build the gap synthesis with an explicit map-reduce that first materializes a
-persistent, verifiable **evidence-extraction cache** for the papers that matter,
-then reduces from that cache.
-
-**Extract the identified key papers, not the whole corpus.** Before fanning out,
-select the subset that actually bears on the manuscript's claims — anchor,
-counter-example, and benchmark papers (by role and theme in the literature index)
-plus any the user names. This is a **human-in-the-loop** step, especially when
-token-limited: propose the key-paper set with the reason each is "key", and let
-the user confirm, add, or trim it before extraction runs. Reserve full-corpus
-extraction for when the user explicitly wants exhaustive full-text grounding.
-
-When to build a cache at all (vs reading the markdown cache directly in-context):
-
-- the selected key-paper set is larger than roughly 25-30 papers, or
-- the user explicitly asks for a full-text-grounded synthesis, or
-- the same extracted numbers will be reused across reflection, drafting, and QA.
-
-For a smaller key-paper set, read those markdown files directly in-context; the
-map-reduce overhead is not worth it.
-
-**Map (parallel worker subagents, engine-agnostic, workers write).** Fan out the
-selected key papers in small batches (~5-6 papers per worker). Each worker reads
-only the assigned full-text markdown files and writes one committed record per paper into
-the evidence-extraction cache, following `references/evidence-extraction-contract.md`
-(schema, three-layer anchor rules, and the worker prompt template). The worker
-engine is pluggable and both session hosts are supported:
-
-| Session host | Claude workers | Codex workers |
-|---|---|---|
-| Claude Code | Agent tool, `general-purpose`, `Write` enabled, background | Bash fan-out of `codex exec` |
-| Codex | `claude` CLI workers if present | native `codex exec` fan-out |
-
-Codex worker invocation (read the papers, write records, scoped to the cache dir):
-`codex exec -m <model> -c model_reasoning_effort=medium --sandbox workspace-write --cd <repo> -a never`.
-Extraction is mechanical structured transcription against a fixed schema, so run
-workers one model tier below the reduce (a cheaper/faster model), keep the
-session's strongest model for the reduce, and confine worker writes to the
-extraction-cache directory (audit with `git diff` plus the anchor checker).
-
-Make extraction idempotent: mirror the markdown-cache manifest into an
-extraction-cache manifest keyed to each source's SHA-256, and re-extract a paper
-only when its source SHA or the schema version changed (`--force` rebuilds all).
-
-**Verify (100% mechanical + targeted human).** Before reducing, run the shared
-checker `scripts/verify_extract_anchors.py` over the whole cache: it decodes every
-`quote` anchor and substring-matches it against the source markdown, enforces the
-no-unanchored-number rule (any quantitative finding lacking a `quote`/`section`/
-`table` anchor must be flagged `verification_status: needs_pdf`), and checks each
-record's source SHA against the manifest. Fix or quarantine every hard failure.
-Then re-read (human/orchestrator) only the numbers bound for the manuscript (the
-anchor comparators and any figure that will reach prose) to catch
-misinterpretation of otherwise-valid quotes.
-
-**Reduce (orchestrator, in-context, with project context).** The session
-orchestrator — not a fresh cold subagent — reads the whole verified cache in one
-context and writes the gap synthesis. Doing the reduce in the session that holds
-the project's results, SAP, and positioning discussion is deliberate: a cold
-synthesis subagent re-derives the story from scratch and drifts toward stale or
-generic framing. If a corpus is too large for the cache to fit one context, fall
-back to a hierarchical reduce (batch-level partial syntheses from subagents, then
-an orchestrator merge) rather than handing the whole reduce to a subagent.
-
-The reduce output is the same integrated gap synthesis specified above; the cache
-only changes how its evidence is sourced and verified, not the synthesis contract.
-
-## Analysis Refresh Mode
-
-Use `analysis-refresh` when project results need to be regenerated, reconciled,
-interpreted, or prepared for manuscript planning. This mode consumes repo
-pipelines and generated outputs; it does not invent analyses outside the
-project's scripts or controlling SAP.
-
-Core rule: produce a manuscript-ready analysis handoff, not just a prose results
-summary.
-
-Minimum procedure:
-
-1. Establish run provenance: commands run or inspected, run label/date, working
-   directory, key script paths, input paths, output paths, and relevant
-   environment or git context when useful.
-2. Check cohort and data contracts: sample counts, exclusion flow, denominators,
-   missingness, endpoint/exposure definitions, follow-up windows, and whether
-   counts agree across generated tables and QC outputs.
-3. Inventory result artifacts: tables, figures, model outputs, logs, and
-   manuscript-facing summaries. Label each as primary, secondary, sensitivity,
-   exploratory, supplement-only, or not-for-manuscript when the SAP or repo docs
-   provide that distinction.
-4. Interpret statistical outputs conservatively. Record effect estimates,
-   confidence intervals, p-values when present, practical magnitude, direction,
-   precision, model adjustment set, and whether assumptions or diagnostics are
-   documented.
-5. Run a focused fallacy and overclaim scan:
-   - causal language unsupported by the design;
-   - multiple comparisons without correction or clear exploratory framing;
-   - subgroup, endpoint, or ancestry generalization beyond the data;
-   - selection, survivorship, collider, or overadjustment concerns;
-   - non-significant or imprecise estimates framed as definitive;
-   - statistical significance reported without effect size or uncertainty.
-6. Verify manuscript consistency: numbers in the report must match current
-   generated outputs; table/figure references must exist; captions and
-   denominators must match; primary/secondary labels must match the SAP or be
-   flagged as unresolved.
-7. Produce the handoff document, named conceptually **Analysis Refresh Report**.
-   This report feeds `sap-outline` and `draft` and should separate
-   Results-ready claims, Discussion-only interpretations, supplement-only
-   findings, and unresolved blockers.
-8. Stop at analysis reporting and handoff guidance. Do not revise the SAP,
-   reorder tables/figures, or draft manuscript prose unless the user also asked
-   for the next mode.
-
-Default handoff document: **Analysis Refresh Report** with these sections:
-
-- Run provenance
-- Cohort and data checks
-- Result artifact inventory
-- Statistical interpretation
-- Fallacy and overclaim scan
-- Manuscript handoff
-- Unresolved blockers and recommended next actions
-
-## SAP/Outline Mode
-
-Use `sap-outline` after `gap-synthesis` and `analysis-refresh` have produced
-their handoff documents. This mode creates the controlling manuscript plan. It
-should decide what goes where, at what priority, and with what evidence; it
-should not draft polished prose.
-
-Core rule: structure serves the manuscript argument and the available results.
-
-Minimum procedure:
-
-1. Select or confirm the manuscript structure pattern. For empirical cohort or
-   clinical epidemiology work, default to IMRaD unless repo or journal
-   instructions require another structure.
-2. Define the central manuscript thesis or positioning claim from
-   `gap-synthesis`, then decompose it into 3-5 section-level sub-arguments.
-3. Map evidence and results to sections:
-   - literature claims and CER chains from `gap-synthesis`;
-   - Results-ready claims, Discussion-only interpretations, and
-     supplement-only findings from the Analysis Refresh Report;
-   - tables, figures, model outputs, and sensitivity analyses.
-4. Allocate manuscript roles explicitly: primary, secondary, sensitivity,
-   exploratory, supplement-only, or not-for-manuscript.
-5. Build the section plan. For each section or subsection, record purpose,
-   target word count, core claim, required evidence/results, table/figure
-   references, citations or citation-key groups, and transition logic.
-6. Check argument strength before handing off to drafting:
-   - each core claim has evidence and reasoning;
-   - counter-arguments or limitations are assigned to Discussion;
-   - no Results claim exceeds the Analysis Refresh Report;
-   - no Introduction or Discussion claim exceeds the gap synthesis;
-   - unresolved decisions are listed instead of silently filled.
-7. Produce the handoff document, named conceptually **SAP/Outline Controller**.
-   This document is the authority for `draft`.
-8. Stop at planning. Do not draft manuscript prose unless the user also asked
-   for `draft`.
-
-Default handoff document: **SAP/Outline Controller** with these sections:
-
-- Manuscript target and structure pattern
-- Central thesis or positioning claim
-- Section-by-section outline with purpose and word counts
-- Argument map and CER-to-section mapping
-- Evidence/result/table/figure map
-- Main-vs-supplement and primary-vs-secondary decisions
-- Transition logic
-- Drafting instructions and unresolved decisions
-
-## Analysis Plan Mode
-
-Use `analysis-plan` inside the research iteration loop when the literature, a
-reflection memo, internal-meeting feedback, or a reviewer suggests analyses the
-project has not yet run. This mode decides what is worth running next and whether
-it is even possible with the project's data; it does not run the analyses or
-draft prose.
-
-Core rule: audit availability before proposing. A proposed analysis that the
-cohort or linked data cannot support is a limitation to document, not a task to
-queue.
-
-Minimum procedure:
-
-1. Collect candidate analyses from the gap synthesis, reflection memo, meeting
-   feedback, reviewer comments, and the covariate/measurement literature.
-2. For each candidate, run an in-cohort/in-data availability audit: is the
-   variable or assay present, at what completeness, in which subcohort, and is it
-   a confounder, mediator, or collider relative to the current model? Distinguish
-   "computable now from existing columns", "needs new derivation/linkage", and
-   "not available in-cohort".
-3. Classify each candidate by role (strengthens confounding control, orthogonal
-   cross-check, mechanism, robustness/QC, descriptive) and by effort tier
-   (straightforward now / intermediate needs generation or linkage / future
-   research program).
-4. Recommend which candidates to run this cycle, which to defer, and which to
-   convert into stated limitations; keep non-auditable or speculative suggestions
-   separate from the actionable queue.
-5. Hand off: actionable Tier-1 items feed the repo pipeline and `analysis-refresh`;
-   deferred and future items seed a Next-Steps/roadmap section for the SAP and
-   eventual Discussion.
-6. Stop at planning and triage. Do not run analyses or edit the SAP unless the
-   user also asked for the next mode.
-
-Default handoff document: **Planned-analyses roadmap** with these sections:
-
-- Candidate analyses with driver/source
-- In-cohort/in-data availability audit (completeness, subcohort, confounder/mediator/collider status)
-- Role and effort-tier classification
-- Run-now / defer / convert-to-limitation recommendation
-- Non-auditable or speculative reserve (kept separate)
-
-## Reflection Mode
-
-Use `reflect` inside the research iteration loop after `analysis-refresh`, when
-current results need to be argued against the external literature, the gap
-synthesis, and internal-meeting feedback. This is the living mid-project
-Discussion. It interprets and reconciles; it does not restate the numbers or
-draft final prose.
-
-Core rule: reconcile, do not cherry-pick. Interpret contradictions between your
-results and the literature rather than explaining them away, and treat each as a
-possible driver of a new analysis, a framing change, or a stated limitation.
-
-Minimum procedure:
-
-1. Confirm inputs: Analysis Refresh Report, gap synthesis, literature index (and
-   evidence-extraction cache when present), and any internal-meeting notes or
-   coauthor feedback.
-2. For each headline result, state where it converges with, diverges from, or is
-   silent against the indexed literature. For divergence, interpret the likely
-   reason (population, definitions, methods, adjustment set, measure-dependence)
-   before deciding it is a real contribution.
-3. Digest internal-meeting feedback: record decisions, objections, and requested
-   analyses relevant to the analysis set or framing; convert each into a tracked
-   action (analysis-plan candidate, SAP change, or open question).
-4. Every literature or external claim asserted as established must anchor to a
-   literature-index/evidence-cache record; verify it supports the specific
-   outcome, subgroup, and direction being claimed (see citation-verification
-   discipline in QA Gate Mode). Flag unresolved claims for PDF verification.
-5. Produce drivers for the loop: what to send to `analysis-plan`, what SAP or
-   framing changes to make, what to relegate to limitations, and what remains an
-   open question for the next meeting or the eventual Discussion.
-6. Stop at reflection. Do not run analyses, revise the SAP, or draft prose unless
-   the user also asked for the next mode.
-
-Default handoff document: **Reflection memo** with these sections:
-
-- Result-by-result convergence/divergence/silence against the literature
-- Interpreted contradictions (with likely reason)
-- Internal-meeting feedback digest and resulting actions
-- Drivers for analysis-plan and SAP updates
-- Open questions and Discussion seeds
-
-## Narrative Deck Mode
-
-Use `narrative-deck` as an any-time branch off reflection, before committing to
-manuscript prose, to pressure-test the storyline — commonly to build a slide
-outline for an internal meeting and gather feedback. This mode locks framing
-decisions and structure; it does not write the manuscript or invent results.
-
-Core rule: the deck is a framing rehearsal, not the paper. Every number and
-citation on a slide must trace to the Analysis Refresh Report or a verified
-literature record, at the same standard as a draft.
-
-Minimum procedure:
-
-1. Confirm inputs: SAP/Outline Controller, Analysis Refresh Report, gap
-   synthesis, reflection memo, and current figures/tables.
-   Choose one canonical package for editable deck text and display assets. If
-   the project versions selected meeting folders under `outputs/`, use that
-   location directly; do not also create an editable deck under docs. Honour the
-   requested format, including Markdown with linked assets without a PPTX.
-2. Choose and record the spine/storyline and the explicit framing decisions
-   (what leads, what is secondary, what is shown vs relegated), including options
-   considered and set aside so the group can see the forks.
-3. Structure the deck into acts/sections with a one-line takeaway each; add
-   presenter notes and mark reviewer-aware caveats to keep visible rather than
-   compress.
-4. Anchor every on-slide claim: results to the Analysis Refresh Report; external
-   claims to verified literature records with the correct outcome/subgroup/
-   direction; prefer per-slide footnote-style citations over a single reference
-   dump. Apply the citation-verification discipline (QA Gate Mode).
-5. Collect open framing questions on a dedicated slide for the meeting; route the
-   resulting feedback back into `reflect` and `analysis-plan`.
-6. Stop at the framing outline. Do not draft the manuscript unless the user also
-   asked for `draft`.
-
-Default handoff artifact: **Narrative deck** with these sections:
-
-- Spine/storyline and locked framing decisions (with options set aside)
-- Act/section structure with per-slide takeaways and presenter notes
-- On-slide claims anchored to results/literature, with per-slide citations
-- Open framing questions for the group
-- Feedback routed back to reflection/analysis-plan
-
-## Draft Mode
-
-Use `draft` after a SAP/Outline Controller exists, or when the user explicitly
-asks for a partial section draft from available controlling materials. This mode
-executes prose from the controller; it does not rediscover the argument.
-
-Core rule: follow the SAP/Outline Controller. If the controller conflicts with
-the gap synthesis or Analysis Refresh Report, flag the conflict before drafting
-the affected claim.
-
-Minimum procedure:
-
-1. Confirm inputs: SAP/Outline Controller, gap synthesis, Analysis Refresh
-   Report, literature index/reference collection, current tables/figures, and
-   any journal or word-count instructions. Read paper content from the markdown
-   cache; open the reference-manager PDF only to verify exact wording or numbers.
-2. Draft section by section. For each section, use the controller's purpose,
-   assigned claims, citations, results, tables/figures, word count, and
-   transition logic.
-3. Use source-specific inputs by section:
-   - Introduction: gap synthesis, positioning claim, and verified literature
-     index entries.
-   - Methods: SAP, cohort/data definitions, endpoint/exposure definitions, and
-     analysis provenance.
-   - Results: Analysis Refresh Report only; avoid interpretation that belongs
-     in Discussion.
-   - Discussion: gap synthesis plus Analysis Refresh Report; separate evidence,
-     inference, limitations, implications, and future work.
-4. Track placeholders and unresolved items inline or in a draft log. Do not
-   invent citations, numbers, table references, or methods details.
-5. Preserve citation discipline. Use citation keys or live-reference workflow
-   when available, and keep claims traceable to the literature index or analysis
-   outputs.
-6. Track word counts by section and report deviations from the controller.
-7. Run a pre-QA self-check before handoff:
-   - every major claim has a citation or analysis-output source;
-   - table/figure references exist;
-   - Results wording does not overinterpret;
-   - Discussion hedging matches evidence strength;
-   - unresolved placeholders are listed.
-8. Produce the handoff artifact, named conceptually **Manuscript Draft Package**.
-   This package feeds `style-polish` when prose quality or author voice needs
-   attention, otherwise `qa`.
-
-Default handoff artifact: **Manuscript Draft Package** with these sections or
-metadata:
-
-- Draft path and render path if available
-- Source inputs used
-- Section word counts and deviations
-- Citation workflow used
-- Table/figure references used
-- Placeholder and unresolved-item log
-- Known limitations before QA
-
-## Style Polish Mode
-
-Use `style-polish` after `draft` or `revise` when the manuscript needs a
-readability, tone, or author-voice pass before QA. This mode improves prose
-quality without changing the scientific argument, results, citations, or
-disclosure obligations.
-
-Core rule: polish for clarity and author voice, not for AI-detector evasion or
-to hide AI assistance. If the project or target journal requires AI-use
-disclosure, preserve or flag that requirement.
-
-Minimum procedure:
-
-1. Establish inputs: Manuscript Draft Package or Revised Manuscript Draft
-   Package, SAP/Outline Controller, gap synthesis, Analysis Refresh Report,
-   literature index, author writing samples if available, target journal style
-   if known, and render workflow.
-2. Lock scientific content before editing. Preserve numbers, denominators,
-   effect estimates, confidence intervals, p-values, endpoint definitions,
-   table/figure references, citation keys, and section-level claims unless the
-   user explicitly requests scientific revision through `draft` or `revise`.
-3. Calibrate style from author samples when available. Treat the style profile
-   as a soft guide; discipline conventions, journal instructions, and factual
-   clarity override personal style preferences.
-4. Run a writing-quality sweep inspired by ARS writing-quality checks:
-   - replace generic high-frequency academic filler only when a more precise
-     phrase is available;
-   - remove throat-clearing openers and meta-commentary such as "this section
-     discusses" when the section can simply make the point;
-   - reduce inflated novelty or importance language not supported by the gap
-     synthesis or Analysis Refresh Report;
-   - avoid monotonous rule-of-three lists, repeated paragraph templates,
-     synonym cycling, and overused binary contrasts;
-   - control punctuation tics such as excessive em dashes, semicolons, and
-     colon-list sequences;
-   - vary sentence and paragraph rhythm where doing so improves readability,
-     while accepting more uniform prose in procedural Methods text.
-5. Preserve academic register. Do not make epidemiology, clinical, statistical,
-   or methods prose conversational when precision is more important than
-   rhythm. For epidemiology, clinical-epidemiology, or population-health
-   manuscripts, also read `references/epidemiology-manuscript-discipline.md` and
-   apply its section discipline, causal-language restraint, internal-language
-   scrub, and phrase replacements; consult the project's epi revision-lessons
-   file if one exists.
-6. Maintain traceability. If a sentence becomes smoother but less obviously
-   tied to a citation or output, revise again or flag it for QA rather than
-   leaving a polished but unsupported claim.
-7. Record risky edits separately. If polishing would require changing meaning,
-   adding interpretation, deleting a caveat, or weakening a required limitation,
-   leave the passage unchanged and list it as an unresolved awkward passage.
-8. Produce the handoff artifact, named conceptually **Style-Polished
-   Manuscript Draft Package**. This package feeds `qa`.
-
-Default handoff artifact: **Style-Polished Manuscript Draft Package** with
-these sections or metadata:
-
-- Source draft or revised draft path
-- Polished draft path and render path if available
-- Author style sample status
-- Style changes summary
-- Preserved facts, citations, numbers, and table/figure references check
-- Section word count changes
-- Unresolved awkward passages
-- Warnings where polishing risks changing meaning
-- Disclosure or journal-style notes
-
-## QA Gate Mode
-
-Use `qa` after a Manuscript Draft Package, Style-Polished Manuscript Draft
-Package, or Revised Manuscript Draft Package exists. This mode is the
-manuscript integrity and readiness gate. It verifies that the draft is
-traceable to the reference collection, literature index, Analysis Refresh
-Report, generated outputs, and SAP/Outline Controller.
-
-Core rule: audit factual readiness, not manuscript merit. Do not perform peer
-review, editorial scoring, or broad rewriting unless the user also asks for a
-revision mode.
-
-Minimum procedure:
-
-1. Establish QA inputs: Manuscript Draft Package, Style-Polished Manuscript
-   Draft Package, or Revised Manuscript Draft Package, draft/render paths,
-   SAP/Outline Controller, gap synthesis, Analysis Refresh Report, literature
-   index/reference collection, generated tables/figures, and render workflow.
-2. Run claim QA:
-   - classify major claims as literature-backed, analysis-backed, mixed, or
-     unsupported;
-   - verify that analysis-backed claims match the Analysis Refresh Report and
-     generated outputs;
-   - verify that literature-backed claims map to citation keys or reference
-     records;
-   - flag overreach, especially causal language, exaggerated novelty, or
-     Discussion claims stronger than the evidence;
-   - for epidemiology, clinical-epidemiology, or population-health manuscripts,
-     apply `references/epidemiology-manuscript-discipline.md`: verify Results
-     carry no interpretation or limitations, causal wording matches the design,
-     internal/data-layer language is absent from prose, and references are
-     numbered by first appearance.
-3. Run citation QA:
-   - check in-text citations against the reference collection or literature
-     index;
-   - identify orphan in-text citations and orphan references when a reference
-     list is present;
-   - check DOI/PMID/URL or metadata completeness when available;
-   - flag cited sources with missing PDFs/cache entries if the repo requires
-     local source verification.
-4. Run claim-source alignment on important cited claims (the **citation-verification
-   discipline**, applied here and during `draft`, `reflect`, and `narrative-deck`).
-   Distinguish "reference exists" from "the source supports this sentence." Use the
-   markdown cache for context and the canonical reference-manager PDF or
-   authoritative metadata to verify exact wording; mark unverified items explicitly.
-   Specifically:
-   - verify the source supports the *specific* outcome, subgroup, direction, and
-     magnitude claimed — not merely the general topic (a real failure mode is a
-     citation that is right about the topic but wrong about which outcome or group,
-     e.g. attributing a steatosis finding to a paper's fibrosis result);
-   - catch misattribution across papers and fabricated or drifted numbers;
-   - for a "well-established"/"known" claim asserted without a cite, either anchor
-     it to a record already in the library or flag that a source must be added —
-     do not invent a citation not in the reference collection;
-   - prefer per-claim citation so each assertion is independently checkable.
-5. Run data and output QA:
-   - numbers, denominators, cohort counts, model labels, and p-values/CIs must
-     match generated outputs;
-   - table and figure references must point to existing files;
-   - captions must match the current output and denominator;
-   - main-vs-supplement placement must match the SAP/Outline Controller.
-6. Run draft package QA:
-   - section word counts and deviations are recorded;
-   - placeholders and unresolved items are listed;
-   - table/figure references and citation workflow are documented;
-   - render status is checked when a render path or command exists.
-7. Assign a gate verdict:
-   - `PASS`: ready for the next packaging/review mode;
-   - `PASS_WITH_WARNINGS`: usable, with listed warnings for human review;
-   - `BLOCKED`: must fix blockers before packaging or handoff.
-8. Produce the handoff document, named conceptually **QA Gate Report**. This
-   report feeds `pre-submission-review`, `journal-package`, or
-   `response-package` depending on the lifecycle branch.
-
-Default handoff document: **QA Gate Report** with these sections:
-
-- Verdict
-- Claim QA
-- Citation QA
-- Claim-source alignment checks
-- Data and output QA
-- Draft package and render QA
-- Blockers
-- Warnings
-- Handoff readiness
-
-## Pre-Submission Review Mode
-
-Use `pre-submission-review` after `qa` and before `journal-package` when the
-user wants reviewer-style critique before first submission. This mode evaluates
-manuscript merit and likely reviewer concerns; it does not replace QA and does
-not rewrite the manuscript unless the user asks for a follow-on revision.
-
-Core rule: critique the manuscript as a manuscript, not as a data audit.
-
-Minimum procedure:
-
-1. Establish review inputs: QA-passed Manuscript Draft Package or
-   Style-Polished Manuscript Draft Package, QA Gate Report, SAP/Outline
-   Controller, gap synthesis, Analysis Refresh Report, target journal or
-   article type if known, and any author priorities.
-2. Assess journal fit and contribution: audience, novelty, scope, article type,
-   and whether the stated contribution follows from the literature gap and
-   results.
-3. Assess manuscript argument: Introduction problem framing, Results logic,
-   Discussion interpretation, limitation handling, and whether the strongest
-   claims are defensible.
-4. Assess methods and reporting clarity at a manuscript level. Do not rerun
-   analyses; instead flag unclear design, missing reporting, or weak explanation
-   that a reviewer would notice.
-5. Identify strongest likely reviewer objections, including methodology,
-   novelty, generalizability, causal overreach, endpoint definitions, analysis
-   hierarchy, and missing literature comparisons.
-6. Prioritize recommended fixes as must-fix, should-fix, or optional. Keep
-   factual integrity issues linked back to the QA Gate Report.
-7. Produce the handoff document, named conceptually **Pre-Submission Review
-   Report**. This report can feed `draft` for targeted improvements or
-   `journal-package` if only minor warnings remain.
-
-Default handoff document: **Pre-Submission Review Report** with these sections:
-
-- Journal fit and contribution
-- Major strengths
-- Must-fix issues before submission
-- Should-fix issues
-- Optional improvements
-- Likely reviewer objections
-- Recommended next mode: `draft`, `qa`, or `journal-package`
-
-## Journal Package Mode
-
-Use `journal-package` after QA and optional pre-submission review are complete.
-This mode prepares first-submission files for a target journal or a generic
-submission bundle. It is formatting and packaging oriented; content changes
-should be raised as blockers rather than silently made.
-
-Core rule: preserve content while enforcing target-journal packaging
-requirements.
-
-Minimum procedure:
-
-1. Establish package inputs: QA Gate Report, Manuscript Draft Package or
-   Style-Polished Manuscript Draft Package, target journal or article type,
-   citation style, author/title page needs, figure and supplement files, and
-   render workflow.
-2. Check target-journal requirements when supplied: word limits, abstract
-   structure, reference style, figure/table placement, reporting checklist,
-   funding, COI, ethics, data availability, code availability, acknowledgments,
-   AI disclosure, and supplementary-material rules.
-3. Render or assemble requested formats when tooling exists, such as DOCX,
-   PDF, Markdown, LaTeX, bibliography, figures, and supplements.
-4. Prepare submission text assets: title page, abstract/keywords when not
-   already final, cover letter draft, author contributions, funding/COI/data
-   availability/ethics statements, and AI disclosure when needed.
-5. Produce a submission checklist. If content-level issues appear, return to
-   `draft` or `qa`; do not hide them in formatting.
-6. Produce the handoff artifact, named conceptually **Journal Submission
-   Package**.
-
-Default handoff artifact: **Journal Submission Package** with these sections or
-metadata:
-
-- Target journal and article type
-- Final manuscript file paths
-- Figure/table/supplement file paths
-- Cover letter path or text
-- Required statements
-- Citation/reference style status
-- Journal checklist and blockers
-- Commands run and render status
-
-## Revision Plan Mode
-
-Use `revision-plan` after external editor/reviewer comments or major coauthor
-comments arrive. This mode parses unstructured feedback into an actionable
-roadmap. It should not revise the manuscript directly.
-
-Core rule: no comment left behind.
-
-Minimum procedure:
-
-1. Collect reviewer/editor/coauthor comments, decision letter if available, the
-   submitted manuscript or Journal Submission Package, and any journal deadline.
-2. Parse comments into atomic items. Split comments that contain multiple
-   actionable requests.
-3. Preserve reviewer intent: keep raw comment text, reviewer/editor source,
-   paraphrased summary, and ambiguity flags.
-4. Classify each item as major, minor, editorial, positive, or unclear. Assign
-   priority: must-fix, should-fix, or consider. Promote items raised by the
-   editor or multiple reviewers.
-5. Map each item to manuscript sections, tables, figures, analyses, references,
-   response-letter needs, and whether new analysis or literature work is
-   required.
-6. Produce a suggested revision order and response-letter skeleton. Flag
-   contradictory reviewer requests for user decision.
-7. Produce the handoff document, named conceptually **Revision Roadmap**. This
-   report feeds `revise`.
-
-Default handoff document: **Revision Roadmap** with these sections:
-
-- Decision and revision context
-- Parsed comment inventory
-- Must-fix / should-fix / consider tables
-- Cross-reviewer patterns
-- Section/action map
-- New analysis or literature needs
-- Suggested revision order
-- Response-letter skeleton
-
-## Revise Mode
-
-Use `revise` after a Revision Roadmap exists and the user has approved the
-revision strategy. This mode applies the roadmap to the manuscript and records
-what changed. It should preserve traceability from each revision to the
-reviewer/editor comment it addresses.
-
-Core rule: revise against the approved roadmap, not opportunistically.
-
-Minimum procedure:
-
-1. Establish revision inputs: Revision Roadmap, submitted or current Manuscript
-   Draft Package or Style-Polished Manuscript Draft Package, Journal Submission
-   Package if available, QA Gate Report, and any newly generated analysis or
-   literature artifacts.
-2. Address must-fix items first, then should-fix items, then optional items if
-   appropriate. Do not silently drop any roadmap item.
-3. For each revision item, record action taken, manuscript location, source
-   material used, status, and whether the response letter needs explanation.
-4. Keep Results revisions tied to the Analysis Refresh Report or regenerated
-   outputs; keep literature revisions tied to the literature index or verified
-   PDFs.
-5. Produce or update response-to-reviewers draft text alongside manuscript
-   changes.
-6. List unresolved items and rationale. If a comment cannot be addressed without
-   new analysis, new literature, or author decision, mark it as blocked.
-7. Produce the handoff artifact, named conceptually **Revised Manuscript Draft
-   Package**. This package feeds `style-polish` before `qa` when prose changed
-   substantially or when the user requests a readability pass; otherwise it
-   feeds `qa`.
-
-Default handoff artifact: **Revised Manuscript Draft Package** with these
-sections or metadata:
-
-- Revised draft path and render path if available
-- Revision log mapped to comment IDs
-- Resolved, partially resolved, unresolved, and blocked items
-- Response-to-reviewers draft
-- Updated placeholders and limitations
-- Source inputs and commands used
-- Recommended next mode: `qa`
-
-## Response Package Mode
-
-Use `response-package` after a revised manuscript has passed QA. This mode
-prepares the resubmission bundle. It is distinct from first-submission
-`journal-package` because it must include point-by-point responses and revision
-traceability.
-
-Core rule: every reviewer/editor item in the Revision Roadmap must be accounted
-for in the response package.
-
-Minimum procedure:
-
-1. Establish response inputs: Revised Manuscript Draft Package, Revision
-   Roadmap, QA Gate Report, target journal/resubmission requirements, and any
-   requested clean/tracked manuscript files.
-2. Finalize point-by-point response letter: quote or summarize each comment,
-   state response, state changes made, and list manuscript locations.
-3. Assemble clean revised manuscript and tracked/change-log version when
-   available or requested.
-4. Update cover letter/editor note, required statements, supplement list, and
-   figure/table files as needed.
-5. Check that all must-fix items are resolved or explicitly justified.
-6. Produce the handoff artifact, named conceptually **Response Package**.
-
-Default handoff artifact: **Response Package** with these sections or metadata:
-
-- Revised manuscript file paths
-- Clean/tracked/change-log file paths when available
-- Response-to-reviewers letter
-- Editor cover letter or resubmission note
-- Comment-resolution checklist
-- Updated QA Gate Report path
-- Journal resubmission checklist and blockers
+Inline code paths beginning with `references/` or `scripts/` are relative to the skill root, including inside references; Markdown links are relative to the containing file. Read any additional references required by the selected mode.
 
 ## Artifact Contracts
 
@@ -957,23 +114,9 @@ Keep contracts lightweight. Use the repo's existing formats when available, but
 ensure each artifact carries the fields needed for later sessions to consume it
 without re-discovering everything.
 
-- **Literature search record**: research question or scoped topic, databases or
-  sources searched, search date and local timezone, round ID and trigger, query
-  strings and filters, inclusion/exclusion criteria, raw/de-duplicated/screened
-  counts, retained candidate sources with stable IDs and PMID/DOI/URL metadata,
-  exclusion notes, citation-chasing or named-project searches, non-auditable
-  reserve suggestions, unresolved metadata, and acquisition handoff status.
-- **Literature acquisition queue**: `source_id`, tier or priority, title, PMID,
-  DOI, URL, manuscript role, target collection, reference-manager status, PDF
-  attachment status, local cache status, and next human action.
 - **Literature index**: `citation_key`, title, year, paper role, themes, key
   claims, caveats, reference-manager item key, and markdown-cache status
   (`md` path, conversion method, source PDF checksum).
-- **Markdown cache manifest**: per paper — reference-manager item key and
-  attachment key, collection, source PDF path, `md` path, source SHA-256,
-  conversion method (`markdown` | `plaintext_fallback` | `needs_ocr`), status,
-  and char count. PDFs remain in the reference manager and are not committed to
-  the repo.
 - **Evidence-extraction cache**: per paper — `citation_key`, source `md` path and
   SHA-256 (mirrored from the markdown-cache manifest), `schema_version`, study
   characterization (design, setting, population, N, modality, cutoffs), an
@@ -988,32 +131,18 @@ without re-discovering everything.
   contradiction table, gap taxonomy, positioning claim, CER chains, synthesis
   limitations, SAP/outline implications, and claims requiring PDF verification
   before drafting.
-- **Planned-analyses roadmap**: candidate analyses with driver/source;
-  per-candidate in-cohort/in-data availability audit (completeness, subcohort,
-  confounder/mediator/collider status); role and effort-tier classification;
-  run-now/defer/convert-to-limitation recommendation; and a separated
-  non-auditable/speculative reserve.
 - **Analysis Refresh Report**: commands run or inspected, run label/date,
   relevant input and output paths, cohort/sample definitions, exclusion flow,
   denominators, result artifact inventory, primary/secondary/sensitivity labels,
   statistical interpretation, fallacy and overclaim scan, table/figure
   provenance, Results-ready claims, Discussion-only interpretations,
   supplement-only findings, unresolved blockers, and recommended next actions.
-- **Reflection memo**: per-result convergence/divergence/silence against the
-  indexed literature; interpreted contradictions with likely reason; internal-
-  meeting feedback digest and resulting actions; drivers for planned-analyses and
-  SAP updates; and open questions and Discussion seeds.
 - **SAP/Outline Controller**: target journal or audience if known, manuscript
   structure pattern, central thesis or positioning claim, section outline,
   section purposes, word count allocation, argument map, CER-to-section mapping,
   evidence/result/table/figure map, primary and secondary analyses, sensitivity
   and exploratory labels, supplement placement, transition logic, drafting
   instructions, and unresolved decisions.
-- **Narrative deck**: spine/storyline and locked framing decisions (with options
-  considered and set aside); act/section structure with per-slide takeaways and
-  presenter notes; on-slide claims anchored to the Analysis Refresh Report or
-  verified literature records with per-slide citations; open framing questions for
-  the group; and feedback routed back to reflection/analysis-plan.
 - **Manuscript Draft Package**: source inputs used, draft/render path, citation
   workflow used, section word counts, table/figure references, placeholder and
   unresolved-item log, and known limitations before QA.
@@ -1025,37 +154,19 @@ without re-discovering everything.
 - **QA Gate Report**: gate verdict, claim QA, citation QA, claim-source
   alignment checks, data and output QA, draft package and render QA, blockers,
   warnings, and handoff readiness.
-- **Pre-Submission Review Report**: journal fit, contribution assessment,
-  manuscript strengths, must-fix issues, should-fix issues, optional
-  improvements, likely reviewer objections, and recommended next mode.
 - **Journal Submission Package**: target journal, article type, final
   manuscript paths, figure/table/supplement paths, cover letter, required
   statements, citation/reference status, journal checklist, blockers, commands
   run, and render status.
-- **Revision Roadmap**: decision context, parsed comment inventory, raw comment
-  text, reviewer/editor source, severity, priority, target section, suggested
-  action, cross-reviewer patterns, new analysis/literature needs, suggested
-  revision order, and response-letter skeleton.
 - **Revised Manuscript Draft Package**: revised draft/render paths, revision
   log mapped to comment IDs, resolved/unresolved/blocked items,
   response-to-reviewers draft, updated placeholders, source inputs, commands
   used, and recommended next mode.
-- **Response Package**: revised manuscript paths, clean/tracked/change-log paths
-  when available, response-to-reviewers letter, editor cover letter or
-  resubmission note, comment-resolution checklist, updated QA Gate Report path,
-  and journal resubmission checklist.
-- **Handoff note**: final artifact paths, commands run, outputs changed, known
-  limitations, and next human actions.
+## Workflow overview
 
-## Workflow
+Full steps are in the corresponding references; any inconsistency between this overview and a reference is governed by the reference and must be treated as an error to repair.
 
-Use this sequence for new projects, broad audit requests, or a full
-literature-to-manuscript run. It has **three macro-phases**: a mostly linear
-**Phase 1 — Literature foundation**; an iterative **Phase 2 — Research iteration
-loop** that cycles until results are publication-ready; and a mostly linear
-**Phase 3 — Manuscript production**. Modes remain individually addressable; the
-phases only describe how they compose. The narrative deck is an any-time branch
-off Phase 2, not a fixed step.
+Use this sequence for new projects, broad audits, or a full literature-to-manuscript run; individual modes remain independently usable.
 
 **Preamble (before any phase)**
 
@@ -1064,67 +175,25 @@ off Phase 2, not a fixed step.
    - Identify the reference manager, collection/library identifier, literature index path, gap document, Analysis Refresh Report, SAP/Outline Controller, analysis output directories, and manuscript output directory.
    - Treat repo-specific instructions as authoritative over this generic workflow.
 
-### Phase 1 — Literature foundation (mostly linear, re-enterable)
+### Phase 1 — Literature foundation
 
-2. **Search for candidate literature when needed**
-   - Use `literature-search` before reference-manager import when the project lacks a curated corpus or the user asks for new sources.
-   - Re-enter it for any material manuscript-scope change, including a new comparison population or global-comparison section; open a new dated search record rather than silently extending an earlier search.
-   - Keep search strategy, screening decisions, acquisition status, and unresolved metadata separate from the literature index and gap synthesis.
-   - Treat retained candidates as provisional until imported or reconciled with the canonical reference manager.
+When the project lacks a curated corpus or new sources are requested, begin with literature-search before reference-manager import; re-enter it after a material manuscript-scope change, using a new dated search record.
 
-3. **Acquire full text into the reference manager**
-   - Use `literature-acquisition` when searched papers need human download through university, institutional, or publisher access.
-   - Produce a missing-item and missing-PDF checklist rather than trying to bypass access controls.
-   - After the user adds records and PDFs to the target collection, reconcile the collection against the auditable search record before indexing.
+When searched papers require human full-text acquisition, use literature-acquisition and reconcile the added records and PDFs against the auditable search record before indexing.
 
-4. **Update the literature source and markdown cache**
-   - Treat the reference manager (e.g., Zotero) as the canonical store of PDFs and metadata.
-   - Do not copy PDFs into the project repo. Instead, build a committed **markdown cache** in the repo by converting the reference manager's PDFs read-only. The PDFs stay in the reference manager; the repo holds only the derived markdown plus a manifest. A repo may override this and keep PDFs only if it explicitly says so.
-   - Reading the markdown cache instead of re-parsing PDFs is much cheaper in tokens, which is the point of maintaining it.
-   - Locate the reference manager's PDFs read-only. For Zotero: read the data directory from the profile `prefs.js` (`extensions.zotero.dataDir`); copy `zotero.sqlite` before querying to avoid file locks; then map the target collection → items → `itemAttachments` (whose `path` looks like `storage:<file>.pdf`) → `<dataDir>/storage/<attachmentKey>/<file>.pdf`.
-   - Convert each PDF to markdown. Default conversion workflow (Python, CPU-only, good for born-digital papers; projects may substitute marker, Docling, or OCR for scans/math-heavy pages):
+Proceed through literature-ingest to maintain the markdown cache, manifest, and index, then gap-synthesis to interpret the literature and establish positioning and SAP implications.
 
-     ```bash
-     pip install pymupdf4llm
-     ```
-     ```python
-     import pymupdf4llm, pymupdf, pathlib
-     md = pymupdf4llm.to_markdown(str(pdf_path), show_progress=False)
-     if not md.strip():
-         # markdown heuristics returned empty: fall back to plain text if a text layer exists
-         doc = pymupdf.open(str(pdf_path))
-         text = "".join(p.get_text() for p in doc)
-         md = text if text.strip() else None   # None => true scan, no text layer: flag needs_ocr, do NOT write an empty file
-     if md:
-         pathlib.Path(md_path).write_text(md, encoding="utf-8")
-     ```
-   - Make the cache idempotent: record each source PDF's SHA-256 in the manifest and re-convert only new or changed PDFs; offer a `--force` rebuild.
-   - Write a committed manifest linking each `.md` back to its source: reference-manager item key and attachment key, collection, source PDF path, `md` path, source SHA-256, conversion method (`markdown` | `plaintext_fallback` | `needs_ocr`), status, and char count.
-   - If an index generator exists, run it after changes to the reference collection, the markdown cache, or curated summary fields.
-   - If no generator exists, propose or create a small committed index format before doing large manuscript drafting.
-
-5. **Maintain the literature intelligence layer**
-   - Use the literature index for paper lookup and citation key selection.
-   - Use the gap synthesis document for integrated evidence interpretation, argument structure, research gap, positioning, and paper roles.
-   - Keep gap synthesis focused on themes, contradictions, gap taxonomy, CER chains, and SAP implications; do not turn it into manuscript prose.
-   - Keep raw paper inventory in the generated index, not in the gap synthesis.
    - Read the repo markdown cache for paper content during synthesis, indexing, and drafting. Open the canonical PDF in the reference manager only to verify exact thresholds, study design, cohort details, definitions, or wording — especially for entries marked `plaintext_fallback` or `needs_ocr` in the manifest.
 
-### Phase 2 — Research iteration loop (cycles until results are publication-ready)
+### Phase 2 — Research iteration loop
 
-Enter with a Phase-1 gap synthesis and an initial SAP/Outline Controller, then
-cycle the following until the exit gate is met. The narrative deck (6d) may
-branch off at any reflection point.
+Enter with a Phase-1 gap synthesis and an initial SAP/Outline Controller.
 
-6. **Run the research iteration loop**
-   - **6a. Plan analyses** (`analysis-plan`): from the gap synthesis, the latest reflection memo, and meeting feedback, choose which not-yet-run analyses to run this cycle; audit in-cohort/in-data availability and confounder/mediator/collider status before queuing; keep the planned-analyses roadmap current.
-   - **6b. Implement and refresh results** (`analysis-refresh`): update scripts and outputs through the repo pipeline; summarize current results in the Analysis Refresh Report (project data, provenance, model results, tables/figures, statistical interpretation, handoff); check counts, denominators, and table/figure references match generated outputs. Do not use the report as the literature review.
-   - **6c. Reflect** (`reflect`): argue the current results against the gap synthesis, the external literature, and internal-meeting feedback; interpret contradictions rather than explaining them away; produce drivers for the next `analysis-plan` and for SAP/framing changes; keep the reflection memo current. This is the living Discussion.
-   - **6d. Rehearse the narrative when useful** (`narrative-deck`, optional branch): build or update the framing-rehearsal deck, often for an internal meeting, and route the feedback back into 6c/6a. Every on-slide number and citation must trace to the Analysis Refresh Report or a verified literature record.
-   - **6e. Update the controlling plan** (`sap-outline`): fold accepted results, reflections, and framing decisions into the SAP/Outline Controller; build it from both the gap synthesis and the Analysis Refresh Report; flag and resolve any SAP-vs-results conflict deliberately; keep exploratory narratives out of the main manuscript unless promoted here.
-   - **Loop** back to 6a with the updated SAP and roadmap.
+Cycle through analysis-plan, analysis-refresh, reflect, and sap-outline, returning to analysis-plan with the updated SAP and roadmap until the results-lock gate is met.
 
-7. **Exit gate — "results lock"** (leave Phase 2 only when all hold)
+Narrative-deck is an optional branch at any reflection point, with feedback returning to reflection and analysis planning.
+
+**Exit gate — "results lock"** (leave Phase 2 only when all hold)
    - primary analyses are run and stable on the current cohort/extract;
    - sensitivity analyses are complete and do not contradict the primary result;
    - the reflection memo reconciles each headline result with the literature, with no unresolved contradiction;
@@ -1133,128 +202,28 @@ branch off at any reflection point.
    - the Analysis Refresh Report lists no unresolved blockers;
    - human sign-off that the results meet publication standard.
 
-### Phase 3 — Manuscript production (mostly linear)
+### Phase 3 — Manuscript production
 
-8. **Draft the manuscript**
-   - Structure from the SAP/Outline Controller.
-   - Frame the introduction and discussion from the gap synthesis and literature index.
-   - Write results from the Analysis Refresh Report and current generated outputs.
-   - Track section word counts, placeholders, citation workflow, and table/figure references in the Manuscript Draft Package.
-   - Insert or preserve live citations through the reference manager when available.
-   - Save rendered manuscript drafts in the repo’s manuscript output directory.
+Draft from the SAP/Outline Controller, gap synthesis, literature index, Analysis Refresh Report, and current outputs; apply style-polish when needed, returning to draft before QA if polishing exposes content uncertainty.
 
-9. **Polish style when needed**
-   - Use `style-polish` after `draft` when the manuscript needs clearer rhythm, author-voice calibration, or removal of generic AI-flavoured prose patterns.
-   - Preserve scientific meaning, numbers, citations, table/figure references, and disclosure obligations.
-   - Treat this as a prose-quality pass, not as AI-detector evasion.
-   - If polishing exposes content uncertainty, route back to `draft` before QA.
+During style-polish, preserve scientific meaning, numbers, citations, table/figure references, and disclosure obligations.
 
-10. **QA before first submission**
-   - Produce a QA Gate Report from the latest Manuscript Draft Package, Style-Polished Manuscript Draft Package, or Revised Manuscript Draft Package.
-   - Confirm each major claim is backed by either the Analysis Refresh Report/output or a cited literature record.
-   - Confirm citations map to the canonical reference collection and important cited claims are source-aligned where feasible.
-   - Confirm cited tables and figures exist and match current outputs, captions, denominators, and SAP placement.
-   - Confirm local PDF cache mismatches are either fixed or explicitly listed by the index.
-   - Re-render the manuscript after final edits when render tooling exists.
-   - Proceed to `pre-submission-review` or `journal-package` only when the QA verdict is `PASS` or the user explicitly accepts `PASS_WITH_WARNINGS`.
+Run QA on the latest draft package and re-render after final edits when render tooling exists; proceed to pre-submission-review or journal-package only with PASS, or PASS_WITH_WARNINGS explicitly accepted by the user.
 
-11. **Review before first submission when requested**
-   - Use `pre-submission-review` to critique journal fit, contribution, argument quality, methods/reporting clarity, likely reviewer objections, and recommended fixes.
-   - If major issues are found, route back to `draft` and then `qa`.
-   - If only minor or accepted warnings remain, proceed to `journal-package`.
+When pre-submission-review is requested, return to draft and then qa for major issues; proceed to journal-package when only minor issues or accepted warnings remain.
 
-12. **Prepare first-submission package**
-   - Use `journal-package` to apply target journal requirements, render final files, assemble figures/tables/supplements, draft cover letter, and prepare required statements.
-   - Keep content changes out of packaging; route content blockers back to `draft` or `qa`.
-   - Submit externally outside this workflow.
+Keep content changes out of journal packaging, route content blockers back to draft or qa, and perform external submission outside this workflow.
 
-13. **Plan revisions after external comments**
-   - Use `revision-plan` only after editor, reviewer, or major coauthor comments are received.
-   - Parse every comment, preserve reviewer intent, prioritize actions, map comments to manuscript sections, and create a response-letter skeleton.
+### Post-review revision cycle and handoff
 
-14. **Revise, polish, and re-QA**
-   - Use `revise` to apply the approved Revision Roadmap and produce a Revised Manuscript Draft Package.
-   - Use `style-polish` after revision when prose changed substantially or the user requests readability calibration.
-   - Return to `qa` after revision or style polishing before any resubmission package.
+Enter revision-plan only after editor, reviewer, or major coauthor comments are received, preserving reviewer intent and mapping every comment to an action and response skeleton.
 
-15. **Prepare response package**
-   - Use `response-package` after the revised manuscript passes QA.
-   - Assemble revised files, response-to-reviewers letter, editor note, comment-resolution checklist, and resubmission checklist.
+Use revise to apply the approved Revision Roadmap; apply style-polish when prose changed substantially or readability calibration is requested, then return to qa before any resubmission package.
 
-16. **Final handoff/archive**
-   - Use `handoff` for a concise status/archive note after Journal Submission Package or Response Package creation.
-   - Record final artifact paths, commands run, outputs changed, unresolved limitations, and next human actions.
+Use response-package after the revised manuscript passes QA to assemble revised files, responses, the editor note, and resolution and resubmission checklists.
 
-## Recommended Repo Documentation
+Use handoff after either a Journal Submission Package or a Response Package is created, recording final paths, commands, changed outputs, unresolved limitations, and next human actions.
 
-Keep the reusable workflow in this skill; store project-specific details and
-artifacts in the repo. **Group repo docs by their role in the workflow** so
-lifecycle stages stay visible and artifacts do not scatter into one folder. The
-default layout (adapt names to repo convention):
+## Repository documentation
 
-- `AGENTS.md`: short operational rules for future LLM threads, including a
-  documentation map pointing to each artifact below.
-- `README.md`: concise user-facing pointer to the workflow, layout, and literature index.
-
-Separate three top-level concerns so the analysis engine, source references, and
-the manuscript lifecycle do not blur:
-
-- `docs/analysis/` — the analysis engine (not manuscript-stage-specific):
-  - `pipeline.md`: data flow and the script-by-script walkthrough of the actual
-    pipeline (the code-linked "follow it without reading the code" map). This is
-    the single home for the pipeline description; do not duplicate it into the SAP.
-  - `methodology.md`: QC rules, cutoffs, harmonization, missing-data handling, and
-    statistical-method rationale.
-  - `data_dictionary.md`: variables in the project's derived datasets; cross-link
-    the raw-source reference so the derived-vs-source boundary is explicit.
-- `docs/reference/` — raw source references (source-table/covariate inventories,
-  data-provider user guides); a header on each states its boundary against the
-  derived data dictionary.
-- `docs/literature/` — the literature corpus: dated search records, index,
-  markdown cache + manifest, and optionally the evidence-extraction cache; PDFs
-  stay in the reference manager.
-- `docs/manuscript/` — the research→manuscript lifecycle, one folder per role so
-  the phases are legible:
-  - `workflow.md`: exact project workflow, paths, collection keys, update
-    commands, and QA checklist.
-  - `gaps/` — gap synthesis.
-  - `plan/` — `outline.md` (manuscript argument, sections, table/figure plan),
-    `sap.md` (prespecified statistical analysis plan — kept stable; links to
-    `docs/analysis/pipeline.md` rather than restating it), and the
-    planned-analyses roadmap.
-  - `results/` — the Analysis Refresh Report (the results ledger; no framing).
-  - `reflection/` — the reflection memo and any internal-meeting-feedback digest.
-  - `narrative/` — the canonical narrative deck package, or a navigation pointer
-    when meeting packages live elsewhere; never a second editable copy.
-  - `draft/` — manuscript draft(s), supplement, and reporting checklists (e.g.,
-    STROBE); rendered outputs go to the repo's manuscript output directory.
-  - `qa/` — QA Gate Report and Pre-Submission Review Report when produced.
-  - `archive/` — superseded drafts and artifacts.
-
-This is an artifact-role map, not a requirement to create duplicate physical
-folders. A project may version selected, curated meeting packages under
-`outputs/presentations/<meeting>/`, keeping editable Markdown and display assets
-together with narrow Git exceptions. Manuscript Markdown and rendered Word are
-different roles; declare which is editable. Keep reusable builders in purpose
-groups under `scripts/`, with a task-oriented index distinguishing current entry
-points, helpers, historical recipes and compatibility tools. See
-[repository organisation](references/repository-organisation.md) for migration,
-preservation and validation guidance.
-
-Splitting the controller into `outline.md` + `sap.md` is recommended when the
-combined document grows unwieldy or the argument and the statistical plan update
-on different cadences; keep them tightly cross-linked so structure and analysis
-stay consistent. Small projects may keep a single combined SAP/Outline Controller,
-and single-file roles need not be foldered until they grow.
-
-Project-specific docs should record: the canonical reference collection name and
-key; that the reference manager holds canonical PDFs while the repo holds only a
-derived markdown cache (or the repo-specific override); the markdown cache,
-manifest, and conversion command; literature search-record, acquisition-queue,
-and index paths plus the index regeneration command; the path to each lifecycle
-artifact above (gap synthesis, planned-analyses roadmap, Analysis Refresh Report,
-reflection memo, outline/SAP, narrative deck, draft package, style-polished
-package, QA Gate Report, Pre-Submission Review Report, Journal Submission Package,
-and post-review Revision Roadmap / Revised Draft / Response Package); the
-citation/live-reference workflow; and the QA checks required before manuscript
-handoff.
+For the recommended project documentation layout, read [Recommended Repo Documentation](references/repository-organisation.md#recommended-repo-documentation).
