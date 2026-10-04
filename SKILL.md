@@ -1,6 +1,6 @@
 ---
 name: research-manuscript-workflow
-description: Use for research manuscript projects that need a reproducible workflow from literature search and Zotero literature collection through literature indexing, gap synthesis, planned-analyses roadmaps, analysis reports, a results-reflection research-iteration loop, manuscript outline/SAP, narrative/framing-rehearsal decks, Word or document drafting, style polishing, citation QA, and final manuscript artifact generation. Includes epidemiology, clinical-epidemiology, and population-health manuscript discipline (section discipline, causal-language restraint, internal/AI-workflow language scrub, STROBE-like clarity, methods-citation checks) applied during style polishing and QA. Trigger when the user asks to organize, document, reuse, audit, or execute a literature-to-manuscript workflow across research project repositories, or to revise, polish, humanize, or review an epidemiology manuscript for journal-ready prose.
+description: Use for research manuscript projects that need a reproducible workflow from literature search and Zotero literature collection through literature indexing, gap synthesis, planned-analyses roadmaps, analysis reports, a results-reflection research-iteration loop, manuscript outline/SAP, narrative/framing-rehearsal decks, Word or document drafting, style polishing, citation QA, and final manuscript artifact generation. Includes epidemiology, clinical-epidemiology, and population-health manuscript discipline (section discipline, causal-language restraint, internal/AI-workflow language scrub, STROBE-like clarity, methods-citation checks) applied during style polishing and QA. Trigger when the user asks to organize, document, reuse, audit, or execute a literature-to-manuscript workflow across research project repositories, or to revise, polish, humanize, or self-review the user's own epidemiology manuscript for journal-ready prose. Do not use this skill to write or polish peer-review comments on someone else's manuscript.
 ---
 
 # Research Manuscript Workflow
@@ -68,6 +68,26 @@ If the request spans multiple modes, start at the earliest affected mode and
 state the planned sequence. If the user's current stage is ambiguous, inspect the
 repo workflow docs and existing manuscript artifacts before asking for
 clarification.
+
+## Scope boundary
+
+Route by whether the user is an author of the manuscript, not by whether the
+request contains the word "review".
+
+- `research-manuscript-workflow` serves the author side: producing, revising,
+  and polishing the user's own manuscript (`draft`, `style-polish`); checking it
+  from the author's perspective before submission (`pre-submission-review`);
+  and planning changes, revising the manuscript, and preparing responses to
+  received reviews (`revision-plan`, `revise`, `response-package`).
+- `write-peer-review` serves the reviewer side: reviewing someone else's
+  manuscript and writing or polishing author-facing peer-review comments,
+  confidential editor feedback, and structured journal review-form responses.
+  Use that skill for those tasks, rather than this manuscript workflow.
+- If the user's role is unclear, as in "help me review this manuscript", first
+  ask whether the user is an author of the manuscript. Do not guess from the
+  word "review" or start either workflow until the role is clarified. Once the
+  author/reviewer role is established, select the mode that fits the task and
+  available inputs; apply the existing mode prerequisites.
 
 ## Setup and Repository Organisation Mode
 
