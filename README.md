@@ -117,14 +117,14 @@ supported.
 
 ```
 research-manuscript-workflow/
-├── SKILL.md                                       # the skill: frontmatter + workflow body
+├── SKILL.md                                       # the skill: frontmatter, mode router, shared rules, and workflow overview
 ├── agents/openai.yaml                             # Codex descriptor (display name, default prompt)
 ├── references/
 │   ├── modes-literature.md                        # search, acquisition, synthesis, ingest, and evidence extraction
 │   ├── modes-research-iteration.md                # results refresh, analysis planning, reflection, SAP, and narrative
 │   ├── modes-manuscript-production.md             # drafting, style polish, QA, pre-submission review, and packaging
 │   ├── modes-revision.md                          # revision planning, manuscript changes, responses, and handoff
-│   ├── repository-organisation.md                # artifact ownership, meeting packages, script navigation, and safe migration
+│   ├── repository-organisation.md                 # artifact ownership, meeting packages, script navigation, safe migration, and recommended repo docs
 │   ├── epidemiology-manuscript-discipline.md      # applied during style-polish and qa for epi, clinical-epi, and population-health manuscripts
 │   └── evidence-extraction-contract.md            # schema, anchor rules, and worker prompt for evidence extraction
 └── scripts/
