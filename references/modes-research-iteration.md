@@ -58,8 +58,7 @@ Default handoff document: **Analysis Refresh Report** with these sections:
 ## SAP/Outline Mode
 
 Use `sap-outline` after `gap-synthesis` and `analysis-refresh` have produced
-their handoff documents, and after the [Scope Decision Gate](#scope-decision-gate)
-whenever the scope has changed. This mode creates the controlling manuscript plan. It
+their handoff documents. This mode creates the controlling manuscript plan. It
 should decide what goes where, at what priority, and with what evidence; it
 should not draft polished prose.
 
@@ -67,13 +66,9 @@ Core rule: structure serves the manuscript argument and the available results.
 
 Minimum procedure:
 
-0. Confirm the scope is signed off. On a first SAP/Outline for a project with no
-   Scope decision record yet, open the initial record from the gap synthesis
-   (its positioning claim, endpoints and primary analyses as the proposed
-   scope), put it to the user, and build the first controller only after they
-   sign it. Afterwards, if the thesis, population, endpoints, primary analyses
-   or discovery components differ from the last signed record, stop and run the
-   Scope Decision Gate first.
+0. Build or change scope only from scope the user has agreed (recorded in a
+   reflection memo or their own message), including for the first controller.
+   Do not edit the SAP, outline or one-pager ahead of that agreement.
 1. Select or confirm the manuscript structure pattern. For empirical cohort or
    clinical epidemiology work, default to IMRaD unless repo or journal
    instructions require another structure.
@@ -131,11 +126,8 @@ Minimum procedure:
    variable or assay present, at what completeness, in which subcohort, and is it
    a confounder, mediator, or collider relative to the current model? Distinguish
    "computable now from existing columns", "needs new derivation/linkage", and
-   "not available in-cohort". For outcome analyses, add the event count in the
-   analysable sample and a rough power or minimum-detectable-effect check for
-   the key contrast (for example, Schoenfeld for a hazard ratio). A candidate
-   powered only for effects much larger than the literature reports is a
-   descriptive or exploratory result, not a headline.
+   "not available in-cohort". For outcome analyses, add the event count and a
+   rough power or minimum-detectable-effect check for the key contrast.
 3. Classify each candidate by role (strengthens confounding control, orthogonal
    cross-check, mechanism, robustness/QC, descriptive) and by effort tier
    (straightforward now / intermediate needs generation or linkage / future
@@ -180,23 +172,21 @@ Minimum procedure:
    before deciding it is a real contribution.
 3. Digest internal-meeting feedback: record decisions, objections, and requested
    analyses relevant to the analysis set or framing; convert each into a tracked
-   action (analysis-plan candidate, SAP change, or open question). Quote a
-   remark verbatim when its meaning matters. If what a remark refers to is
-   unclear from the notes (which paper, analysis or method), mark it
-   `unresolved referent` and ask the user; do not infer the referent and then
-   build framing on it.
+   action (analysis-plan candidate, SAP change, or open question). If what a
+   remark refers to is unclear, quote it and mark it unresolved; ask rather
+   than infer.
 4. Every literature or external claim asserted as established must anchor to a
    literature-index/evidence-cache record; verify it supports the specific
    outcome, subgroup, and direction being claimed (see citation-verification
    discipline in [QA Gate Mode](modes-manuscript-production.md#qa-gate-mode)). Flag unresolved claims for PDF verification.
-5. Before proposing any storyline or framing option, check that it is feasible:
-   event counts and a rough power or precision check for its headline contrast
-   (reuse the `analysis-plan` audit when one exists). Drop or demote options
-   whose headline the data cannot support, and say why.
-6. Produce drivers for the loop: what to send to `analysis-plan`, what SAP or
+5. Produce drivers for the loop: what to send to `analysis-plan`, what SAP or
    framing changes to make, what to relegate to limitations, and what remains an
-   open question for the next meeting or the eventual Discussion. A proposed
-   scope change is a driver for the Scope Decision Gate, not an edit to make.
+   open question for the next meeting or the eventual Discussion.
+6. Scope is the authors' call. When reflection suggests a change to the
+   question, population, endpoints, primary analyses or discovery components,
+   put two to four options in the memo, each with a feasibility check (event
+   counts, rough power), and a recommendation; then stop. Record the user's
+   decision and date in the memo.
 7. Stop at reflection. Do not run analyses, revise the SAP, or draft prose unless
    the user also asked for the next mode.
 
@@ -207,42 +197,6 @@ Default handoff document: **Reflection memo** with these sections:
 - Internal-meeting feedback digest and resulting actions
 - Drivers for analysis-plan and SAP updates
 - Open questions and Discussion seeds
-
-## Scope Decision Gate
-
-Use `scope-decision` to set the initial scope before the first SAP/Outline
-Controller (the first record has a single proposed option, from the gap
-synthesis, unless real alternatives exist), and whenever a reflection memo,
-meeting, reviewer or the user raises a change to the manuscript's scope: central question, population,
-endpoints, primary analyses, discovery components (for example genetics or
-omics), or target journal. Scope belongs to the authors. This gate puts the
-choice in front of them; it does not make it.
-
-Core rule: propose, then wait. Until the user signs off, do not edit the SAP,
-outline, one-pager, abstract or any other scope-setting document, even to
-"update" it.
-
-Minimum procedure:
-
-1. State what changed and why, citing the reflection memo, meeting note or
-   reviewer comment that triggered it.
-2. Lay out two to four options, each with: the question it answers, endpoints
-   and analyses, feasibility (from the `analysis-plan` audit and the reflection
-   feasibility check), novelty against the gap synthesis and the target-journal
-   positioning scan, and main risks.
-3. Recommend one option and say why, in a sentence or two.
-4. Record the user's choice, date and any conditions in the Scope decision
-   record. If the scope change adds a new comparison, outcome or modality,
-   trigger a new `literature-search` round.
-5. Hand off: the signed record is the input to `sap-outline` step 0.
-
-Default handoff document: **Scope decision record** with these sections:
-
-- Trigger and what changed
-- Options with question, endpoints/analyses, feasibility, novelty and risks
-- Recommendation
-- Decision, date, decided by, and conditions
-- Consequences: SAP/outline changes, new search round, analyses to plan
 
 ## Narrative Deck Mode
 
@@ -288,10 +242,6 @@ Default handoff artifact: **Narrative deck** with these sections:
 
 ## Artifact Contracts
 
-- **Scope decision record**: trigger; options with question, endpoints and
-  analyses, feasibility, novelty and risks; recommendation; the user's decision
-  with date and conditions; and consequences for the SAP, literature search and
-  analysis plan. Status is `proposed` until the user decides.
 - **Planned-analyses roadmap**: candidate analyses with driver/source;
   per-candidate in-cohort/in-data availability audit (completeness, subcohort,
   confounder/mediator/collider status); role and effort-tier classification;

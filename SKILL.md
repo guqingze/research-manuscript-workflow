@@ -20,7 +20,6 @@ Use this default artifact model unless the repo already has stronger conventions
 - **Planned-analyses roadmap**: literature- and reviewer-motivated analyses not yet run, with an in-cohort/data availability audit and effort tiers; a cross-cutting artifact that feeds both gap synthesis and the Analysis Refresh Report during the research iteration loop.
 - **Analysis Refresh Report**: current project results only, generated or updated from scripts and outputs, with provenance, interpretation, and manuscript handoff.
 - **Reflection memo**: living mid-project discussion — current results argued against the gap synthesis, the external literature, and internal-meeting feedback — that identifies contradictions, drives planned-analyses and SAP updates, and eventually seeds the manuscript Discussion. Distinct from gap synthesis (which interprets external literature only) and from the Analysis Refresh Report (which carries results without framing).
-- **Scope decision record**: options, recommendation and the authors' recorded decision whenever the manuscript's question, population, endpoints, primary analyses or discovery components change. The SAP/Outline Controller may change scope only after a signed record.
 - **SAP/Outline Controller**: controlling manuscript structure, analysis hierarchy, section claims, word counts, tables, figures, and main-vs-supplement decisions.
 - **Narrative deck**: a framing-rehearsal slide outline built before drafting prose — storyline/spine, locked framing decisions, act/section structure, presenter notes, and open questions — used to pressure-test the narrative (often at an internal meeting) and gather feedback that re-enters the research iteration loop. An any-time branch off reflection, not a fixed linear stage.
 - **Manuscript Draft Package**: draft document generated from the SAP/Outline Controller, gap synthesis, Analysis Refresh Report, and citation index.
@@ -53,7 +52,6 @@ After selecting a mode, read its corresponding reference before executing any st
 | Refresh project results for manuscript use | `analysis-refresh` | Repo pipeline commands, current outputs, Analysis Refresh Report path | Analysis Refresh Report with run provenance, result validation, interpretation, and manuscript handoff | [references/modes-research-iteration.md](references/modes-research-iteration.md) |
 | Plan literature/reviewer-motivated analyses not yet run | `analysis-plan` | Gap synthesis, reflection memo, literature index, repo data/availability | Planned-analyses roadmap with in-cohort availability audit and effort tiers | [references/modes-research-iteration.md](references/modes-research-iteration.md) |
 | Reflect on current results against literature, gaps, and meeting feedback | `reflect` | Analysis Refresh Report, gap synthesis, literature index, internal-meeting notes | Reflection memo: results-vs-literature reconciliation, contradictions, and drivers for planned-analyses/SAP updates | [references/modes-research-iteration.md](references/modes-research-iteration.md); [references/modes-manuscript-production.md](references/modes-manuscript-production.md#qa-gate-mode) — read only QA Gate Mode, Minimum procedure step 4 (citation-verification discipline) |
-| Put a scope change (question, endpoints, primary analyses, discovery components, journal) to the authors | `scope-decision` | Reflection memo or meeting/reviewer trigger, planned-analyses roadmap, gap synthesis | Scope decision record: options, feasibility, novelty, recommendation, and the user's recorded decision | [references/modes-research-iteration.md](references/modes-research-iteration.md) |
 | Build or revise the controlling manuscript plan | `sap-outline` | Gap synthesis, Analysis Refresh Report, reflection memo, current tables/figures | SAP/Outline Controller with section structure, argument map, evidence/result map, and main-vs-supplement decisions | [references/modes-research-iteration.md](references/modes-research-iteration.md) |
 | Rehearse and lock the narrative/framing before drafting (often for an internal meeting) | `narrative-deck` | SAP/Outline Controller, Analysis Refresh Report, gap synthesis, reflection memo | Narrative deck: spine, framing decisions, act structure, presenter notes, open questions | [references/modes-research-iteration.md](references/modes-research-iteration.md); [references/modes-manuscript-production.md](references/modes-manuscript-production.md#qa-gate-mode) — read only QA Gate Mode, Minimum procedure step 4 (citation-verification discipline) |
 | **Phase 3 — Manuscript production** |  |  |  | Group heading; not executable |
@@ -117,8 +115,7 @@ ensure each artifact carries the fields needed for later sessions to consume it
 without re-discovering everything.
 
 - **Literature index**: `citation_key`, title, year, paper role, themes, key
-  claims, caveats, `claim_basis` (`abstract` | `full_text` | `pdf_verified`),
-  reference-manager item key, and markdown-cache status
+  claims, caveats, `claim_basis`, reference-manager item key, and markdown-cache status
   (`md` path, conversion method, source PDF checksum).
 - **Evidence-extraction cache**: per paper — `citation_key`, source `md` path and
   SHA-256 (mirrored from the markdown-cache manifest), `schema_version`, study
@@ -177,7 +174,7 @@ Use this sequence for new projects, broad audits, or a full literature-to-manusc
    - Read `AGENTS.md`, `README.md`, and project-specific workflow docs first.
    - Identify the reference manager, collection/library identifier, literature index path, gap document, Analysis Refresh Report, SAP/Outline Controller, analysis output directories, and manuscript output directory.
    - Treat repo-specific instructions as authoritative over this generic workflow.
-   - Keep the repo's existing folder layout when it has one, even where it differs from this skill's recommended layout. Record the mapping from this skill's artifact names to the repo's paths in the repo README or `AGENTS.md`, and do not create parallel folders.
+   - Keep an existing repo layout; record the mapping from this skill's artifacts to repo paths in the README or `AGENTS.md`.
 
 ### Phase 1 — Literature foundation
 
@@ -193,7 +190,7 @@ Proceed through literature-ingest to maintain the markdown cache, manifest, and 
 
 Enter with a Phase-1 gap synthesis and an initial SAP/Outline Controller.
 
-Cycle through analysis-plan, analysis-refresh, reflect, and sap-outline, returning to analysis-plan with the updated SAP and roadmap until the results-lock gate is met. When reflection proposes a scope change, pass through scope-decision before sap-outline; do not edit scope-setting documents until the user has decided.
+Cycle through analysis-plan, analysis-refresh, reflect, and sap-outline, returning to analysis-plan with the updated SAP and roadmap until the results-lock gate is met.
 
 Narrative-deck is an optional branch at any reflection point, with feedback returning to reflection and analysis planning.
 

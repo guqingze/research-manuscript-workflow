@@ -111,9 +111,8 @@ the project repository.
 Keep the reusable workflow in this skill; store project-specific details and
 artifacts in the repo. **Group repo docs by their role in the workflow** so
 lifecycle stages stay visible and artifacts do not scatter into one folder. The
-default layout (adapt names to repo convention). When the repo already has a
-layout, keep it: map each artifact below to its existing home, record that
-mapping in the README or `AGENTS.md`, and do not create a parallel `docs/` tree.
+default layout (adapt names to repo convention; when the repo already has a
+layout, keep it and record the mapping instead of creating a parallel tree):
 
 - `AGENTS.md`: short operational rules for future LLM threads, including a
   documentation map pointing to each artifact below.
