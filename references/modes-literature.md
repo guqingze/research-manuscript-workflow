@@ -15,8 +15,10 @@ Procedure:
 1. Fix the question, sources, queries, date limits and inclusion/exclusion
    criteria before screening. Do not retrofit criteria to justify preferred
    papers.
-2. Write each query's returned count into the record when the query runs. A
-   count not captured then is recorded as `not logged`, never reconstructed.
+2. Write each query's returned count into the record when the query runs, and
+   record the screening flow (raw, de-duplicated, screened, full-text assessed,
+   excluded with reasons, included) where those stages apply. A count not
+   captured at the time is recorded as `not logged`, never reconstructed.
 3. Verify each retained paper against an authoritative record (DOI, PubMed,
    Crossref, OpenAlex, publisher). Mark unresolved metadata instead of guessing.
 4. Record each retained source's `claim_basis`: `abstract`, `full_text`, or
@@ -147,7 +149,7 @@ reflection, drafting and QA. For smaller sets, read the markdown cache directly.
 
 - **Literature search record**: round ID, trigger and status; dates and
   timezone; sources, exact queries, filters and limits; inclusion/exclusion
-  criteria; counts as logged; retained candidates (`source_id`, tier,
+  criteria; per-query counts and screening-flow counts as logged; retained candidates (`source_id`, tier,
   `title`, `first_author`, `year`, journal, PMID, DOI, URL, role, inclusion
   reason, verification status, `claim_basis`); exclusions; reserve
   suggestions; unresolved metadata.

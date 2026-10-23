@@ -25,7 +25,8 @@ Work must-fix items first and silently drop none. For each item, log the action,
 location, source and status. Tie Results changes to regenerated outputs and
 literature changes to verified records. Draft the responses alongside the
 changes. Mark items that need new analysis, literature or an author decision as
-blocked. Then `style-polish` if prose changed substantially, and always `qa`.
+blocked. Recommend the next modes: `style-polish` if prose changed
+substantially, then `qa` before any resubmission package.
 
 ## Package Mode
 

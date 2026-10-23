@@ -21,8 +21,8 @@ Procedure:
    when available.
 3. Before handoff, check that every major claim has a citation or output
    source, displays exist, and word counts are recorded against the controller.
-   Save rendered drafts in the repo's manuscript output directory. Hand off to
-   `style-polish` or `qa`.
+   When the repo has a render command, render and save the draft in its
+   manuscript output directory. Hand off to `style-polish` or `qa`.
 
 ## Style Polish Mode
 
