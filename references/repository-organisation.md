@@ -2,7 +2,9 @@
 
 Use for `setup`, a broad workflow audit, or an authorised structural refactor.
 The goal is that a researcher can find the current manuscript, a meeting package
-and the command for a task without reading every script.
+and the command for a task without reading every script. A request to organise
+files does not authorise changing scientific definitions, rewriting manuscript
+claims, rerunning model selection or publishing.
 
 ## Ownership before folders
 
@@ -175,8 +177,8 @@ derived markdown cache (or the repo-specific override); the markdown cache,
 manifest, and conversion command; literature search-record, acquisition-queue,
 and index paths plus the index regeneration command; the path to each lifecycle
 artifact above (gap synthesis, planned-analyses roadmap, Analysis Refresh Report,
-reflection memo, outline/SAP, narrative deck, draft package, style-polished
-package, QA Gate Report, Pre-Submission Review Report, Journal Submission Package,
-and post-review Revision Roadmap / Revised Draft / Response Package); the
+reflection memo, outline/SAP, narrative deck, draft packages, QA and
+pre-submission reports, submission/response packages, and the Revision
+Roadmap); the
 citation/live-reference workflow; and the QA checks required before manuscript
 handoff.
