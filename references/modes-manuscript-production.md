@@ -166,6 +166,7 @@ Minimum procedure:
    Distinguish "reference exists" from "the source supports this sentence." Use the
    markdown cache for context and the canonical reference-manager PDF or
    authoritative metadata to verify exact wording; mark unverified items explicitly.
+   A claim whose source has `claim_basis: abstract` fails until the full text is read.
    Specifically:
    - verify the source supports the *specific* outcome, subgroup, direction, and
      magnitude claimed — not merely the general topic (a real failure mode is a

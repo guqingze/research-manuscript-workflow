@@ -23,7 +23,8 @@ Minimum procedure:
    then full text or detailed metadata for retained sources.
 4. Record reproducibility details: search date, database/source, query string,
    raw hit count, screened count, excluded count, and inclusion reasons for
-   retained sources.
+   retained sources. Write each count into the record when the query runs; a
+   count not captured then is recorded as `not logged`, never reconstructed.
 5. Verify candidate existence with DOI, publisher, PubMed, Crossref, Semantic
    Scholar, OpenAlex, or another authoritative record when feasible. Mark
    unresolved metadata explicitly instead of inventing it.
@@ -40,7 +41,10 @@ Minimum procedure:
    Mark generic reserve suggestions, such as "add PRS-CS/LDpred2 methods papers
    if needed", as non-auditable so they are not counted as missing
    reference-manager items during later reconciliation.
-9. Stop at candidate corpus and search documentation. Do not write the gap
+9. Record each retained source's `claim_basis`: `abstract`, `full_text`, or
+   `pdf_verified`. Abstract-only claims may shape plans but must be verified
+   against the full text before drafting.
+10. Stop at candidate corpus and search documentation. Do not write the gap
    synthesis, manuscript prose, or literature index unless the user also asked
    for the next mode.
 
@@ -53,9 +57,13 @@ Recommended candidate table columns:
 
 `source_id`, `audit_scope`, `tier`, `priority`, `title`, `first_author`,
 `year`, `journal_or_source`, `PMID`, `DOI`, `URL`, `manuscript_role`,
-`inclusion_reason`, `verification_status`, `target_collection`,
+`inclusion_reason`, `verification_status`, `claim_basis`, `target_collection`,
 `zotero_status`, `pdf_status`, `local_cache_status`, `next_human_action`,
 `notes`.
+
+A quick scouting search (for example, while weighing storyline options) may use
+a dated record with status `scouting`; complete its criteria, counts and
+candidate table before it supports a gap synthesis, SAP or draft.
 
 ### Literature refresh/search-round rule
 
@@ -148,10 +156,13 @@ Minimum procedure:
    - Would the gap still stand if the strongest supporting paper were removed?
    - What would a skeptical reviewer say is overstated?
    - Does the proposed gap justify the project's actual analyses?
-7. Hand off explicitly to `sap-outline`: state which introduction claims,
+7. If a target journal is known, scan what it has published on the topic in
+   about the last five years and state how this manuscript differs from the
+   closest papers. A gap already filled there is not a gap.
+8. Hand off explicitly to `sap-outline`: state which introduction claims,
    methods justifications, primary analyses, discussion comparisons, and
    supplement-only claims should follow from the synthesis.
-8. Stop at synthesis and handoff guidance. Do not write manuscript prose or
+9. Stop at synthesis and handoff guidance. Do not write manuscript prose or
    decide final table/figure order unless the user also asked for the next mode.
 
 Default output: an integrated gap synthesis with an evidence matrix,

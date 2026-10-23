@@ -66,6 +66,9 @@ Core rule: structure serves the manuscript argument and the available results.
 
 Minimum procedure:
 
+0. Build or change scope only from scope the user has agreed (recorded in a
+   reflection memo or their own message), including for the first controller.
+   Do not edit the SAP, outline or one-pager ahead of that agreement.
 1. Select or confirm the manuscript structure pattern. For empirical cohort or
    clinical epidemiology work, default to IMRaD unless repo or journal
    instructions require another structure.
@@ -123,7 +126,8 @@ Minimum procedure:
    variable or assay present, at what completeness, in which subcohort, and is it
    a confounder, mediator, or collider relative to the current model? Distinguish
    "computable now from existing columns", "needs new derivation/linkage", and
-   "not available in-cohort".
+   "not available in-cohort". For outcome analyses, add the event count and a
+   rough power or minimum-detectable-effect check for the key contrast.
 3. Classify each candidate by role (strengthens confounding control, orthogonal
    cross-check, mechanism, robustness/QC, descriptive) and by effort tier
    (straightforward now / intermediate needs generation or linkage / future
@@ -168,7 +172,9 @@ Minimum procedure:
    before deciding it is a real contribution.
 3. Digest internal-meeting feedback: record decisions, objections, and requested
    analyses relevant to the analysis set or framing; convert each into a tracked
-   action (analysis-plan candidate, SAP change, or open question).
+   action (analysis-plan candidate, SAP change, or open question). If what a
+   remark refers to is unclear, quote it and mark it unresolved; ask rather
+   than infer.
 4. Every literature or external claim asserted as established must anchor to a
    literature-index/evidence-cache record; verify it supports the specific
    outcome, subgroup, and direction being claimed (see citation-verification
@@ -176,7 +182,12 @@ Minimum procedure:
 5. Produce drivers for the loop: what to send to `analysis-plan`, what SAP or
    framing changes to make, what to relegate to limitations, and what remains an
    open question for the next meeting or the eventual Discussion.
-6. Stop at reflection. Do not run analyses, revise the SAP, or draft prose unless
+6. Scope is the authors' call. When reflection suggests a change to the
+   question, population, endpoints, primary analyses or discovery components,
+   put two to four options in the memo, each with a feasibility check (event
+   counts, rough power), and a recommendation; then stop. Record the user's
+   decision and date in the memo.
+7. Stop at reflection. Do not run analyses, revise the SAP, or draft prose unless
    the user also asked for the next mode.
 
 Default handoff document: **Reflection memo** with these sections:

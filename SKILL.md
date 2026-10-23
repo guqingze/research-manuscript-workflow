@@ -115,7 +115,7 @@ ensure each artifact carries the fields needed for later sessions to consume it
 without re-discovering everything.
 
 - **Literature index**: `citation_key`, title, year, paper role, themes, key
-  claims, caveats, reference-manager item key, and markdown-cache status
+  claims, caveats, `claim_basis`, reference-manager item key, and markdown-cache status
   (`md` path, conversion method, source PDF checksum).
 - **Evidence-extraction cache**: per paper — `citation_key`, source `md` path and
   SHA-256 (mirrored from the markdown-cache manifest), `schema_version`, study
@@ -174,6 +174,7 @@ Use this sequence for new projects, broad audits, or a full literature-to-manusc
    - Read `AGENTS.md`, `README.md`, and project-specific workflow docs first.
    - Identify the reference manager, collection/library identifier, literature index path, gap document, Analysis Refresh Report, SAP/Outline Controller, analysis output directories, and manuscript output directory.
    - Treat repo-specific instructions as authoritative over this generic workflow.
+   - Keep an existing repo layout; record the mapping from this skill's artifacts to repo paths in the README or `AGENTS.md`.
 
 ### Phase 1 — Literature foundation
 
