@@ -23,7 +23,10 @@ Minimum procedure:
    then full text or detailed metadata for retained sources.
 4. Record reproducibility details: search date, database/source, query string,
    raw hit count, screened count, excluded count, and inclusion reasons for
-   retained sources.
+   retained sources. Log each query when it runs, not afterwards: append it to
+   the round's query log with `scripts/log_search.py` (source, query, filters,
+   returned count, retained IDs). A count that was not captured at run time is
+   recorded as `not logged`; never reconstruct or estimate it later.
 5. Verify candidate existence with DOI, publisher, PubMed, Crossref, Semantic
    Scholar, OpenAlex, or another authoritative record when feasible. Mark
    unresolved metadata explicitly instead of inventing it.
@@ -40,7 +43,11 @@ Minimum procedure:
    Mark generic reserve suggestions, such as "add PRS-CS/LDpred2 methods papers
    if needed", as non-auditable so they are not counted as missing
    reference-manager items during later reconciliation.
-9. Stop at candidate corpus and search documentation. Do not write the gap
+9. Mark how much of each retained source was actually read in a `claim_basis`
+   field: `abstract`, `full_text`, or `pdf_verified`. A claim whose source is
+   `abstract` can shape a plan or reflection, but it must be flagged and
+   verified against the full text before it is used in a draft.
+10. Stop at candidate corpus and search documentation. Do not write the gap
    synthesis, manuscript prose, or literature index unless the user also asked
    for the next mode.
 
@@ -53,9 +60,18 @@ Recommended candidate table columns:
 
 `source_id`, `audit_scope`, `tier`, `priority`, `title`, `first_author`,
 `year`, `journal_or_source`, `PMID`, `DOI`, `URL`, `manuscript_role`,
-`inclusion_reason`, `verification_status`, `target_collection`,
+`inclusion_reason`, `verification_status`, `claim_basis`, `target_collection`,
 `zotero_status`, `pdf_status`, `local_cache_status`, `next_human_action`,
 `notes`.
+
+### Scouting searches
+
+A quick exploratory search, for example while weighing storyline options, is
+allowed before a full round. Record it as a dated search record with status
+`scouting`, still log its queries with `scripts/log_search.py`, and do not treat
+its candidates as the auditable corpus. Before its sources support a gap
+synthesis, SAP or draft, promote it: complete the inclusion/exclusion criteria,
+counts and candidate table, and change the status to `completed`.
 
 ### Literature refresh/search-round rule
 
@@ -148,15 +164,21 @@ Minimum procedure:
    - Would the gap still stand if the strongest supporting paper were removed?
    - What would a skeptical reviewer say is overstated?
    - Does the proposed gap justify the project's actual analyses?
-7. Hand off explicitly to `sap-outline`: state which introduction claims,
+7. Run a target-journal positioning scan when a target journal is known: search
+   what that journal (and its closest sister journals) has published on the
+   topic in roughly the last five years, list the closest papers, and state in
+   one or two sentences per paper how the planned manuscript differs. A gap that
+   a recent paper in the target journal has already filled is not a gap. Log the
+   scan's queries like any other search.
+8. Hand off explicitly to `sap-outline`: state which introduction claims,
    methods justifications, primary analyses, discussion comparisons, and
    supplement-only claims should follow from the synthesis.
-8. Stop at synthesis and handoff guidance. Do not write manuscript prose or
+9. Stop at synthesis and handoff guidance. Do not write manuscript prose or
    decide final table/figure order unless the user also asked for the next mode.
 
 Default output: an integrated gap synthesis with an evidence matrix,
-convergence/divergence map, gap taxonomy, positioning claim, CER chains, stress
-test notes, and SAP/outline implications.
+convergence/divergence map, gap taxonomy, positioning claim, target-journal
+positioning scan, CER chains, stress test notes, and SAP/outline implications.
 
 ### Key-paper evidence extraction (subagent map-reduce)
 
@@ -239,7 +261,9 @@ only changes how its evidence is sourced and verified, not the synthesis contrac
 - **Literature search record**: research question or scoped topic, databases or
   sources searched, search date and local timezone, round ID and trigger, query
   strings and filters, inclusion/exclusion criteria, raw/de-duplicated/screened
-  counts, retained candidate sources with stable IDs and PMID/DOI/URL metadata,
+  counts, query log (captured at run time), status (`scouting` or `completed`),
+  retained candidate sources with stable IDs, PMID/DOI/URL metadata and
+  `claim_basis`,
   exclusion notes, citation-chasing or named-project searches, non-auditable
   reserve suggestions, unresolved metadata, and acquisition handoff status.
 - **Literature acquisition queue**: `source_id`, tier or priority, title, PMID,
