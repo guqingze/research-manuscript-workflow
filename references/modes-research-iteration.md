@@ -67,9 +67,12 @@ Core rule: structure serves the manuscript argument and the available results.
 
 Minimum procedure:
 
-0. Confirm that the current scope matches a Scope decision record the user has
-   signed off. If the thesis, population, endpoints, primary analyses or
-   discovery components differ from the last signed record, stop and run the
+0. Confirm the scope is signed off. On a first SAP/Outline for a project with no
+   Scope decision record yet, open the initial record from the gap synthesis
+   (its positioning claim, endpoints and primary analyses as the proposed
+   scope), put it to the user, and build the first controller only after they
+   sign it. Afterwards, if the thesis, population, endpoints, primary analyses
+   or discovery components differ from the last signed record, stop and run the
    Scope Decision Gate first.
 1. Select or confirm the manuscript structure pattern. For empirical cohort or
    clinical epidemiology work, default to IMRaD unless repo or journal
@@ -207,8 +210,10 @@ Default handoff document: **Reflection memo** with these sections:
 
 ## Scope Decision Gate
 
-Use `scope-decision` whenever a reflection memo, meeting, reviewer or the user
-raises a change to the manuscript's scope: central question, population,
+Use `scope-decision` to set the initial scope before the first SAP/Outline
+Controller (the first record has a single proposed option, from the gap
+synthesis, unless real alternatives exist), and whenever a reflection memo,
+meeting, reviewer or the user raises a change to the manuscript's scope: central question, population,
 endpoints, primary analyses, discovery components (for example genetics or
 omics), or target journal. Scope belongs to the authors. This gate puts the
 choice in front of them; it does not make it.

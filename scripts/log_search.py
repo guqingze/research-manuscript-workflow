@@ -51,7 +51,10 @@ def render(args: argparse.Namespace) -> int:
     rows = [json.loads(line) for line in log.read_text(encoding="utf-8").splitlines() if line.strip()]
 
     def cell(text: str) -> str:
-        return str(text).replace("|", "\\|")
+        # Display-only escaping; the JSONL log keeps the original text.
+        # Line breaks become " ↵ " so a row stays one table line (also inside code spans).
+        flat = str(text).replace("\r\n", "\n").replace("\r", "\n").replace("\n", " ↵ ")
+        return flat.replace("|", "\\|")
 
     print("| # | Logged at | Source | Query | Filters | Returned | Retained |")
     print("| --- | --- | --- | --- | --- | ---: | --- |")
