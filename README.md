@@ -45,66 +45,44 @@ workflow.
 
 ## Workflow Modes
 
-The skill routes requests to the smallest useful mode, grouped by the three
-macro-phases (`setup` is a cross-phase preamble):
+The skill routes requests to the smallest useful mode, grouped by phase
+(`setup` is a cross-phase preamble):
 
 | Mode | Purpose |
 |---|---|
 | `setup` | Discover, document or reorganise artifact ownership, folders and script entry points |
-| **Phase 1 — Literature foundation** | |
-| `literature-search` | Search for candidate papers before Zotero/indexing |
-| `literature-acquisition` | Build the human download checklist for searched candidates and reconcile the collection |
-| `literature-ingest` | Sync the reference manager into the repo's literature layer: membership + citation keys, markdown cache + manifest, and index |
-| `evidence-extraction` | Extract structured evidence from identified key papers into a verifiable cache (token-heavy; subagent fan-out) |
+| **Phase 1: literature** | |
+| `literature-search` | Dated, auditable search; candidate table and acquisition queue for the human |
+| `literature-ingest` | Sync the reference manager into the markdown cache, manifest and index |
+| `evidence-extraction` | Anchored extraction of key papers into a verifiable cache (token-heavy) |
 | `gap-synthesis` | Synthesize the research gap and manuscript positioning |
-| **Phase 2 — Research iteration loop** | |
-| `analysis-refresh` | Regenerate, reconcile, and interpret current project results |
-| `analysis-plan` | Triage literature/reviewer-motivated analyses not yet run, with an availability audit |
-| `reflect` | Argue current results against the literature, gaps, and internal-meeting feedback |
-| `sap-outline` | Build the controlling manuscript plan |
-| `narrative-deck` | Rehearse and lock the narrative/framing before drafting (often for an internal meeting) |
-| **Phase 3 — Manuscript production** | |
+| **Phase 2: research iteration** | |
+| `analysis-plan` | Triage analyses not yet run, with an availability and power audit |
+| `analysis-refresh` | Regenerate, reconcile and report current results |
+| `reflect` | Argue results against literature and meeting feedback; put scope options to the authors |
+| `sap-outline` | Build the controlling manuscript plan from agreed scope |
+| `narrative-deck` | Rehearse the storyline before drafting |
+| **Phase 3: production and revision** | |
 | `draft` | Draft manuscript prose from controlled inputs |
 | `style-polish` | Improve readability and author voice without changing scientific meaning |
-| `qa` | Audit claims, citations, data outputs, figures, tables, and render readiness |
-| `pre-submission-review` | Critique manuscript merit and likely reviewer objections |
-| `journal-package` | Prepare first-submission journal files |
-| `revision-plan` | Parse editor, reviewer, or major coauthor comments into an action roadmap |
-| `revise` | Apply an approved revision plan with traceability |
-| `response-package` | Assemble resubmission files and point-by-point responses |
-| `handoff` | Produce a concise final status or archive note |
+| `qa` | Audit claims, citations, data outputs, displays and render readiness |
+| `pre-submission-review` | Critique merit and likely reviewer objections |
+| `revision-plan` | Parse editor, reviewer or coauthor comments into a roadmap |
+| `revise` | Apply an approved roadmap with traceability |
+| `package` | First-submission files, resubmission bundle, or final handoff note |
 
 ## Core Artifacts
 
-The workflow keeps major responsibilities separated into explicit artifacts:
+Literature search record and acquisition queue; literature index and markdown
+cache; evidence-extraction cache; gap synthesis; planned-analyses roadmap;
+Analysis Refresh Report; reflection memo; SAP/Outline Controller; narrative
+deck; draft packages; QA Gate Report; Pre-Submission Review Report; Revision
+Roadmap; submission or response package.
 
-- Literature search record
-- Literature acquisition queue
-- Literature index
-- Evidence-extraction cache
-- Gap synthesis
-- Planned-analyses roadmap
-- Analysis Refresh Report
-- Reflection memo
-- SAP/Outline Controller
-- Narrative deck
-- Manuscript Draft Package
-- Style-Polished Manuscript Draft Package
-- QA Gate Report
-- Pre-Submission Review Report
-- Journal Submission Package
-- Revision Roadmap
-- Revised Manuscript Draft Package
-- Response Package
-- Handoff note
-
-This separation helps future sessions continue from the right state without
-rediscovering literature, rerunning analyses unnecessarily, or mixing
-interpretation, planning, and final prose in one document.
-
-When a manuscript scope changes materially, start a new dated literature-search
-record with the exact source, query, date, screening, and count audit trail;
-refreshing the literature index alone is not a substitute for searching.
+Keeping these separate lets a future session continue from the right state
+without rediscovering literature, rerunning analyses, or mixing interpretation,
+planning and prose. When scope changes materially, start a new dated search
+record; refreshing the index is not a search.
 
 ## Repository Layout
 
@@ -117,13 +95,13 @@ supported.
 
 ```
 research-manuscript-workflow/
-├── SKILL.md                                       # the skill: frontmatter, mode router, shared rules, and workflow overview
+├── SKILL.md                                       # the skill: artifacts, mode router, shared rules, and workflow overview
 ├── agents/openai.yaml                             # Codex descriptor (display name, default prompt)
 ├── references/
-│   ├── modes-literature.md                        # search, acquisition, synthesis, ingest, and evidence extraction
-│   ├── modes-research-iteration.md                # results refresh, analysis planning, reflection, SAP, and narrative
-│   ├── modes-manuscript-production.md             # drafting, style polish, QA, pre-submission review, and packaging
-│   ├── modes-revision.md                          # revision planning, manuscript changes, responses, and handoff
+│   ├── modes-literature.md                        # search, ingest, gap synthesis, and evidence extraction
+│   ├── modes-research-iteration.md                # analysis planning, results refresh, reflection, SAP, and narrative deck
+│   ├── modes-manuscript-production.md             # drafting, style polish, QA, and pre-submission review
+│   ├── modes-revision.md                          # revision planning, revision, and packaging (submission, resubmission, handoff)
 │   ├── repository-organisation.md                 # artifact ownership, meeting packages, script navigation, safe migration, and recommended repo docs
 │   ├── epidemiology-manuscript-discipline.md      # applied during style-polish and qa for epi, clinical-epi, and population-health manuscripts
 │   └── evidence-extraction-contract.md            # schema, anchor rules, and worker prompt for evidence extraction

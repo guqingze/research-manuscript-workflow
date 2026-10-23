@@ -1,147 +1,64 @@
-# Revision
+# Revision and Packaging
 
 ## Revision Plan Mode
 
-Use `revision-plan` after external editor/reviewer comments or major coauthor
-comments arrive. This mode parses unstructured feedback into an actionable
-roadmap. It should not revise the manuscript directly.
+Use `revision-plan` when editor, reviewer or major coauthor comments arrive. It
+plans; it does not edit the manuscript.
 
 Core rule: no comment left behind.
 
-Minimum procedure:
-
-1. Collect reviewer/editor/coauthor comments, decision letter if available, the
-   submitted manuscript or Journal Submission Package, and any journal deadline.
-2. Parse comments into atomic items. Split comments that contain multiple
-   actionable requests.
-3. Preserve reviewer intent: keep raw comment text, reviewer/editor source,
-   paraphrased summary, and ambiguity flags.
-4. Classify each item as major, minor, editorial, positive, or unclear. Assign
-   priority: must-fix, should-fix, or consider. Promote items raised by the
-   editor or multiple reviewers.
-5. Map each item to manuscript sections, tables, figures, analyses, references,
-   response-letter needs, and whether new analysis or literature work is
-   required.
-6. Produce a suggested revision order and response-letter skeleton. Flag
-   contradictory reviewer requests for user decision.
-7. Produce the handoff document, named conceptually **Revision Roadmap**. This
-   report feeds `revise`.
-
-Default handoff document: **Revision Roadmap** with these sections:
-
-- Decision and revision context
-- Parsed comment inventory
-- Must-fix / should-fix / consider tables
-- Cross-reviewer patterns
-- Section/action map
-- New analysis or literature needs
-- Suggested revision order
-- Response-letter skeleton
+Split comments into atomic items, keeping the raw text, source and any
+ambiguity. Classify severity and priority (must-fix, should-fix, consider),
+promoting items raised by the editor or several reviewers. Map each item to
+sections, displays, analyses, references and response needs, including new
+analysis or literature work. Flag contradictory requests for the user. Propose a
+revision order and a response-letter skeleton, and get the user's approval
+before `revise`.
 
 ## Revise Mode
 
-Use `revise` after a Revision Roadmap exists and the user has approved the
-revision strategy. This mode applies the roadmap to the manuscript and records
-what changed. It should preserve traceability from each revision to the
-reviewer/editor comment it addresses.
+Use `revise` once the user has approved the Revision Roadmap.
 
 Core rule: revise against the approved roadmap, not opportunistically.
 
-Minimum procedure:
+Work must-fix items first and silently drop none. For each item, log the action,
+location, source and status. Tie Results changes to regenerated outputs and
+literature changes to verified records. Draft the responses alongside the
+changes. Mark items that need new analysis, literature or an author decision as
+blocked. Recommend the next modes: `style-polish` if prose changed
+substantially, then `qa` before any resubmission package.
 
-1. Establish revision inputs: Revision Roadmap, submitted or current Manuscript
-   Draft Package or Style-Polished Manuscript Draft Package, Journal Submission
-   Package if available, QA Gate Report, and any newly generated analysis or
-   literature artifacts.
-2. Address must-fix items first, then should-fix items, then optional items if
-   appropriate. Do not silently drop any roadmap item.
-3. For each revision item, record action taken, manuscript location, source
-   material used, status, and whether the response letter needs explanation.
-4. Keep Results revisions tied to the Analysis Refresh Report or regenerated
-   outputs; keep literature revisions tied to the literature index or verified
-   PDFs.
-5. Produce or update response-to-reviewers draft text alongside manuscript
-   changes.
-6. List unresolved items and rationale. If a comment cannot be addressed without
-   new analysis, new literature, or author decision, mark it as blocked.
-7. Produce the handoff artifact, named conceptually **Revised Manuscript Draft
-   Package**. This package feeds `style-polish` before `qa` when prose changed
-   substantially or when the user requests a readability pass; otherwise it
-   feeds `qa`.
+## Package Mode
 
-Default handoff artifact: **Revised Manuscript Draft Package** with these
-sections or metadata:
+Use `package` to assemble a submission once QA has passed (or its warnings are
+accepted): a first submission, a resubmission after revision, or a final
+handoff note.
 
-- Revised draft path and render path if available
-- Revision log mapped to comment IDs
-- Resolved, partially resolved, unresolved, and blocked items
-- Response-to-reviewers draft
-- Updated placeholders and limitations
-- Source inputs and commands used
-- Recommended next mode: `qa`
+Core rule: packaging does not change content. Route content problems back to
+`draft`, `revise` or `qa` rather than fixing them during formatting.
 
-## Response Package Mode
-
-Use `response-package` after a revised manuscript has passed QA. This mode
-prepares the resubmission bundle. It is distinct from first-submission
-`journal-package` because it must include point-by-point responses and revision
-traceability.
-
-Core rule: every reviewer/editor item in the Revision Roadmap must be accounted
-for in the response package.
-
-Minimum procedure:
-
-1. Establish response inputs: Revised Manuscript Draft Package, Revision
-   Roadmap, QA Gate Report, target journal/resubmission requirements, and any
-   requested clean/tracked manuscript files.
-2. Finalize point-by-point response letter: quote or summarize each comment,
-   state response, state changes made, and list manuscript locations.
-3. Assemble clean revised manuscript and tracked/change-log version when
-   available or requested.
-4. Update cover letter/editor note, required statements, supplement list, and
-   figure/table files as needed.
-5. Check that all must-fix items are resolved or explicitly justified.
-6. Produce the handoff artifact, named conceptually **Response Package**.
-
-Default handoff artifact: **Response Package** with these sections or metadata:
-
-- Revised manuscript file paths
-- Clean/tracked/change-log file paths when available
-- Response-to-reviewers letter
-- Editor cover letter or resubmission note
-- Comment-resolution checklist
-- Updated QA Gate Report path
-- Journal resubmission checklist and blockers
+- **First submission**: apply the target journal's requirements (word limits,
+  abstract structure, reference style, displays, reporting checklist, required
+  statements including AI disclosure, supplement rules); render the requested
+  formats; draft the cover letter and statements; produce a checklist of
+  blockers.
+- **Resubmission**: also finalize the point-by-point response (each comment,
+  response, change and location), clean and tracked versions when available,
+  and confirm every roadmap item is resolved or explicitly justified.
+- **Handoff note**: final paths, commands run, outputs changed, open
+  limitations and next human actions. Submission itself happens outside this
+  workflow.
 
 ## Artifact Contracts
 
-- **Revision Roadmap**: decision context, parsed comment inventory, raw comment
-  text, reviewer/editor source, severity, priority, target section, suggested
-  action, cross-reviewer patterns, new analysis/literature needs, suggested
-  revision order, and response-letter skeleton.
-- **Response Package**: revised manuscript paths, clean/tracked/change-log paths
-  when available, response-to-reviewers letter, editor cover letter or
-  resubmission note, comment-resolution checklist, updated QA Gate Report path,
-  and journal resubmission checklist.
-- **Handoff note**: final artifact paths, commands run, outputs changed, known
-  limitations, and next human actions.
-
-## Post-review revision cycle and handoff
-
-13. **Plan revisions after external comments**
-   - Use `revision-plan` only after editor, reviewer, or major coauthor comments are received.
-   - Parse every comment, preserve reviewer intent, prioritize actions, map comments to manuscript sections, and create a response-letter skeleton.
-
-14. **Revise, polish, and re-QA**
-   - Use `revise` to apply the approved Revision Roadmap and produce a Revised Manuscript Draft Package.
-   - Use `style-polish` after revision when prose changed substantially or the user requests readability calibration.
-   - Return to `qa` after revision or style polishing before any resubmission package.
-
-15. **Prepare response package**
-   - Use `response-package` after the revised manuscript passes QA.
-   - Assemble revised files, response-to-reviewers letter, editor note, comment-resolution checklist, and resubmission checklist.
-
-16. **Final handoff/archive**
-   - Use `handoff` for a concise status/archive note after Journal Submission Package or Response Package creation.
-   - Record final artifact paths, commands run, outputs changed, unresolved limitations, and next human actions.
+- **Revision Roadmap**: decision context; atomic comments with raw text, source,
+  severity, priority, target and action; cross-reviewer patterns; new
+  analysis/literature needs; revision order; response skeleton.
+- **Revised Draft Package**: revised paths; revision log by comment ID;
+  resolved/partial/unresolved/blocked items; response draft; inputs and
+  commands.
+- **Submission or Response Package**: target journal and article type; final
+  manuscript, display and supplement paths; cover letter; required statements;
+  reference-style status; checklist and blockers; for resubmission, the
+  response letter, clean/tracked paths and comment-resolution checklist;
+  render status.

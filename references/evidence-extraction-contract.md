@@ -38,10 +38,10 @@ design: cross-sectional           # cross-sectional | cohort | rct | meta-analys
 country_setting: Malaysia
 population: "young multiracial medical students, mean age 23"
 n_total: 469
-modality: ultrasound              # vcte-cap-lsm | ultrasound | mrs | fli | biopsy | mixed | na
-cutoffs_used: ""                  # e.g. "CAP S1 248 dB/m; LSM F2 8 kPa"; "" if n/a
+modality: ultrasound              # measurement method for the key exposure/outcome, free text; na if not applicable
+cutoffs_used: ""                  # thresholds the paper applies, e.g. "BMI >= 27.5"; "" if n/a
 evidence_grade: C                 # A | B | C | D | F (per evidence-assessment rubric)
-manuscript_role: regional-comparator   # intro-burden | methods-cutoff | regional-comparator | glycemia | adiposity | prognosis | stats | background
+manuscript_role: regional-comparator   # project-defined, e.g. intro-burden | methods-definition | comparator | mechanism | stats | background
 bears_on_claim: "ethnic differences attenuate after metabolic adjustment"
 verification_status: fulltext_verified  # fulltext_verified | needs_pdf | metadata_gap
 findings:
@@ -123,16 +123,10 @@ Papers in this batch:
 <list of fulltext/<key>.md paths>
 ```
 
-Codex worker invocation (workers write, scoped to the extraction-cache dir):
-
-```
-codex exec -m <model> -c model_reasoning_effort=medium \
-  --sandbox workspace-write --cd <repo> -a never "<the prompt above>"
-```
-
-Claude worker invocation: dispatch a `general-purpose` agent with `Write` enabled
-and the same prompt; run batches in the background and gate the reduce on
-completion.
+Run workers with whatever parallel, file-writing worker the host provides (a
+subagent or a CLI worker), on a cheaper model than the reduce, with writes
+confined to the extraction-cache directory. Gate the reduce on all batches
+completing.
 
 ## Verification and reduce
 
