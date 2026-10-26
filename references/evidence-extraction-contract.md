@@ -15,6 +15,8 @@ number should be mechanically traceable back to a verbatim string in its source.
 
 - One file per paper: `<repo-literature-dir>/extracts/<citation_key>.md`
   (mirrors the `fulltext/<citation_key>.md` naming so the two caches align).
+  If the markdown cache names files differently (for example by attachment
+  key), `md_file` names the source and the checker reads that file instead.
 - Format: YAML front-matter (machine-parsed by the checker and the reduce) plus a
   markdown body (human-readable relevance narrative and caveats).
 - Extraction-cache manifest: `<repo-literature-dir>/extracts/manifest.csv` with

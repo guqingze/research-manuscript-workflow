@@ -5,7 +5,7 @@ Project-agnostic checker for the `gap-synthesis` large-corpus map-reduce
 (see ../references/evidence-extraction-contract.md). It enforces the trust
 mechanism of the cache:
 
-  * every `quote` anchor must appear verbatim (whitespace/case/markdown-normalized)
+  * the source markdown must exist (HARD FAIL if missing), and every `quote` anchor must appear verbatim (whitespace/case/markdown-normalized)
     in the paper's source markdown  -> HARD FAIL if missing;
   * every quantitative finding must be anchored: a row with no anchor, or
     `anchor_kind: none` on a `verification_status: fulltext_verified` record,
@@ -97,7 +97,7 @@ def load_manifest_sha(manifest: Path) -> dict[str, str]:
         reader = csv.DictReader(fh)
         cols = reader.fieldnames or []
         sha_col = next((c for c in cols if "sha" in c.lower()), None)
-        key_col = next((c for c in cols if c.lower() in ("md_file", "md")), None)
+        key_col = next((c for c in cols if c.lower() in ("md_file", "md_path", "md")), None)
         if key_col is None:
             key_col = next((c for c in cols if "pdf" in c.lower()), None)
         if sha_col is None or key_col is None:
@@ -121,6 +121,9 @@ def check_record(path: Path, fulltext_dir: Path, manifest_sha: dict[str, str]):
         return ["missing or malformed YAML front-matter"], warn
 
     key = str(fm.get("citation_key", path.stem)).strip()
+    # Source stem: md_file when given (caches may name files by attachment, not key).
+    md_file = str(fm.get("md_file", "")).strip()
+    stem = Path(md_file).stem if md_file else key
     vstatus = str(fm.get("verification_status", "")).strip()
 
     # required identity fields
@@ -131,17 +134,17 @@ def check_record(path: Path, fulltext_dir: Path, manifest_sha: dict[str, str]):
     # SHA reconciliation with the markdown-cache manifest
     rec_sha = str(fm.get("source_sha256", "")).strip().lower()
     if manifest_sha:
-        exp = manifest_sha.get(key)
+        exp = manifest_sha.get(stem)
         if exp is None:
-            warn.append(f"citation_key '{key}' not found in manifest")
+            warn.append(f"source '{stem}' not found in manifest")
         elif rec_sha and rec_sha != exp:
             hard.append(f"source_sha256 mismatch (record {rec_sha[:12]}.. vs manifest {exp[:12]}..)")
 
     # source markdown for quote checking
-    md_path = fulltext_dir / f"{key}.md"
+    md_path = fulltext_dir / f"{stem}.md"
     source_norm = normalize(md_path.read_text(encoding="utf-8")) if md_path.exists() else None
     if source_norm is None:
-        warn.append(f"source markdown not found: {md_path}")
+        hard.append(f"source markdown not found: {md_path}")
 
     findings = fm.get("findings") or []
     if not isinstance(findings, list):
