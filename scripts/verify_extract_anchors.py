@@ -97,7 +97,7 @@ def load_manifest_sha(manifest: Path) -> dict[str, str]:
         reader = csv.DictReader(fh)
         cols = reader.fieldnames or []
         sha_col = next((c for c in cols if "sha" in c.lower()), None)
-        key_col = next((c for c in cols if c.lower() in ("md_file", "md")), None)
+        key_col = next((c for c in cols if c.lower() in ("md_file", "md_path", "md")), None)
         if key_col is None:
             key_col = next((c for c in cols if "pdf" in c.lower()), None)
         if sha_col is None or key_col is None:
