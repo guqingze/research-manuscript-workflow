@@ -5,7 +5,7 @@ Project-agnostic checker for the `gap-synthesis` large-corpus map-reduce
 (see ../references/evidence-extraction-contract.md). It enforces the trust
 mechanism of the cache:
 
-  * every `quote` anchor must appear verbatim (whitespace/case/markdown-normalized)
+  * the source markdown must exist (HARD FAIL if missing), and every `quote` anchor must appear verbatim (whitespace/case/markdown-normalized)
     in the paper's source markdown  -> HARD FAIL if missing;
   * every quantitative finding must be anchored: a row with no anchor, or
     `anchor_kind: none` on a `verification_status: fulltext_verified` record,
@@ -144,7 +144,7 @@ def check_record(path: Path, fulltext_dir: Path, manifest_sha: dict[str, str]):
     md_path = fulltext_dir / f"{stem}.md"
     source_norm = normalize(md_path.read_text(encoding="utf-8")) if md_path.exists() else None
     if source_norm is None:
-        warn.append(f"source markdown not found: {md_path}")
+        hard.append(f"source markdown not found: {md_path}")
 
     findings = fm.get("findings") or []
     if not isinstance(findings, list):
