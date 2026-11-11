@@ -1,6 +1,6 @@
 ---
 name: research-manuscript-workflow
-description: Use for research manuscript projects that need a reproducible workflow from literature search and Zotero literature collection through literature indexing, gap synthesis, planned-analyses roadmaps, analysis reports, a results-reflection research-iteration loop, manuscript outline/SAP, narrative/framing-rehearsal decks, Word or document drafting, style polishing, citation QA, and final manuscript artifact generation. Includes epidemiology, clinical-epidemiology, and population-health manuscript discipline (section discipline, causal-language restraint, internal/AI-workflow language scrub, STROBE-like clarity, methods-citation checks) applied during style polishing and QA. Trigger when the user asks to organize, document, reuse, audit, or execute a literature-to-manuscript workflow across research project repositories, or to revise, polish, humanize, or self-review the user's own epidemiology manuscript for journal-ready prose. Do not use this skill to write or polish peer-review comments on someone else's manuscript.
+description: Use for research manuscript projects that need a reproducible workflow from literature search and Zotero literature collection through literature indexing, gap synthesis, planned-analyses roadmaps, analysis reports, a results-reflection research-iteration loop, manuscript outline/SAP, narrative/framing-rehearsal decks, Word or document drafting, style polishing, citation QA, and final manuscript artifact generation. Includes epidemiology, clinical-epidemiology, and population-health manuscript discipline (section discipline, causal-language restraint, defensive-writing and over-hedging removal, internal/AI-workflow language scrub, STROBE-like clarity, methods-citation checks) applied during style polishing and QA. Trigger when the user asks to organize, document, reuse, audit, or execute a literature-to-manuscript workflow across research project repositories, or to revise, polish, humanize, or self-review the user's own epidemiology manuscript for journal-ready prose. Do not use this skill to write or polish peer-review comments on someone else's manuscript.
 ---
 
 # Research Manuscript Workflow
@@ -40,16 +40,16 @@ the sequence; if the stage is unclear, inspect the repo's artifacts first.
 | **Phase 2: research iteration** | | |
 | `analysis-plan` | Triage analyses not yet run, with an availability and power audit | [modes-research-iteration](references/modes-research-iteration.md) |
 | `analysis-refresh` | Regenerate and reconcile results into the results report | [modes-research-iteration](references/modes-research-iteration.md) |
-| `reflect` | Argue results against literature and meeting feedback; put scope options to the authors | [modes-research-iteration](references/modes-research-iteration.md) |
+| `reflect` | Argue results against literature and meeting feedback; put scope options to the authors | [modes-research-iteration](references/modes-research-iteration.md), [defensive writing](references/defensive-writing-discipline.md) |
 | `sap-outline` | Build or revise the controlling plan from agreed scope | [modes-research-iteration](references/modes-research-iteration.md) |
 | `narrative-deck` | Rehearse the storyline, often for a meeting | [modes-research-iteration](references/modes-research-iteration.md) |
 | **Phase 3: production and revision** | | |
-| `draft` | Draft prose from the controller | [modes-manuscript-production](references/modes-manuscript-production.md) |
-| `style-polish` | Readability and author voice without changing the science | [modes-manuscript-production](references/modes-manuscript-production.md), [epi discipline](references/epidemiology-manuscript-discipline.md) |
-| `qa` | Claim, citation, data and render readiness gate | [modes-manuscript-production](references/modes-manuscript-production.md) |
+| `draft` | Draft prose from the controller | [modes-manuscript-production](references/modes-manuscript-production.md), [defensive writing](references/defensive-writing-discipline.md) |
+| `style-polish` | Readability and author voice without changing the science | [modes-manuscript-production](references/modes-manuscript-production.md), [epi discipline](references/epidemiology-manuscript-discipline.md), [defensive writing](references/defensive-writing-discipline.md) |
+| `qa` | Claim, citation, data and render readiness gate | [modes-manuscript-production](references/modes-manuscript-production.md), [defensive writing](references/defensive-writing-discipline.md) |
 | `pre-submission-review` | Reviewer-style critique before first submission | [modes-manuscript-production](references/modes-manuscript-production.md) |
 | `revision-plan` | Turn editor/reviewer/coauthor comments into a roadmap | [modes-revision](references/modes-revision.md) |
-| `revise` | Apply an approved roadmap | [modes-revision](references/modes-revision.md) |
+| `revise` | Apply an approved roadmap | [modes-revision](references/modes-revision.md), [defensive writing](references/defensive-writing-discipline.md) |
 | `package` | First submission, resubmission bundle, or final handoff note | [modes-revision](references/modes-revision.md) |
 
 ## Shared Rules
@@ -72,6 +72,9 @@ the sequence; if the stage is unclear, inspect the repo's artifacts first.
   drifted numbers; anchor a "well-established" claim to a record in the library
   or flag that one is needed; cite per claim. A claim whose source has
   `claim_basis: abstract` fails until the full text is read.
+- **No defensive writing.** Caveats are deleted unless specific, new and needed
+  where they stand; Results carry none. See
+  `references/defensive-writing-discipline.md`.
 - **Stop at the mode's output.** Do not run the next mode unless asked.
 - Paths beginning `references/` or `scripts/` are relative to the skill root.
 
@@ -93,7 +96,8 @@ any material scope change) → the user adds papers to the reference manager →
 feedback returns to reflection. Leave the loop only at the **results lock**:
 
 - primary analyses run and stable on the current cohort or extract;
-- sensitivity analyses complete and not contradicting the primary result;
+- sensitivity analyses complete and reported, with any disagreement with the
+  primary result interpreted in the reflection memo;
 - every headline result reconciled with the literature in the reflection memo;
 - no run-now items outstanding in the roadmap;
 - meeting feedback addressed or logged;

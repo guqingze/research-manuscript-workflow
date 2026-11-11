@@ -104,6 +104,7 @@ research-manuscript-workflow/
 │   ├── modes-revision.md                          # revision planning, revision, and packaging (submission, resubmission, handoff)
 │   ├── repository-organisation.md                 # artifact ownership, meeting packages, script navigation, safe migration, and recommended repo docs
 │   ├── epidemiology-manuscript-discipline.md      # applied during style-polish and qa for epi, clinical-epi, and population-health manuscripts
+│   ├── defensive-writing-discipline.md            # keep test for caveats, placement, and overclaim guard; applied in draft, reflect, style-polish, qa, revise
 │   └── evidence-extraction-contract.md            # schema, anchor rules, and worker prompt for evidence extraction
 └── scripts/
     ├── verify_extract_anchors.py                  # mechanical anchor checker for the evidence-extraction cache

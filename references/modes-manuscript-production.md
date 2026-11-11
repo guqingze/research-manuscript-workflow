@@ -15,7 +15,9 @@ Procedure:
    displays, word targets and transitions. Introduction from the gap synthesis;
    Methods from the SAP and definitions; Results from the results report only,
    without interpretation; Discussion from both, separating evidence, inference,
-   limitations and implications.
+   limitations and implications. Apply `references/defensive-writing-discipline.md`:
+   each Discussion paragraph opens with its interpretation, and no caveat is
+   added that fails its keep test.
 2. Never invent citations, numbers, table references or methods details; log
    placeholders and unresolved items instead. Use the live-citation workflow
    when available.
@@ -42,8 +44,13 @@ Procedure:
    clinical-epidemiology or population-health papers, apply
    `references/epidemiology-manuscript-discipline.md` and the project's revision
    lessons file if one exists.
-4. If a smoother sentence loses its tie to a source, or polishing would change
-   meaning, drop a caveat or weaken a limitation, leave the passage and list it.
+4. Cut defensive writing per `references/defensive-writing-discipline.md`:
+   delete every caveat that fails its keep test and merge or drop minor
+   Limitations toward its default cap, applying its overclaim guard. Do not
+   weaken a limitation that passes the keep test; if more than the cap still
+   change interpretation, keep them and list the excess for the author.
+5. If a smoother sentence loses its tie to a source, or polishing would change
+   meaning, leave the passage and list it.
    If polishing exposes content uncertainty, return to `draft`; otherwise hand
    off to `qa`.
 
@@ -62,6 +69,12 @@ Procedure:
    stronger than the evidence. For epidemiology manuscripts, apply the
    epidemiology discipline (no interpretation in Results, design-matched causal
    wording, no internal language, references numbered by first appearance).
+   Check calibration in the other direction too, per
+   `references/defensive-writing-discipline.md`: a caveat, hedge or denial that
+   fails its keep test in Results or in the Abstract's headline result is a
+   blocker (design-matched wording such as "no clear association" passes); defensive writing
+   elsewhere, or more Limitations items than the cap, is a warning; a cut that
+   breaks the overclaim guard is a blocker.
 2. Citation QA: in-text citations map to the reference collection; no orphans;
    metadata complete; apply the citation-verification discipline (SKILL.md) to
    important claims.
@@ -77,7 +90,8 @@ Procedure:
 
 Use `pre-submission-review` after QA, when the user wants reviewer-style
 critique before first submission. It judges merit, not data integrity, and does
-not rewrite unless asked.
+not rewrite unless asked. Likely objections stay in the report; they reach the
+manuscript only through a fix the user approves, never as pre-emptive caveats.
 
 Assess journal fit and contribution, argument quality, methods and reporting
 clarity at a manuscript level, and the likeliest reviewer objections. Rank fixes
@@ -92,7 +106,7 @@ and recommend the next mode (`draft`, `qa` or `package`).
 - **Style-Polished Draft Package**: source and polished paths, author-sample
   status, change summary, preserved-content check, word-count changes,
   unresolved passages, disclosure notes.
-- **QA Gate Report**: verdict; claim, citation, claim-source, data and package
-  QA; blockers; warnings; handoff readiness.
+- **QA Gate Report**: verdict; claim (including calibration), citation,
+  claim-source, data and package QA; blockers; warnings; handoff readiness.
 - **Pre-Submission Review Report**: journal fit and contribution, strengths,
   must-fix, should-fix and optional items, likely objections, next mode.
