@@ -54,8 +54,9 @@ limitation or an unsupported causal claim.
   specified prediction model).
 
 ### Results
-- Report estimates, uncertainty intervals, p-values where used, and observed
-  patterns — nothing else.
+- Report estimates, uncertainty intervals, p-values where used, observed
+  patterns, and reporting facts (denominators, missing data, sparse events,
+  sensitivity results) — nothing else.
 - No interpretation, apology, causal caution, or limitations in Results.
 - Move "should not be interpreted as…" sentences to Discussion.
 - Do not say "this confirms," "this proves," or "driven by."
@@ -64,6 +65,8 @@ limitation or an unsupported causal claim.
 
 ### Discussion
 - First paragraph: principal findings without repeating every number.
+- Each paragraph opens with its interpretation, unhedged; at most one hedge
+  where the design calls for it.
 - Interpret adjusted contrasts, standardization, and residual heterogeneity
   here, not in Results.
 - Cross-sectional findings require restrained language ("associated with,"
@@ -71,7 +74,10 @@ limitation or an unsupported causal claim.
   "caused by," "mediated by," "explained by," "protective," "driven by" unless
   the design supports it.
 - Put model-dependent caveats, residual confounding, and missing etiologic
-  covariates in limitations. Keep future-work language specific and short.
+  covariates in limitations, each once and specific to the study (STROBE item
+  19): the bias, and its direction when known. Follow the keep test and the
+  five-item default cap in `references/defensive-writing-discipline.md`. Keep
+  future-work language specific and short.
 
 ## Causal-Language Restraint
 
@@ -110,7 +116,10 @@ language.
 - "latest models" → "fully adjusted models" / the exact model name
 - "health-screening data" → the study-specific assessment description
 - "should not be interpreted as…" in Results → delete; move the caution to
-  Discussion
+  Discussion only if it passes the keep test
+- "should be interpreted with caution" / "cannot be ruled out" → delete, or one
+  specific Limitations item
+- "possibly owing to limited power" after a null → delete from Results
 - reserve code variable names (e.g. `race`) for code/data dictionaries; use
   "ethnicity" in manuscript prose
 
@@ -140,7 +149,8 @@ Move to Discussion:
 
 ## Pre-Handoff Checks (epidemiology)
 
-1. Section discipline: interpretation and limitations absent from Results.
+1. Section discipline: interpretation and limitations absent from Results;
+   no defensive caveats (`references/defensive-writing-discipline.md`).
 2. Internal language: workflow/data-layer phrases removed from prose.
 3. Causal language: wording matches the study design.
 4. Citation support: methods and literature claims cited through canonical

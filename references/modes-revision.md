@@ -24,7 +24,11 @@ Core rule: revise against the approved roadmap, not opportunistically.
 Work must-fix items first and silently drop none. For each item, log the action,
 location, source and status. Tie Results changes to regenerated outputs and
 literature changes to verified records. Draft the responses alongside the
-changes. Mark items that need new analysis, literature or an author decision as
+changes. Answer each comment with the smallest change that resolves it; add no
+caveat the comment did not ask for (`references/defensive-writing-discipline.md`).
+A caveat a reviewer requests goes once, in its proper section. Log any new
+material issue as a roadmap item rather than patching it with a caveat. Mark
+items that need new analysis, literature or an author decision as
 blocked. Recommend the next modes: `style-polish` if prose changed
 substantially, then `qa` before any resubmission package.
 

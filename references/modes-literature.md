@@ -110,7 +110,9 @@ Procedure:
    temporal, mechanistic, generalizability, and so on) instead of vague gap
    language.
 4. Write claim-evidence-reasoning (CER) chains for manuscript-facing claims,
-   each with its caveat and target section.
+   each with its evidence strength and target section. Record an uncertainty
+   only when it is specific to the evidence; it is planning metadata, not
+   manuscript text.
 5. Stress-test: would the gap survive removing the strongest supporting paper,
    and what would a sceptical reviewer call overstated?
 6. If a target journal is known, scan what it has published on the topic in

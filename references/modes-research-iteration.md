@@ -76,7 +76,9 @@ Procedure:
    counts, rough power), and a recommendation; then stop. Record the user's
    decision and date in the memo.
 5. List drivers for `analysis-plan` and the SAP, limitations, and open
-   questions. Stop at the memo.
+   questions. Write the memo's Discussion-style prose under
+   `references/defensive-writing-discipline.md`, since it seeds the manuscript
+   Discussion. Stop at the memo.
 
 ## SAP/Outline Mode
 
@@ -119,7 +121,8 @@ Procedure:
 2. Record the spine and the framing decisions, including the options set aside
    so the group can see the forks.
 3. Give each act or section a one-line takeaway and presenter notes; keep
-   reviewer-relevant caveats visible.
+   caveats visible only where the slide's claim would be misread without them;
+   the rest go in presenter notes.
 4. Anchor results to the results report and external claims to verified
    records, with per-slide citations.
 5. End with a slide of open framing questions; route the feedback into
