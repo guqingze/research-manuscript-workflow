@@ -45,9 +45,10 @@ Procedure:
    `references/epidemiology-manuscript-discipline.md` and the project's revision
    lessons file if one exists.
 4. Cut defensive writing per `references/defensive-writing-discipline.md`:
-   delete every caveat that fails its keep test and trim Limitations to its
-   default cap, applying its overclaim guard. Do not weaken a limitation that
-   passes the keep test.
+   delete every caveat that fails its keep test and merge or drop minor
+   Limitations toward its default cap, applying its overclaim guard. Do not
+   weaken a limitation that passes the keep test; if more than the cap still
+   change interpretation, keep them and list the excess for the author.
 5. If a smoother sentence loses its tie to a source, or polishing would change
    meaning, leave the passage and list it.
    If polishing exposes content uncertainty, return to `draft`; otherwise hand
@@ -69,8 +70,9 @@ Procedure:
    epidemiology discipline (no interpretation in Results, design-matched causal
    wording, no internal language, references numbered by first appearance).
    Check calibration in the other direction too, per
-   `references/defensive-writing-discipline.md`: a caveat, hedge or denial in
-   Results or in the Abstract's headline result is a blocker; defensive writing
+   `references/defensive-writing-discipline.md`: a caveat, hedge or denial that
+   fails its keep test in Results or in the Abstract's headline result is a
+   blocker (design-matched wording such as "no clear association" passes); defensive writing
    elsewhere, or more Limitations items than the cap, is a warning; a cut that
    breaks the overclaim guard is a blocker.
 2. Citation QA: in-text citations map to the reference collection; no orphans;
