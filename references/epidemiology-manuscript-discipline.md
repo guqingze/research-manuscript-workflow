@@ -54,11 +54,18 @@ limitation or an unsupported causal claim.
   specified prediction model).
 
 ### Results
+- Use declarative, finding-led subheadings where the journal allows them, and
+  at most one neutral question-framing lead-in clause per subsection or
+  topic shift ("To examine whether ethnic contrasts depend on regional rather
+  than total adiposity, we compared…") so multi-stage papers read as a
+  connected investigation rather than an unlabelled table dump.
 - Report estimates, uncertainty intervals, p-values where used, observed
   patterns, and reporting facts (denominators, missing data, sparse events,
   sensitivity results) — nothing else.
 - No interpretation, apology, causal caution, or limitations in Results.
-- Move "should not be interpreted as…" sentences to Discussion.
+- Rewrite "should not be interpreted as…" sentences as positive scope
+  statements or delete them; a single measurement-validity scope statement stays
+  once in Methods or Limitations (see the defensive-writing reference).
 - Do not say "this confirms," "this proves," or "driven by."
 - If estimates reverse after adjustment, report the reversal numerically without
   editorial commentary.

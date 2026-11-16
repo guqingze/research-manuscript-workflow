@@ -36,7 +36,9 @@ substantially, then `qa` before any resubmission package.
 
 Use `package` to assemble a submission once QA has passed (or its warnings are
 accepted): a first submission, a resubmission after revision, or a final
-handoff note.
+handoff note. A submission or resubmission with an unresolved `[PENDING: …]`
+block is not packaged; route it back to `draft`. A handoff note lists any
+unresolved block as open work.
 
 Core rule: packaging does not change content. Route content problems back to
 `draft`, `revise` or `qa` rather than fixing them during formatting.

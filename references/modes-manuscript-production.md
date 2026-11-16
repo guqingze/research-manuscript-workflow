@@ -14,10 +14,15 @@ Procedure:
 1. Draft by section from the controller's purposes, claims, citations, results,
    displays, word targets and transitions. Introduction from the gap synthesis;
    Methods from the SAP and definitions; Results from the results report only,
-   without interpretation; Discussion from both, separating evidence, inference,
+   using declarative subheadings where the journal allows them and brief question-framing lead-ins without
+   interpretation; Discussion from both, separating evidence, inference,
    limitations and implications. Apply `references/defensive-writing-discipline.md`:
-   each Discussion paragraph opens with its interpretation, and no caveat is
-   added that fails its keep test.
+   each Discussion paragraph opens with its interpretation, no caveat is added
+   that fails its keep test, controller audit guardrails become positive scope
+   definitions rather than negative denials ("Audit Provenance ≠ Article Prose"),
+   superseded estimators give way to the canonical one in the main text, and any unfinished
+   multi-stage component stays strictly quarantined in isolated `[PENDING: …]`
+   blocks without bleeding disclaimers into completed sections.
 2. Never invent citations, numbers, table references or methods details; log
    placeholders and unresolved items instead. Use the live-citation workflow
    when available.
@@ -70,11 +75,15 @@ Procedure:
    epidemiology discipline (no interpretation in Results, design-matched causal
    wording, no internal language, references numbered by first appearance).
    Check calibration in the other direction too, per
-   `references/defensive-writing-discipline.md`: a caveat, hedge or denial that
-   fails its keep test in Results or in the Abstract's headline result is a
-   blocker (design-matched wording such as "no clear association" passes); defensive writing
-   elsewhere, or more Limitations items than the cap, is a warning; a cut that
-   breaks the overclaim guard is a blocker.
+   `references/defensive-writing-discipline.md`: a leaked audit-ledger denial,
+   or a `[PENDING: …]` marker or pending-component disclaimer in a completed
+   section, is a blocker
+   regardless of the keep test; a caveat or hedge that fails its keep test in
+   Results or in the Abstract's headline result is a blocker (design-matched
+   wording such as "no clear association" passes); competing developmental
+   baselines in main-text Results, defensive writing elsewhere, or more
+   Limitations items than the cap (even when each is material) is a warning; a cut
+   that breaks the overclaim guard is a blocker.
 2. Citation QA: in-text citations map to the reference collection; no orphans;
    metadata complete; apply the citation-verification discipline (SKILL.md) to
    important claims.
@@ -82,7 +91,9 @@ Procedure:
    outputs; displays exist and captions match; main/supplement placement
    matches the controller.
 4. Package QA: word counts, placeholders and citation workflow are recorded;
-   re-render after final edits when render tooling exists.
+   re-render after final edits when render tooling exists. An unresolved
+   `[PENDING: …]` block is a blocker for a submission package; in an internal
+   review draft it is recorded, not blocked.
 5. Verdict: `PASS`, `PASS_WITH_WARNINGS` (needs the user's explicit
    acceptance), or `BLOCKED`.
 

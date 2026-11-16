@@ -53,13 +53,49 @@ denial ("this does not imply…") because a misreading is conceivable.
   changes how a finding should be read; write it as interpretation, once.
 - **Limitations** explain constraints on interpretation. At most five items by
   default (the project or journal can change this), ranked by how much each
-  changes the reading of the results. Merge related items; drop or move minor
-  ones to the supplement. State the direction of bias when it is known; when it
-  is not, name the limitation and stop. If more than five materially change
-  interpretation, QA warns and the author chooses.
-- **Methods** state scope as fact ("Analyses were cross-sectional").
+  changes the reading of the results. For multi-modality studies (for example,
+  combining imaging, body composition, omics, health records and genetics),
+  group constraints into one cohesive paragraph organised by modality, each
+  constraint with its direction of bias when known, rather than scattering caveats into
+  earlier Discussion paragraphs or cutting a distinct modality's material
+  constraint to meet a flat count. Merge related items; drop
+  or move minor ones to the supplement. State the direction of bias when it is
+  known; when it is not, name the limitation and stop. If more than five
+  materially change interpretation, QA warns and the author chooses.
+- **Methods** state scope and final design choices as positive fact ("Analyses
+  were cross-sectional"; "Panels were refitted on the full cohort with
+  200-sample participant-level bootstrap optimism correction"), never as an
+  audit confession.
 - **Abstract, Introduction, contribution sentences** carry no self-weakening
   ("we attempt to", "preliminary", "only").
+- **Pending multi-stage components** (when drafting before an external cohort
+  or genetic arm finishes) stay strictly quarantined in isolated `[PENDING: …]`
+  blocks (their own Results subsection, or a delimited paragraph where the
+  journal has no Results subheadings, plus their own Discussion paragraph and
+  Methods subsection). Completed sections carry no `[PENDING: …]` markers and zero
+  disclaimers about what has not yet been run.
+
+## Upstream Guard: Audit Provenance ≠ Article Prose
+
+Planning ledgers (`sap.md`, `outline.md`, `results.md`, `reflection.md`) record
+internal governance: negative boundary rules ("not histological fibrosis", "do
+not claim causality", "conditional bootstrap excludes retraining variance") and
+dated iteration history ("after inspecting the initial split, we refitted…").
+
+- **Negative guardrails constrain what claims may be made; they are never
+  copied into prose as negative denials.** Translate a negative boundary into
+  exact positive terminology once ("elevated liver stiffness (LSM ≥8.0 kPa)",
+  "referral-threshold discordance") instead of repeating what a measure is *not*
+  across Results and Discussion (a single measurement-validity scope statement,
+  with its direction of bias, stays once in Methods or Limitations under the
+  keep test).
+- **Project chronology stays in Methods or repository records, not Results or
+  Discussion.** A data-dependent change of estimator or validation strategy is
+  disclosed in Methods; bug fixes and review logistics stay in repository
+  records. When an estimator was superseded during development, report
+  only the canonical version in the main text (complementary prespecified
+  estimands stay); do not narrate superseded splits, bug fixes or internal review rounds as
+  story beats.
 
 ## Patterns to Cut
 

@@ -98,9 +98,15 @@ Procedure:
    or journal says otherwise) and the central thesis, decomposed into three to
    five section-level arguments.
 3. Map CER chains, results and displays to sections, and label each analysis
-   primary, secondary, sensitivity, exploratory or supplement-only.
+   primary, secondary, sensitivity, exploratory or supplement-only. Consolidate
+   iterated estimators before drafting: when research rounds have upgraded or
+   superseded an earlier split or model specification, designate **one
+   canonical main-text estimator per question**. Omit superseded stages unless
+   they remain valid and serve a defined sensitivity or benchmark purpose, in
+   which case assign them to Methods or the Supplement.
 4. For each section, record purpose, word target, core claim, evidence,
-   tables/figures, citation groups and the transition.
+   tables/figures, citation groups and the transition. Keep negative audit
+   guardrails marked as scope rules for the writer rather than prose claims.
 5. Check: no Results claim exceeds the results report; no Introduction or
    Discussion claim exceeds the gap synthesis; open decisions are listed, not
    silently filled. Stop at the plan.
