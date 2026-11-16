@@ -14,7 +14,7 @@ Procedure:
 1. Draft by section from the controller's purposes, claims, citations, results,
    displays, word targets and transitions. Introduction from the gap synthesis;
    Methods from the SAP and definitions; Results from the results report only,
-   using declarative subheadings and brief question-framing lead-ins without
+   using declarative subheadings where the journal allows them and brief question-framing lead-ins without
    interpretation; Discussion from both, separating evidence, inference,
    limitations and implications. Apply `references/defensive-writing-discipline.md`:
    each Discussion paragraph opens with its interpretation, no caveat is added
@@ -75,9 +75,10 @@ Procedure:
    epidemiology discipline (no interpretation in Results, design-matched causal
    wording, no internal language, references numbered by first appearance).
    Check calibration in the other direction too, per
-   `references/defensive-writing-discipline.md`: a caveat, hedge, leaked
-   audit-ledger denial or pending-component disclaimer that fails its keep test
-   in Results or in the Abstract's headline result is a blocker (design-matched
+   `references/defensive-writing-discipline.md`: a leaked audit-ledger denial,
+   or a pending-component disclaimer in a completed section, is a blocker
+   regardless of the keep test; a caveat or hedge that fails its keep test in
+   Results or in the Abstract's headline result is a blocker (design-matched
    wording such as "no clear association" passes); competing developmental
    baselines in main-text Results, defensive writing elsewhere, or unjustified
    Limitations sprawl beyond modality-grouped constraints is a warning; a cut
