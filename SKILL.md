@@ -104,6 +104,11 @@ feedback returns to reflection. Leave the loop only at the **results lock**:
 - no unresolved blockers in the results report;
 - the user signs off that the results meet publication standard.
 
+A multi-stage component the user explicitly defers (logged in the roadmap, for
+example an external cohort or genetic arm still running) does not hold the
+lock. It is drafted as an isolated `[PENDING: …]` block for internal review
+only; a submission package still requires it resolved (see QA).
+
 **Phase 3, production.** `draft` → `style-polish` when needed → `qa` →
 `pre-submission-review` when requested (major issues return to `draft` and
 `qa`) → `package`. Proceed past QA only with `PASS`, or `PASS_WITH_WARNINGS`
