@@ -90,7 +90,9 @@ dated iteration history ("after inspecting the initial split, we refitted…").
   with its direction of bias, stays once in Methods or Limitations under the
   keep test).
 - **Project chronology stays in Methods or repository records, not Results or
-  Discussion.** When an estimator was superseded during development, report
+  Discussion.** A data-dependent change of estimator or validation strategy is
+  disclosed in Methods; bug fixes and review logistics stay in repository
+  records. When an estimator was superseded during development, report
   only the canonical version in the main text (complementary prespecified
   estimands stay); do not narrate superseded splits, bug fixes or internal review rounds as
   story beats.
