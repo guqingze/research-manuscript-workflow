@@ -76,7 +76,8 @@ Procedure:
    wording, no internal language, references numbered by first appearance).
    Check calibration in the other direction too, per
    `references/defensive-writing-discipline.md`: a leaked audit-ledger denial,
-   or a pending-component disclaimer in a completed section, is a blocker
+   or a `[PENDING: …]` marker or pending-component disclaimer in a completed
+   section, is a blocker
    regardless of the keep test; a caveat or hedge that fails its keep test in
    Results or in the Abstract's headline result is a blocker (design-matched
    wording such as "no clear association" passes); competing developmental
