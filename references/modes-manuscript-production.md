@@ -14,10 +14,15 @@ Procedure:
 1. Draft by section from the controller's purposes, claims, citations, results,
    displays, word targets and transitions. Introduction from the gap synthesis;
    Methods from the SAP and definitions; Results from the results report only,
-   without interpretation; Discussion from both, separating evidence, inference,
+   using declarative subheadings and brief question-framing lead-ins without
+   post-hoc interpretation; Discussion from both, separating evidence, inference,
    limitations and implications. Apply `references/defensive-writing-discipline.md`:
-   each Discussion paragraph opens with its interpretation, and no caveat is
-   added that fails its keep test.
+   each Discussion paragraph opens with its interpretation, no caveat is added
+   that fails its keep test, controller audit guardrails become positive scope
+   definitions rather than negative denials ("Audit Provenance ≠ Article Prose"),
+   one canonical estimator leads each main-text question, and any unfinished
+   multi-stage component stays strictly quarantined in isolated `[PENDING: …]`
+   blocks without bleeding disclaimers into completed sections.
 2. Never invent citations, numbers, table references or methods details; log
    placeholders and unresolved items instead. Use the live-citation workflow
    when available.
@@ -70,11 +75,13 @@ Procedure:
    epidemiology discipline (no interpretation in Results, design-matched causal
    wording, no internal language, references numbered by first appearance).
    Check calibration in the other direction too, per
-   `references/defensive-writing-discipline.md`: a caveat, hedge or denial that
-   fails its keep test in Results or in the Abstract's headline result is a
-   blocker (design-matched wording such as "no clear association" passes); defensive writing
-   elsewhere, or more Limitations items than the cap, is a warning; a cut that
-   breaks the overclaim guard is a blocker.
+   `references/defensive-writing-discipline.md`: a caveat, hedge, leaked
+   audit-ledger denial or pending-component disclaimer that fails its keep test
+   in Results or in the Abstract's headline result is a blocker (design-matched
+   wording such as "no clear association" passes); competing developmental
+   baselines in main-text Results, defensive writing elsewhere, or unjustified
+   Limitations sprawl beyond modality-grouped constraints is a warning; a cut
+   that breaks the overclaim guard is a blocker.
 2. Citation QA: in-text citations map to the reference collection; no orphans;
    metadata complete; apply the citation-verification discipline (SKILL.md) to
    important claims.
