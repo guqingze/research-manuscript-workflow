@@ -62,7 +62,7 @@ limitation or an unsupported causal claim.
 - Report estimates, uncertainty intervals, p-values where used, observed
   patterns, and reporting facts (denominators, missing data, sparse events,
   sensitivity results) — nothing else.
-- No post-hoc interpretation, apology, causal caution, or limitations in Results.
+- No interpretation, apology, causal caution, or limitations in Results.
 - Move "should not be interpreted as…" sentences to Discussion (and keep them
   there only if they pass the keep test).
 - Do not say "this confirms," "this proves," or "driven by."

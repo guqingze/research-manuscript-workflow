@@ -55,10 +55,10 @@ denial ("this does not imply…") because a misreading is conceivable.
   default (the project or journal can change this), ranked by how much each
   changes the reading of the results. For multi-modality studies (for example,
   combining imaging, body composition, omics, health records and genetics),
-  group constraints into one cohesive paragraph organised by modality — one
-  specific constraint and its direction of bias per modality — rather than
-  scattering caveats into earlier Discussion paragraphs or cutting a distinct
-  modality's primary constraint to meet a flat count. Merge related items; drop
+  group constraints into one cohesive paragraph organised by modality, each
+  constraint with its direction of bias, rather than scattering caveats into
+  earlier Discussion paragraphs or cutting a distinct modality's material
+  constraint to meet a flat count. Merge related items; drop
   or move minor ones to the supplement. State the direction of bias when it is
   known; when it is not, name the limitation and stop. If more than five
   materially change interpretation, QA warns and the author chooses.
