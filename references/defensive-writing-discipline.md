@@ -56,7 +56,7 @@ denial ("this does not imply…") because a misreading is conceivable.
   changes the reading of the results. For multi-modality studies (for example,
   combining imaging, body composition, omics, health records and genetics),
   group constraints into one cohesive paragraph organised by modality, each
-  constraint with its direction of bias, rather than scattering caveats into
+  constraint with its direction of bias when known, rather than scattering caveats into
   earlier Discussion paragraphs or cutting a distinct modality's material
   constraint to meet a flat count. Merge related items; drop
   or move minor ones to the supplement. State the direction of bias when it is

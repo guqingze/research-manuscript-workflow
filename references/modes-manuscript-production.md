@@ -15,7 +15,7 @@ Procedure:
    displays, word targets and transitions. Introduction from the gap synthesis;
    Methods from the SAP and definitions; Results from the results report only,
    using declarative subheadings and brief question-framing lead-ins without
-   post-hoc interpretation; Discussion from both, separating evidence, inference,
+   interpretation; Discussion from both, separating evidence, inference,
    limitations and implications. Apply `references/defensive-writing-discipline.md`:
    each Discussion paragraph opens with its interpretation, no caveat is added
    that fails its keep test, controller audit guardrails become positive scope
@@ -89,7 +89,9 @@ Procedure:
    outputs; displays exist and captions match; main/supplement placement
    matches the controller.
 4. Package QA: word counts, placeholders and citation workflow are recorded;
-   re-render after final edits when render tooling exists.
+   re-render after final edits when render tooling exists. An unresolved
+   `[PENDING: …]` block is a blocker for a submission package; in an internal
+   review draft it is recorded, not blocked.
 5. Verdict: `PASS`, `PASS_WITH_WARNINGS` (needs the user's explicit
    acceptance), or `BLOCKED`.
 
