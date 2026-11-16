@@ -80,8 +80,8 @@ Procedure:
    regardless of the keep test; a caveat or hedge that fails its keep test in
    Results or in the Abstract's headline result is a blocker (design-matched
    wording such as "no clear association" passes); competing developmental
-   baselines in main-text Results, defensive writing elsewhere, or unjustified
-   Limitations sprawl beyond modality-grouped constraints is a warning; a cut
+   baselines in main-text Results, defensive writing elsewhere, or more
+   Limitations items than the cap (even when each is material) is a warning; a cut
    that breaks the overclaim guard is a blocker.
 2. Citation QA: in-text citations map to the reference collection; no orphans;
    metadata complete; apply the citation-verification discipline (SKILL.md) to
