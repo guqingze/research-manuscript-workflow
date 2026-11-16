@@ -63,8 +63,9 @@ limitation or an unsupported causal claim.
   patterns, and reporting facts (denominators, missing data, sparse events,
   sensitivity results) — nothing else.
 - No interpretation, apology, causal caution, or limitations in Results.
-- Move "should not be interpreted as…" sentences to Discussion (and keep them
-  there only if they pass the keep test).
+- Rewrite "should not be interpreted as…" sentences as positive scope
+  statements or delete them; a single measurement-validity scope statement stays
+  once in Methods or Limitations (see the defensive-writing reference).
 - Do not say "this confirms," "this proves," or "driven by."
 - If estimates reverse after adjustment, report the reversal numerically without
   editorial commentary.
