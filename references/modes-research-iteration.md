@@ -101,9 +101,9 @@ Procedure:
    primary, secondary, sensitivity, exploratory or supplement-only. Consolidate
    iterated estimators before drafting: when research rounds have upgraded or
    superseded an earlier split or model specification, designate **one
-   canonical main-text estimator per question** and assign earlier/developmental
-   stages to Methods or the Supplement unless they answer a distinct benchmark
-   question.
+   canonical main-text estimator per question**. Omit superseded stages unless
+   they remain valid and serve a defined sensitivity or benchmark purpose, in
+   which case assign them to Methods or the Supplement.
 4. For each section, record purpose, word target, core claim, evidence,
    tables/figures, citation groups and the transition. Keep negative audit
    guardrails marked as scope rules for the writer rather than prose claims.

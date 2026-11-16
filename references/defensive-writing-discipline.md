@@ -70,8 +70,9 @@ denial ("this does not imply…") because a misreading is conceivable.
   ("we attempt to", "preliminary", "only").
 - **Pending multi-stage components** (when drafting before an external cohort
   or genetic arm finishes) stay strictly quarantined in isolated `[PENDING: …]`
-  blocks (their own Results subsection, Discussion paragraph and Methods
-  subsection). Completed sections carry no `[PENDING: …]` markers and zero
+  blocks (their own Results subsection, or a delimited paragraph where the
+  journal has no Results subheadings, plus their own Discussion paragraph and
+  Methods subsection). Completed sections carry no `[PENDING: …]` markers and zero
   disclaimers about what has not yet been run.
 
 ## Upstream Guard: Audit Provenance ≠ Article Prose
