@@ -55,10 +55,11 @@ denial ("this does not imply…") because a misreading is conceivable.
   default (the project or journal can change this), ranked by how much each
   changes the reading of the results. For multi-modality studies (for example,
   combining imaging, body composition, omics, health records and genetics),
-  group constraints into one cohesive paragraph organised by modality, each
-  constraint with its direction of bias when known, rather than scattering caveats into
-  earlier Discussion paragraphs or cutting a distinct modality's material
-  constraint to meet a flat count. Merge related items; drop
+  group constraints into one cohesive paragraph organised by modality — one
+  specific constraint per modality, with its direction of bias when known —
+  rather than scattering caveats into earlier Discussion paragraphs or cutting
+  a distinct modality's primary constraint to meet a flat count. Merge related
+  items; drop
   or move minor ones to the supplement. State the direction of bias when it is
   known; when it is not, name the limitation and stop. If more than five
   materially change interpretation, QA warns and the author chooses.
@@ -90,12 +91,9 @@ dated iteration history ("after inspecting the initial split, we refitted…").
   with its direction of bias, stays once in Methods or Limitations under the
   keep test).
 - **Project chronology stays in Methods or repository records, not Results or
-  Discussion.** A data-dependent change of estimator or validation strategy is
-  disclosed in Methods; bug fixes and review logistics stay in repository
-  records. When an estimator was superseded during development, report
-  only the canonical version in the main text (complementary prespecified
-  estimands stay); do not narrate superseded splits, bug fixes or internal review rounds as
-  story beats.
+  Discussion.** Methods describe clearly how the final results were generated;
+  report one canonical estimator per question in the main text and do not
+  narrate superseded splits, bug fixes or internal review rounds.
 
 ## Patterns to Cut
 
