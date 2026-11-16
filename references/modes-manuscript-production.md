@@ -20,7 +20,7 @@ Procedure:
    each Discussion paragraph opens with its interpretation, no caveat is added
    that fails its keep test, controller audit guardrails become positive scope
    definitions rather than negative denials ("Audit Provenance ≠ Article Prose"),
-   superseded estimators give way to the canonical one in the main text, and any unfinished
+   one canonical estimator leads each main-text question, and any unfinished
    multi-stage component stays strictly quarantined in isolated `[PENDING: …]`
    blocks without bleeding disclaimers into completed sections.
 2. Never invent citations, numbers, table references or methods details; log
