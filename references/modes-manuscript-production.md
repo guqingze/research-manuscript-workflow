@@ -99,8 +99,9 @@ Procedure:
    important claims.
 3. Data QA: numbers, denominators, model labels, intervals and p-values match
    outputs; displays exist and captions match; main/supplement placement
-   matches the controller. Attribute every main-text number to the model,
-   sample and validation design that produced it, and flag any sentence that
+   matches the controller. Trace every main-text number to its source and
+   sample; for model-derived estimates, also name the model and validation
+   design that produced them, and flag any sentence that
    credits a result to a different estimator (for example, a full-proteome
    held-out result written as the performance of a compact panel, or
    development cross-validation written as validation of final coefficients).
@@ -110,7 +111,8 @@ Procedure:
    section and table- or figure-generating script for its remnants; a display
    that no remaining sentence relies on is removed with its Methods text, not
    relabelled. Display vocabulary: column headers, generated row labels and
-   in-image text carry no code names, variable names or internal labels.
+   in-image text use readable scientific labels, never code-level variable
+   names (for example `log_ast`), internal tiers or workflow labels.
 4. Package QA: word counts, placeholders and citation workflow are recorded;
    re-render after final edits when render tooling exists. After any
    renumbering of references or supplementary items, confirm the same mapping
