@@ -43,7 +43,17 @@ Procedure:
 1. Lock numbers, estimates, intervals, definitions, citation keys, display
    references and section claims unless the user asks for scientific revision.
 2. Calibrate to author samples when available; discipline and journal
-   conventions override personal style.
+   conventions override personal style. Make the calibration measurable: read
+   the sample and write down its observable traits as rules before rewriting
+   (for example: each Results paragraph opens with the finding in words, then
+   the numbers in brackets; at most two estimates with intervals per sentence;
+   sensitivity checks collapsed to one closing sentence; Discussion paragraphs
+   carry one or two numbers at most; Limitations open with the study's
+   strengths). Rewrite one representative Results and one Discussion paragraph
+   as a before/after sample and get the author's agreement on the voice before
+   rewriting the whole paper. Apply the jargon test: a term the author has to
+   ask about will not be understood by readers either; explain it in plain
+   words or move it to the Supplement.
 3. Cut filler, throat-clearing, inflated novelty and template-like rhythm; keep
    academic register and precise Methods prose. For epidemiology,
    clinical-epidemiology or population-health papers, apply
@@ -76,8 +86,8 @@ Procedure:
    wording, no internal language, references numbered by first appearance).
    Check calibration in the other direction too, per
    `references/defensive-writing-discipline.md`: a leaked audit-ledger denial,
-   or a `[PENDING: …]` marker or pending-component disclaimer in a completed
-   section, is a blocker
+   or a pending-component disclaimer or `[PENDING: …]` block in a completed
+   section (other than an author-approved bare result slot), is a blocker
    regardless of the keep test; a caveat or hedge that fails its keep test in
    Results or in the Abstract's headline result is a blocker (design-matched
    wording such as "no clear association" passes); competing developmental
@@ -89,9 +99,23 @@ Procedure:
    important claims.
 3. Data QA: numbers, denominators, model labels, intervals and p-values match
    outputs; displays exist and captions match; main/supplement placement
-   matches the controller.
+   matches the controller. Attribute every main-text number to the model,
+   sample and validation design that produced it, and flag any sentence that
+   credits a result to a different estimator (for example, a full-proteome
+   held-out result written as the performance of a compact panel, or
+   development cross-validation written as validation of final coefficients).
+   Supersession sweep: when an analysis has been superseded or the scope
+   narrowed, search every supplementary table, figure (including in-image
+   titles, subtitles, axis and legend labels), legend, Supplementary Methods
+   section and table- or figure-generating script for its remnants; a display
+   that no remaining sentence relies on is removed with its Methods text, not
+   relabelled. Display vocabulary: column headers, generated row labels and
+   in-image text carry no code names, variable names or internal labels.
 4. Package QA: word counts, placeholders and citation workflow are recorded;
-   re-render after final edits when render tooling exists. An unresolved
+   re-render after final edits when render tooling exists. After any
+   renumbering of references or supplementary items, confirm the same mapping
+   reached the supplement, table cells, the scripts that generate tables and
+   figures, and links between documents. An unresolved
    `[PENDING: …]` block is a blocker for a submission package; in an internal
    review draft it is recorded, not blocked.
 5. Verdict: `PASS`, `PASS_WITH_WARNINGS` (needs the user's explicit

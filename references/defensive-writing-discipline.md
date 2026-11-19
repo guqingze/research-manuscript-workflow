@@ -73,8 +73,10 @@ denial ("this does not imply…") because a misreading is conceivable.
   or genetic arm finishes) stay strictly quarantined in isolated `[PENDING: …]`
   blocks (their own Results subsection, or a delimited paragraph where the
   journal has no Results subheadings, plus their own Discussion paragraph and
-  Methods subsection). Completed sections carry no `[PENDING: …]` markers and zero
-  disclaimers about what has not yet been run.
+  Methods subsection). Completed sections carry zero disclaimers about what has
+  not yet been run. The one exception is a bare result slot the author asks
+  for, `[PENDING: <result>]`, placed where a future result will complete a
+  finished argument; it carries no surrounding text about the missing work.
 
 ## Upstream Guard: Audit Provenance ≠ Article Prose
 
@@ -94,6 +96,12 @@ dated iteration history ("after inspecting the initial split, we refitted…").
   Discussion.** Methods describe clearly how the final results were generated;
   report one canonical estimator per question in the main text and do not
   narrate superseded splits, bug fixes or internal review rounds.
+- **The guard covers displays, not only prose.** In-image titles and
+  subtitles, axis and legend labels, table column headers and generated row
+  labels carry no code names (`log_ast`, `model2b`), internal tiers
+  ("headline", "supporting") or workflow labels ("common cohort", "locked",
+  "score-eligible", "out-of-fold", "post-lock"). Results from superseded
+  analyses leave the supplement too; they are not kept as relabelled tables.
 
 ## Patterns to Cut
 

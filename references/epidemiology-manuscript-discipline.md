@@ -80,6 +80,12 @@ limitation or an unsupported causal claim.
   "attenuated after adjustment," "consistent with," "may reflect"). Avoid
   "caused by," "mediated by," "explained by," "protective," "driven by" unless
   the design supports it.
+- External comparisons must match the paragraph's argument. State that
+  argument in one sentence first, then choose a comparison that matches it on
+  outcome type (prevalent versus incident), design and baseline model; if no
+  published result matches, leave the comparison out rather than citing an
+  unlike benchmark (for example, a protein gain for 10-year cardiovascular
+  events against a gain for a concurrent liver phenotype).
 - Put model-dependent caveats, residual confounding, and missing etiologic
   covariates in limitations, each once and specific to the study (STROBE item
   19): the bias, and its direction when known. Follow the keep test and the
