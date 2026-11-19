@@ -75,6 +75,14 @@ the sequence; if the stage is unclear, inspect the repo's artifacts first.
 - **No defensive writing.** Caveats are deleted unless specific, new and needed
   where they stand; Results carry none. See
   `references/defensive-writing-discipline.md`.
+- **Other models as collaborators.** When another model (for example Gemini
+  or Codex) drafts or reviews, its output is a candidate. Check every drafted
+  sentence for result statements the source never made, and every literature
+  claim against the full-text cache. Reviewer-style models tend to add
+  caveats: keep their factual corrections and reject added hedging. Keep the
+  project's current state and agreed decisions in a short brief file in the
+  repo and start each delegated step from it; long-lived agent sessions grow
+  until they fail.
 - **Stop at the mode's output.** Do not run the next mode unless asked.
 - Paths beginning `references/` or `scripts/` are relative to the skill root.
 
