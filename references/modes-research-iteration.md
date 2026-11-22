@@ -134,6 +134,66 @@ Procedure:
 5. End with a slide of open framing questions; route the feedback into
    `reflect` and `analysis-plan`. Stop at the deck.
 
+### Research update decks
+
+Use this when the deck reports progress to a supervisor or a partner, not only
+when it rehearses the storyline. The same evidence rules apply.
+
+**Template and build**
+
+- Honour the requested format. When a PPTX is requested, build it on the
+  group's own template, using its layouts (cover, section dividers,
+  title-and-subtitle content), and never restyle the template. Generate it
+  from a builder script kept in the repository, edit the script rather than
+  the PPTX, and render every slide to images to check the layout before you
+  share it.
+- Put spoken presenter notes on every slide.
+
+**Storyline**
+
+- Open with the plan for the session, then three parts: where the paper stands,
+  the analyses since the last meeting, and the next steps with open questions.
+- Present each analysis as a research question, in the order of the roadmap
+  slide. For each question, show this sequence:
+  1. **Observed data.** When the question uses its own sample, first show that
+     sample's counts: a table, plus a chart only if it adds something. Title the
+     slide with the research question and use the subtitle to name the sample
+     (for example "panel-building set, 70% of the protein cohort"). Give each
+     outcome its own denominator. Drop the separate slide when it would repeat
+     the whole-cohort summary, or when it is too thin to stand alone; in that
+     case put the count table on the results slide and move the talking
+     points to the notes. Never build one combined data slide for all the
+     questions.
+  2. **Results.** One message per slide. The question and the method go in a
+     narrow left column; the reused manuscript figure and a small table go on
+     the right.
+- End with the timeline and the open questions only: questions the audience
+  must answer, not settled decisions or questions a colleague could answer.
+- Leave out backup slides. Fold anything essential into the main slides and
+  put the rest in the notes as "If asked" lines.
+
+**Layout**
+
+- Body text 15 to 18 pt, tables 14 to 16 pt, large figures.
+- Reuse figures from the manuscript or earlier decks rather than redraw them as
+  generic charts. Keep the project's fixed colours (for example ethnicity).
+- Slide text is terse labels and short claims; the full sentences go in the
+  notes.
+
+**Language**
+
+- Plain language. Explain a method in one line and say why it was chosen.
+- Frame the deck as a scientific discussion that agrees the scope, not as a
+  sign-off request. Avoid "your questions", "what you asked" or "for your
+  sign-off".
+- Leave out internal operational status, internal labels and process terms,
+  and people's names or dates attached to requests.
+- State general limitations once. Don't repeat them in footnotes on other
+  slides.
+- Write notes as spoken text that can be read aloud: say what to look at, give
+  the answer and why it matters, use two or three rounded numbers, and put
+  supplementary technical detail in a final "If asked" line.
+
 ## Artifact Contracts
 
 - **Planned-analyses roadmap**: candidates with source; availability audit
@@ -154,4 +214,5 @@ Procedure:
   decisions; transitions; drafting instructions; open decisions.
 - **Narrative deck**: spine and framing decisions with options set aside; acts
   with takeaways and presenter notes; anchored on-slide claims with citations;
+  for research updates, per-question observed-data context before results;
   open questions; feedback routing.

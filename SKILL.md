@@ -1,6 +1,6 @@
 ---
 name: research-manuscript-workflow
-description: Use for research manuscript projects that need a reproducible workflow from literature search and Zotero literature collection through literature indexing, gap synthesis, planned-analyses roadmaps, analysis reports, a results-reflection research-iteration loop, manuscript outline/SAP, narrative/framing-rehearsal decks, Word or document drafting, style polishing, citation QA, and final manuscript artifact generation. Includes epidemiology, clinical-epidemiology, and population-health manuscript discipline (section discipline, causal-language restraint, defensive-writing and over-hedging removal, internal/AI-workflow language scrub, STROBE-like clarity, methods-citation checks) applied during style polishing and QA. Trigger when the user asks to organize, document, reuse, audit, or execute a literature-to-manuscript workflow across research project repositories, or to revise, polish, humanize, or self-review the user's own epidemiology manuscript for journal-ready prose. Do not use this skill to write or polish peer-review comments on someone else's manuscript.
+description: Use for research manuscript projects that need a reproducible workflow from literature search and Zotero literature collection through literature indexing, gap synthesis, planned-analyses roadmaps, analysis reports, a results-reflection research-iteration loop, manuscript outline/SAP, narrative/framing-rehearsal and research/progress update decks, Word or document drafting, style polishing, citation QA, and final manuscript artifact generation. Includes epidemiology, clinical-epidemiology, and population-health manuscript discipline (section discipline, causal-language restraint, defensive-writing and over-hedging removal, internal/AI-workflow language scrub, STROBE-like clarity, methods-citation checks) applied during style polishing and QA. Trigger when the user asks to organize, document, reuse, audit, or execute a literature-to-manuscript workflow across research project repositories, or to revise, polish, humanize, or self-review the user's own epidemiology manuscript for journal-ready prose. Do not use this skill to write or polish peer-review comments on someone else's manuscript.
 ---
 
 # Research Manuscript Workflow
@@ -20,7 +20,7 @@ rerunning analyses, or mixing interpretation, planning and prose:
 - **Analysis Refresh Report**: current results only, with provenance; no framing.
 - **Reflection memo**: results argued against the literature and meeting feedback; the living Discussion.
 - **SAP/Outline Controller**: the authority for structure, analysis hierarchy and displays.
-- **Narrative deck**: framing rehearsal before prose.
+- **Narrative deck**: framing rehearsal before prose, or a research update.
 - **Draft, QA, review, revision and submission packages**: see the production and revision references.
 
 ## Workflow Router
@@ -42,7 +42,7 @@ the sequence; if the stage is unclear, inspect the repo's artifacts first.
 | `analysis-refresh` | Regenerate and reconcile results into the results report | [modes-research-iteration](references/modes-research-iteration.md) |
 | `reflect` | Argue results against literature and meeting feedback; put scope options to the authors | [modes-research-iteration](references/modes-research-iteration.md), [defensive writing](references/defensive-writing-discipline.md) |
 | `sap-outline` | Build or revise the controlling plan from agreed scope | [modes-research-iteration](references/modes-research-iteration.md) |
-| `narrative-deck` | Rehearse the storyline, often for a meeting | [modes-research-iteration](references/modes-research-iteration.md) |
+| `narrative-deck` | Rehearse the storyline or present a research update, often for a meeting | [modes-research-iteration](references/modes-research-iteration.md) |
 | **Phase 3: production and revision** | | |
 | `draft` | Draft prose from the controller | [modes-manuscript-production](references/modes-manuscript-production.md), [defensive writing](references/defensive-writing-discipline.md) |
 | `style-polish` | Readability and author voice without changing the science | [modes-manuscript-production](references/modes-manuscript-production.md), [epi discipline](references/epidemiology-manuscript-discipline.md), [defensive writing](references/defensive-writing-discipline.md) |
