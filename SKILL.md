@@ -20,7 +20,7 @@ rerunning analyses, or mixing interpretation, planning and prose:
 - **Analysis Refresh Report**: current results only, with provenance; no framing.
 - **Reflection memo**: results argued against the literature and meeting feedback; the living Discussion.
 - **SAP/Outline Controller**: the authority for structure, analysis hierarchy and displays.
-- **Narrative deck**: framing rehearsal before prose.
+- **Narrative deck**: framing rehearsal before prose, or a research update.
 - **Draft, QA, review, revision and submission packages**: see the production and revision references.
 
 ## Workflow Router

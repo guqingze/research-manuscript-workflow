@@ -28,7 +28,7 @@ or more of these stages:
 - analysis result refresh and manuscript handoff
 - results-vs-literature reflection and internal-meeting feedback
 - SAP/outline planning
-- narrative/framing-deck rehearsal before drafting
+- narrative/framing-deck rehearsal before drafting, and research update decks
 - manuscript drafting
 - style polishing for clarity and author voice
 - factual, citation, data, and render QA
@@ -61,7 +61,7 @@ The skill routes requests to the smallest useful mode, grouped by phase
 | `analysis-refresh` | Regenerate, reconcile and report current results |
 | `reflect` | Argue results against literature and meeting feedback; put scope options to the authors |
 | `sap-outline` | Build the controlling manuscript plan from agreed scope |
-| `narrative-deck` | Rehearse the storyline before drafting |
+| `narrative-deck` | Rehearse the storyline before drafting, or present a research update |
 | **Phase 3: production and revision** | |
 | `draft` | Draft manuscript prose from controlled inputs |
 | `style-polish` | Improve readability and author voice without changing scientific meaning |
