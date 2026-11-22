@@ -192,7 +192,7 @@ when it rehearses the storyline. The same evidence rules apply.
   slides.
 - Write notes as spoken text that can be read aloud: say what to look at, give
   the answer and why it matters, use two or three rounded numbers, and put
-  technical caveats in a final "If asked" line.
+  supplementary technical detail in a final "If asked" line.
 
 ## Artifact Contracts
 
