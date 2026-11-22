@@ -42,7 +42,7 @@ the sequence; if the stage is unclear, inspect the repo's artifacts first.
 | `analysis-refresh` | Regenerate and reconcile results into the results report | [modes-research-iteration](references/modes-research-iteration.md) |
 | `reflect` | Argue results against literature and meeting feedback; put scope options to the authors | [modes-research-iteration](references/modes-research-iteration.md), [defensive writing](references/defensive-writing-discipline.md) |
 | `sap-outline` | Build or revise the controlling plan from agreed scope | [modes-research-iteration](references/modes-research-iteration.md) |
-| `narrative-deck` | Rehearse the storyline, often for a meeting | [modes-research-iteration](references/modes-research-iteration.md) |
+| `narrative-deck` | Rehearse the storyline or present a research update, often for a meeting | [modes-research-iteration](references/modes-research-iteration.md) |
 | **Phase 3: production and revision** | | |
 | `draft` | Draft prose from the controller | [modes-manuscript-production](references/modes-manuscript-production.md), [defensive writing](references/defensive-writing-discipline.md) |
 | `style-polish` | Readability and author voice without changing the science | [modes-manuscript-production](references/modes-manuscript-production.md), [epi discipline](references/epidemiology-manuscript-discipline.md), [defensive writing](references/defensive-writing-discipline.md) |
