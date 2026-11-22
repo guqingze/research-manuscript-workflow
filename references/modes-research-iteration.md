@@ -141,11 +141,12 @@ when it rehearses the storyline. The same evidence rules apply.
 
 **Template and build**
 
-- Build the PPTX on the group's own template, using its layouts (cover,
-  section dividers, title-and-subtitle content). Never restyle the template.
-- Generate the deck from a builder script kept in the repository. Edit the
-  script, not the PPTX, and render every slide to images to check the layout
-  before you share it.
+- Honour the requested format. When a PPTX is requested, build it on the
+  group's own template, using its layouts (cover, section dividers,
+  title-and-subtitle content), and never restyle the template. Generate it
+  from a builder script kept in the repository, edit the script rather than
+  the PPTX, and render every slide to images to check the layout before you
+  share it.
 - Put spoken presenter notes on every slide.
 
 **Storyline**
