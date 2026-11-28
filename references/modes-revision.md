@@ -41,7 +41,9 @@ block is not packaged; route it back to `draft`. A handoff note lists any
 unresolved block as open work.
 
 Core rule: packaging does not change content. Route content problems back to
-`draft`, `revise` or `qa` rather than fixing them during formatting.
+`draft`, `revise` or `qa` rather than fixing them during formatting. Files
+created or changed here (cover letter, statements, rendered formats) get the
+QA internal-language, identifier and rendered-file checks before handoff.
 
 - **First submission**: apply the target journal's requirements (word limits,
   abstract structure, reference style, displays, reporting checklist, required
