@@ -76,6 +76,14 @@ factual readiness, not merit.
 
 Core rule: every claim, number and citation traces to its source.
 
+Scope: every file that will be submitted (main text and supplements),
+including files drafted in earlier phases and never re-polished, and
+every part of each file: title, headings, display captions and legends, table
+notes, data- and code-availability statements, acknowledgements and the
+reference list with any line above it. Each check below applies to all of
+them, except that published titles quoted in reference entries are checked
+against their canonical metadata, not scrubbed as prose.
+
 Procedure:
 
 1. Claim QA: classify major claims as literature-backed, analysis-backed, mixed
@@ -96,7 +104,13 @@ Procedure:
    that breaks the overclaim guard is a blocker.
 2. Citation QA: in-text citations map to the reference collection; no orphans;
    metadata complete; apply the citation-verification discipline (SKILL.md) to
-   important claims.
+   important claims. Check each rendered reference entry, not only its key:
+   every DOI, URL or PMID must resolve to the cited work (matching title and
+   first author), never a
+   placeholder value (`unresolved`, `TODO`, `N/A`, an empty DOI path) or
+   dangling punctuation left by an empty field. When a work has no verified
+   DOI, fall back to a verified PMID, the journal's own article locator or an
+   authoritative source URL, or omit the identifier.
 3. Data QA: numbers, denominators, model labels, intervals and p-values match
    outputs; displays exist and captions match; main/supplement placement
    matches the controller. Trace every main-text number to its source and
@@ -114,14 +128,24 @@ Procedure:
    in-image text use readable scientific labels, never code-level variable
    names (for example `log_ast`), internal tiers or workflow labels.
 4. Package QA: word counts, placeholders and citation workflow are recorded;
-   re-render after final edits when render tooling exists. After any
+   re-render after final edits when render tooling exists. No internal
+   repository paths, file names, build notes or generation remarks appear in
+   submitted text; naming a public repository or a publicly released file so
+   readers can find it is fine. When the deliverable is a rendered
+   file (`.docx`, `.pdf`), rerun the placeholder, internal-language and
+   leftover-markup scans on text extracted from that file, not only on its
+   source, and inspect the rendered pages. After any
    renumbering of references or supplementary items, confirm the same mapping
    reached the supplement, table cells, the scripts that generate tables and
    figures, and links between documents. An unresolved
    `[PENDING: …]` block is a blocker for a submission package; in an internal
    review draft it is recorded, not blocked.
 5. Verdict: `PASS`, `PASS_WITH_WARNINGS` (needs the user's explicit
-   acceptance), or `BLOCKED`.
+   acceptance), or `BLOCKED`. Pattern scans are a floor, not the gate: they
+   miss variant word forms, undefined abbreviations and engineering register.
+   Before issuing `PASS` or `PASS_WITH_WARNINGS`, read every submitted file end to end, in the order
+   an editor opens them (title, abstract, main text, end matter, references,
+   supplement), and record that read in the report.
 
 ## Pre-Submission Review Mode
 
@@ -143,7 +167,8 @@ and recommend the next mode (`draft`, `qa` or `package`).
 - **Style-Polished Draft Package**: source and polished paths, author-sample
   status, change summary, preserved-content check, word-count changes,
   unresolved passages, disclosure notes.
-- **QA Gate Report**: verdict; claim (including calibration), citation,
-  claim-source, data and package QA; blockers; warnings; handoff readiness.
+- **QA Gate Report**: verdict; files and rendered outputs checked; claim
+  (including calibration), citation, claim-source, data and package QA;
+  full-read record; blockers; warnings; handoff readiness.
 - **Pre-Submission Review Report**: journal fit and contribution, strengths,
   must-fix, should-fix and optional items, likely objections, next mode.

@@ -111,6 +111,8 @@ the project set in the repo's epi revision-lessons file):
   when describing reproducibility materials outside the article text)
 - placeholders such as `[Insert Figure 1 here]` may remain in Markdown drafts
   when the document build removes them from Word output.
+- internal repository paths, file names and build notes, anywhere in the submission
+  (see the QA scope in `modes-manuscript-production.md`).
 
 Also avoid AI-like prose: repeated mechanical transitions ("Furthermore,"
 "Moreover," "Importantly"); inflated adjectives ("highly," "substantially")
