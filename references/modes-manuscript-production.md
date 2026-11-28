@@ -124,10 +124,7 @@ Procedure:
    that no remaining sentence relies on is removed with its Methods text, not
    relabelled. Display vocabulary: column headers, generated row labels and
    in-image text use readable scientific labels, never code-level variable
-   names (for example `log_ast`), internal tiers or workflow labels. The same
-   holds for Supplementary Methods prose: no software class or function names
-   where the method has a standard name, no code-style notation, and no raw
-   source-data field names left in another language than the document's.
+   names (for example `log_ast`), internal tiers or workflow labels.
 4. Package QA: word counts, placeholders and citation workflow are recorded;
    re-render after final edits when render tooling exists. No repository
    paths, file names, build notes or generation remarks appear in submitted
@@ -135,8 +132,7 @@ Procedure:
    access route, not its internal layout. When the deliverable is a rendered
    file (`.docx`, `.pdf`), rerun the placeholder, internal-language and
    leftover-markup scans on text extracted from that file, not only on its
-   source, and look at the title page, any panel or box, wide tables,
-   embedded figures and the reference pages as rendered. After any
+   source, and inspect the rendered pages. After any
    renumbering of references or supplementary items, confirm the same mapping
    reached the supplement, table cells, the scripts that generate tables and
    figures, and links between documents. An unresolved

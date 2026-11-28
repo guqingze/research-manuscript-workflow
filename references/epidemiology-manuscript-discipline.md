@@ -110,15 +110,9 @@ the project set in the repo's epi revision-lessons file):
 - instructional verbs in prose: "write," "output," "generated" (allowed only
   when describing reproducibility materials outside the article text)
 - placeholders such as `[Insert Figure 1 here]` may remain in Markdown drafts
-  when the document build removes them from Word output; confirm the removal
-  in the rendered file.
-- repository paths, file names, build or "compiled automatically" notes, and
-  internal alignment remarks in headings, captions or end matter.
-
-The scrub, like causal-language restraint, covers the whole submission: the
-supplement, display captions and legends, section headings, data- and
-code-availability statements, acknowledgements and the reference list, not
-only the main-text body.
+  when the document build removes them from Word output.
+- repository paths, file names and build notes, anywhere in the submission
+  (see the QA scope in `modes-manuscript-production.md`).
 
 Also avoid AI-like prose: repeated mechanical transitions ("Furthermore,"
 "Moreover," "Importantly"); inflated adjectives ("highly," "substantially")
@@ -172,8 +166,7 @@ Move to Discussion:
 
 1. Section discipline: interpretation and limitations absent from Results;
    no defensive caveats (`references/defensive-writing-discipline.md`).
-2. Internal language: workflow/data-layer phrases removed from prose, in the
-   supplement and end matter as well as the main text.
+2. Internal language: workflow/data-layer phrases removed from prose.
 3. Causal language: wording matches the study design.
 4. Citation support: methods and literature claims cited through canonical
    project sources.
